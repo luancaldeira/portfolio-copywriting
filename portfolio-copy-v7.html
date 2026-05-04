@@ -1,0 +1,2084 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luan — Copywriter & Conteúdo Estratégico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0A0A0B;
+  --bg-2: #111114;
+  --bg-3: #18181D;
+  --bg-4: #1E1E26;
+  --border: rgba(255,255,255,0.06);
+  --border-md: rgba(255,255,255,0.10);
+  --border-hi: rgba(255,255,255,0.18);
+  --text-1: #F5F4F0;
+  --text-2: #B8B4A8;
+  --text-3: #6E6A62;
+  --text-4: #3A3832;
+  --gold: #C9A96E;
+  --gold-dim: rgba(201,169,110,0.12);
+  --gold-glow: rgba(201,169,110,0.06);
+  --green: #5EC991;
+  --green-dim: rgba(94,201,145,0.10);
+  --blue: #5B9CF6;
+  --blue-dim: rgba(91,156,246,0.10);
+  --pink: #E07B9A;
+  --pink-dim: rgba(224,123,154,0.10);
+  --orange: #E8945A;
+  --orange-dim: rgba(232,148,90,0.10);
+  --violet: #9B7FE8;
+  --violet-dim: rgba(155,127,232,0.10);
+  --teal: #4FC4CF;
+  --teal-dim: rgba(79,196,207,0.10);
+  --red: #E05C5C;
+  --red-dim: rgba(224,92,92,0.10);
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
+  --sp-6: 24px; --sp-8: 32px; --sp-10: 40px; --sp-12: 48px;
+  --sp-16: 64px; --sp-20: 80px; --sp-24: 96px;
+
+  --radius-sm: 4px; --radius-md: 8px; --radius-lg: 16px; --radius-xl: 24px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text-1);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'cv02','cv03','cv04','cv11';
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--sp-8);
+  height: 60px;
+  background: rgba(10,10,11,0.7);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+nav.scrolled { border-color: var(--border); }
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-1);
+  letter-spacing: -0.01em;
+}
+.nav-logo span { color: var(--gold); }
+
+.nav-cta {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  background: var(--gold);
+  color: #0A0A0B;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: opacity 0.2s ease;
+}
+.nav-cta:hover { opacity: 0.85; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100svh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  position: relative;
+  padding: var(--sp-24) var(--sp-8);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 20%; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 400px;
+  background: radial-gradient(ellipse, rgba(201,169,110,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 70%);
+}
+
+.hero-inner {
+  position: relative; z-index: 1;
+  max-width: 780px;
+}
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  border: 1px solid rgba(201,169,110,0.3);
+  border-radius: var(--radius-sm);
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--gold-dim);
+  margin-bottom: var(--sp-8);
+  animation: fadeInUp 0.6s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 7vw, 84px);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--sp-6);
+  animation: fadeInUp 0.6s cubic-bezier(0.16,1,0.3,1) 80ms both;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-sub {
+  font-size: 17px;
+  color: var(--text-2);
+  max-width: 520px;
+  margin: 0 auto var(--sp-10);
+  line-height: 1.65;
+  animation: fadeInUp 0.6s cubic-bezier(0.16,1,0.3,1) 160ms both;
+}
+
+.hero-actions {
+  display: flex; align-items: center; gap: var(--sp-4);
+  justify-content: center;
+  animation: fadeInUp 0.6s cubic-bezier(0.16,1,0.3,1) 240ms both;
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  background: var(--gold);
+  color: #0A0A0B;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  position: relative; overflow: hidden;
+  transition: opacity 0.2s ease;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute; top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shimmer 2.5s infinite;
+}
+.btn-primary:hover { opacity: 0.85; }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  background: transparent;
+  color: var(--text-2);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-md);
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.btn-ghost:hover { color: var(--text-1); border-color: var(--border-hi); }
+
+/* Botão secundário com destaque maior — pra "contratar pacote" */
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  background: transparent;
+  color: var(--text-1);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gold);
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.btn-secondary:hover { background: var(--gold-dim); color: var(--gold); }
+
+/* Wrap para empilhar em mobile */
+@media (max-width: 520px) {
+  .hero-actions, .cta-actions { flex-direction: column; width: 100%; }
+  .hero-actions a, .cta-actions a { width: 100%; justify-content: center; }
+}
+
+.hero-stats {
+  display: flex; gap: var(--sp-10); justify-content: center;
+  margin-top: var(--sp-16);
+  padding-top: var(--sp-10);
+  border-top: 1px solid var(--border);
+  animation: fadeInUp 0.6s cubic-bezier(0.16,1,0.3,1) 320ms both;
+}
+.stat-item { text-align: center; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-1);
+  letter-spacing: -0.02em;
+}
+.stat-label {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+/* ── SECTION BASE ── */
+section {
+  padding: var(--sp-24) var(--sp-8);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-tag {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: var(--sp-4);
+}
+.section-tag::before {
+  content: '';
+  display: inline-block;
+  width: 16px; height: 1px;
+  background: var(--text-3);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin-bottom: var(--sp-4);
+}
+.section-sub {
+  font-size: 16px;
+  color: var(--text-2);
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+/* ── PROJECTS GRID ── */
+.projects-header {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--sp-8) var(--sp-12);
+}
+
+.projects-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--sp-8) var(--sp-24);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--sp-6);
+}
+
+.project-card {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0; transform: translateY(24px);
+}
+.project-card.visible {
+  animation: fadeInUp 0.5s cubic-bezier(0.16,1,0.3,1) both;
+}
+.project-card:hover {
+  border-color: var(--border-hi);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.card-header {
+  padding: var(--sp-6);
+  border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+
+.card-niche {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+}
+
+.card-format {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-3);
+  font-weight: 500;
+}
+
+.card-body { padding: var(--sp-6); }
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: var(--sp-3);
+}
+
+.card-desc {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.55;
+  margin-bottom: var(--sp-6);
+}
+
+.card-preview {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-4);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-1);
+  position: relative;
+  overflow: hidden;
+  max-height: 140px;
+}
+.card-preview::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 48px;
+  background: linear-gradient(transparent, var(--bg-3));
+}
+
+.card-preview.bio {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.card-footer {
+  padding: var(--sp-4) var(--sp-6);
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.card-btn {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-1);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 4px;
+  padding: 0;
+  transition: opacity 0.2s ease;
+}
+.card-btn:hover { opacity: 0.7; }
+
+.card-platform {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-3);
+}
+
+/* Color accents per card */
+.accent-gold .card-niche { color: var(--gold); background: var(--gold-dim); border-color: rgba(201,169,110,0.2); }
+.accent-gold .card-title { color: var(--text-1); }
+.accent-gold .card-btn { color: var(--gold); }
+.accent-gold:hover { box-shadow: 0 20px 60px rgba(201,169,110,0.08); }
+
+.accent-green .card-niche { color: var(--green); background: var(--green-dim); border-color: rgba(94,201,145,0.2); }
+.accent-green .card-btn { color: var(--green); }
+.accent-green:hover { box-shadow: 0 20px 60px rgba(94,201,145,0.08); }
+
+.accent-blue .card-niche { color: var(--blue); background: var(--blue-dim); border-color: rgba(91,156,246,0.2); }
+.accent-blue .card-btn { color: var(--blue); }
+.accent-blue:hover { box-shadow: 0 20px 60px rgba(91,156,246,0.08); }
+
+.accent-pink .card-niche { color: var(--pink); background: var(--pink-dim); border-color: rgba(224,123,154,0.2); }
+.accent-pink .card-btn { color: var(--pink); }
+.accent-pink:hover { box-shadow: 0 20px 60px rgba(224,123,154,0.08); }
+
+.accent-orange .card-niche { color: var(--orange); background: var(--orange-dim); border-color: rgba(232,148,90,0.2); }
+.accent-orange .card-btn { color: var(--orange); }
+.accent-orange:hover { box-shadow: 0 20px 60px rgba(232,148,90,0.08); }
+
+.accent-violet .card-niche { color: var(--violet); background: var(--violet-dim); border-color: rgba(155,127,232,0.2); }
+.accent-violet .card-btn { color: var(--violet); }
+.accent-violet:hover { box-shadow: 0 20px 60px rgba(155,127,232,0.08); }
+
+.accent-teal .card-niche { color: var(--teal); background: var(--teal-dim); border-color: rgba(79,196,207,0.2); }
+.accent-teal .card-btn { color: var(--teal); }
+.accent-teal:hover { box-shadow: 0 20px 60px rgba(79,196,207,0.08); }
+
+.accent-red .card-niche { color: var(--red); background: var(--red-dim); border-color: rgba(224,92,92,0.2); }
+.accent-red .card-btn { color: var(--red); }
+.accent-red:hover { box-shadow: 0 20px 60px rgba(224,92,92,0.08); }
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(10,10,11,0.85);
+  backdrop-filter: blur(12px);
+  z-index: 200;
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--sp-8);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  background: var(--bg-2);
+  border: 1px solid var(--border-md);
+  border-radius: var(--radius-xl);
+  max-width: 600px; width: 100%;
+  max-height: 85vh; overflow-y: auto;
+  transform: scale(0.95) translateY(16px);
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.modal-overlay.open .modal { transform: scale(1) translateY(0); }
+
+.modal-header {
+  padding: var(--sp-8);
+  border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+
+.modal-close {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-2);
+  cursor: pointer;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  transition: color 0.2s ease, background 0.2s ease;
+  flex-shrink: 0;
+}
+.modal-close:hover { color: var(--text-1); background: var(--bg-4); }
+
+.modal-meta { flex: 1; }
+.modal-niche {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: var(--sp-2);
+}
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.modal-body { padding: var(--sp-8); }
+
+.modal-context {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-4) var(--sp-6);
+  margin-bottom: var(--sp-6);
+}
+.modal-context-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+  margin-bottom: var(--sp-2);
+}
+.modal-context-text {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.modal-content-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+  margin-bottom: var(--sp-4);
+  display: flex; align-items: center; gap: var(--sp-2);
+}
+.modal-content-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.modal-copy {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-6);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-1);
+  white-space: pre-wrap;
+  margin-bottom: var(--sp-6);
+}
+
+.modal-copy .hashtags {
+  color: var(--blue);
+  display: block;
+  margin-top: var(--sp-3);
+  font-size: 13px;
+}
+.modal-copy .emoji { font-style: normal; }
+
+.modal-insight {
+  background: var(--gold-dim);
+  border: 1px solid rgba(201,169,110,0.15);
+  border-radius: var(--radius-md);
+  padding: var(--sp-4) var(--sp-6);
+}
+.modal-insight-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-bottom: var(--sp-2);
+}
+.modal-insight-text {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+
+/* ── ABOUT ── */
+.about-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--sp-24) var(--sp-8);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-16);
+  align-items: center;
+}
+
+.about-text .section-tag { margin-bottom: var(--sp-3); }
+.about-text .section-title { margin-bottom: var(--sp-6); }
+.about-text p {
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-bottom: var(--sp-4);
+}
+
+.skills-list {
+  display: flex; flex-wrap: wrap; gap: var(--sp-2);
+  margin-top: var(--sp-6);
+}
+.skill-tag {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-2);
+}
+
+.about-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+.metric-card {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+  transition: border-color 0.2s ease;
+}
+.metric-card:hover { border-color: var(--border-hi); }
+.metric-num {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text-1);
+}
+.metric-label {
+  font-size: 13px;
+  color: var(--text-3);
+  margin-top: var(--sp-2);
+  font-weight: 500;
+}
+
+/* ── CTA ── */
+.cta-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--sp-8) var(--sp-24);
+}
+.cta-inner {
+  background: var(--bg-2);
+  border: 1px solid var(--border-md);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-16);
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-inner::before {
+  content: '';
+  position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+  width: 400px; height: 250px;
+  background: radial-gradient(ellipse, rgba(201,169,110,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: var(--sp-4);
+  position: relative;
+}
+.cta-sub {
+  font-size: 16px;
+  color: var(--text-2);
+  margin-bottom: var(--sp-10);
+  position: relative;
+}
+.cta-actions {
+  display: flex; gap: var(--sp-4); justify-content: center;
+  position: relative;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: var(--sp-10) var(--sp-8);
+  display: flex; justify-content: space-between; align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-3);
+  letter-spacing: -0.01em;
+}
+.footer-logo span { color: var(--gold); }
+.footer-copy {
+  font-size: 12px;
+  color: var(--text-4);
+}
+
+.metric-card-clickable {
+  cursor: pointer;
+  position: relative;
+}
+.metric-card-clickable:hover {
+  border-color: rgba(91,156,246,0.3);
+  background: rgba(91,156,246,0.04);
+}
+.metric-cta {
+  display: block;
+  margin-top: var(--sp-2);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--blue);
+  letter-spacing: 0.02em;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+.metric-card-clickable:hover .metric-cta { opacity: 1; }
+
+/* ── PACKAGES MODAL ── */
+.packages-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-4);
+}
+
+.package-card {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-6);
+  position: relative;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.package-card:hover {
+  border-color: var(--border-hi);
+  transform: translateY(-2px);
+}
+.package-card.featured {
+  border-color: rgba(201,169,110,0.4);
+  background: linear-gradient(180deg, var(--gold-dim) 0%, var(--bg-3) 60%);
+}
+
+.package-badge {
+  position: absolute;
+  top: -10px;
+  right: var(--sp-6);
+  background: var(--gold);
+  color: #0A0A0B;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+}
+
+.package-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--sp-4);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.package-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-1);
+}
+
+.package-price {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--text-1);
+}
+.package-price-prefix {
+  font-size: 14px;
+  color: var(--text-3);
+  font-weight: 500;
+  margin-right: 2px;
+}
+.package-price-period {
+  font-size: 12px;
+  color: var(--text-3);
+  font-weight: 500;
+  margin-left: 4px;
+}
+
+.package-tagline {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.5;
+  margin-bottom: var(--sp-4);
+  font-style: italic;
+}
+
+.package-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.package-features li {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.5;
+  padding: var(--sp-2) 0;
+  padding-left: var(--sp-6);
+  position: relative;
+}
+.package-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.packages-footer {
+  margin-top: var(--sp-6);
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.packages-footer p {
+  font-size: 13px;
+  color: var(--text-3);
+  margin-bottom: var(--sp-4);
+}
+.packages-footer .btn-primary {
+  display: inline-flex;
+}
+
+/* ── FORM MODALS ── */
+.form-modal { max-width: 680px; }
+
+.form-section { display: flex; flex-direction: column; gap: var(--sp-5); }
+
+.form-group { display: flex; flex-direction: column; gap: var(--sp-2); }
+
+.form-label { font-size: 13px; font-weight: 600; color: var(--text-2); line-height: 1.4; }
+.required-mark { color: var(--gold); margin-left: 1px; }
+
+.form-input, .form-textarea {
+  background: var(--bg-3);
+  border: 1px solid var(--border-md);
+  border-radius: var(--radius-md);
+  color: var(--text-1);
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 10px var(--sp-4);
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+  -webkit-appearance: none;
+}
+.form-input:focus, .form-textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-dim);
+}
+.form-input::placeholder, .form-textarea::placeholder { color: var(--text-3); }
+.form-textarea { resize: vertical; min-height: 96px; line-height: 1.6; }
+
+.radio-group { display: flex; flex-direction: column; gap: var(--sp-3); }
+.radio-option {
+  display: flex; align-items: center; gap: var(--sp-3);
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-4) var(--sp-5);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  user-select: none;
+}
+.radio-option:hover { border-color: var(--border-hi); }
+.radio-option.selected { border-color: rgba(201,169,110,0.5); background: var(--gold-dim); }
+.radio-option.compact { padding: var(--sp-3) var(--sp-4); }
+.radio-option input[type="radio"] { accent-color: var(--gold); width: 15px; height: 15px; flex-shrink: 0; cursor: pointer; }
+.radio-option-label { flex: 1; }
+.radio-option-title { font-size: 14px; font-weight: 600; color: var(--text-1); }
+.radio-option-desc { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+.radio-simple-label { font-size: 13px; color: var(--text-2); }
+
+.checkbox-group { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.checkbox-option {
+  display: flex; align-items: center; gap: var(--sp-2);
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  cursor: pointer; font-size: 13px; color: var(--text-2);
+  transition: border-color 0.2s ease, background 0.2s ease;
+  user-select: none;
+}
+.checkbox-option:hover { border-color: var(--border-hi); }
+.checkbox-option.checked { border-color: rgba(201,169,110,0.4); background: var(--gold-dim); color: var(--text-1); }
+.checkbox-option input[type="checkbox"] { accent-color: var(--gold); width: 14px; height: 14px; cursor: pointer; }
+
+.step-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--sp-5);
+}
+.step-plan-badge {
+  display: inline-flex; align-items: center;
+  background: var(--gold-dim);
+  border: 1px solid rgba(201,169,110,0.3);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  font-size: 12px; font-weight: 600; color: var(--gold);
+}
+.step-change-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 12px; font-weight: 500; color: var(--text-3);
+  padding: 4px 8px; border-radius: var(--radius-sm);
+  transition: color 0.2s ease;
+}
+.step-change-btn:hover { color: var(--text-1); }
+
+.ideas-instruction {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius-md);
+  padding: var(--sp-4) var(--sp-5);
+  font-size: 13px; color: var(--text-2); line-height: 1.6;
+}
+.ideas-instruction strong { color: var(--text-1); }
+
+.ideas-grid { display: flex; flex-direction: column; gap: var(--sp-4); }
+.idea-item { display: flex; flex-direction: column; gap: 6px; }
+.idea-number { font-family: var(--font-mono); font-size: 10px; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; }
+.idea-textarea { min-height: 80px !important; }
+
+.form-divider { border: none; border-top: 1px solid var(--border); margin: var(--sp-2) 0; }
+.form-section-title {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-3);
+  display: flex; align-items: center; gap: var(--sp-3);
+}
+.form-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+.form-success {
+  background: var(--green-dim);
+  border: 1px solid rgba(94,201,145,0.2);
+  border-radius: var(--radius-md);
+  padding: var(--sp-12) var(--sp-8);
+  text-align: center; display: none;
+}
+.form-success.visible { display: block; }
+.form-success-icon { font-size: 36px; margin-bottom: var(--sp-3); color: var(--green); }
+.form-success-title { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--green); margin-bottom: var(--sp-2); }
+.form-success-text { font-size: 14px; color: var(--text-2); line-height: 1.65; }
+
+.form-error {
+  background: rgba(224,92,92,0.08);
+  border: 1px solid rgba(224,92,92,0.2);
+  border-radius: var(--radius-md);
+  padding: var(--sp-3) var(--sp-4);
+  font-size: 13px; color: var(--red); display: none;
+}
+.form-error.visible { display: block; }
+
+.btn-continue, .btn-submit {
+  display: flex; align-items: center; justify-content: center; gap: var(--sp-2);
+  width: 100%;
+  background: var(--gold); color: #0A0A0B;
+  font-family: var(--font-body); font-size: 14px; font-weight: 600;
+  padding: 12px 24px; border-radius: var(--radius-sm);
+  border: none; cursor: pointer; transition: opacity 0.2s ease;
+  margin-top: var(--sp-2);
+}
+.btn-continue:not(:disabled):hover, .btn-submit:hover { opacity: 0.85; }
+.btn-continue:disabled, .btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { padding: 0 var(--sp-6); }
+  .nav-links { display: none; }
+  .projects-grid { grid-template-columns: 1fr; padding: 0 var(--sp-6) var(--sp-16); }
+  .about-section { grid-template-columns: 1fr; gap: var(--sp-12); }
+  .hero-stats { gap: var(--sp-6); }
+  .cta-actions { flex-direction: column; align-items: center; }
+  footer { flex-direction: column; gap: var(--sp-4); text-align: center; }
+  .projects-header { padding: 0 var(--sp-6) var(--sp-10); }
+  section { padding: var(--sp-16) var(--sp-6); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">Luan<span>.</span></div>
+  <a href="#form-amostra" onclick="openAmostra(); return false;" class="nav-cta">Quero uma amostra grátis →</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">Portfólio · Copy & Conteúdo</div>
+    <h1 class="hero-title">
+      Palavras que<br><em>vendem</em> enquanto<br>você dorme
+    </h1>
+    <p class="hero-sub">
+      Escrevo textos e bio pra quem posta toda semana e ainda não vê resultado vir junto.
+    </p>
+    <div class="hero-actions">
+      <a href="#form-amostra" onclick="openAmostra(); return false;" class="btn-primary">Quer uma amostra grátis? →</a>
+      <a href="#form-pacote" onclick="openPacote(); return false;" class="btn-secondary">Quer contratar um pacote? →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">10</div>
+        <div class="stat-label">nichos no portfólio</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3x</div>
+        <div class="stat-label">engajamento dos meus clientes</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">48h</div>
+        <div class="stat-label">do briefing à entrega</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="projects-header" id="projetos">
+  <div class="section-tag">Portfólio</div>
+  <h2 class="section-title">10 projetos, 10 nichos</h2>
+  <p class="section-sub">Cada peça foi escrita pra um nicho diferente, com uma abordagem diferente. Clica pra ler o copy completo — e o porquê de cada escolha.</p>
+</div>
+
+<div class="projects-grid">
+
+  <!-- 1. Confeitaria -->
+  <div class="project-card accent-pink" data-id="1">
+    <div class="card-header">
+      <span class="card-niche">Confeitaria</span>
+      <span class="card-format">Texto · Instagram</span>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">A Torta de Limão da Vó Nunca Foi Assim</h3>
+      <p class="card-desc">Storytelling emocional pra vender produto com memória afetiva. Nostalgia primeiro, escassez no final.</p>
+      <div class="card-preview">
+        Ela ensinou a receita em uma tarde de chuva, com a cozinha cheia de vapor e limões espalhados na mesa.
+        Eu fiz algumas trocas, testei por semanas e finalmente cheguei numa versão que…
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="card-btn" onclick="openModal(1)">Ler completo →</button>
+      <span class="card-platform">Instagram Feed</span>
+    </div>
+  </div>
+
+  <!-- 2. Personal trainer -->
+  <div class="project-card accent-green" data-id="2">
+    <div class="card-header">
+      <span class="card-niche">Fitness</span>
+      <span class="card-format">Bio · Instagram</span>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Bio que Vende sem Parecer que Tá Vendendo</h3>
+      <p class="card-desc">Bio estratégica pra personal trainer. Prova social no começo, objeção quebrada no meio, CTA discreto no fim.</p>
+      <div class="card-preview bio">
+        Personal trainer há 7 anos · formado em Ed. Física pela PUCRS
+        Já ajudei +200 pessoas a emagrecer sem abandonar o churrasquinho de fim de semana
+        Método → consistência real, não perfeição…
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="card-btn" onclick="openModal(2)">Ler completo →</button>
+      <span class="card-platform">Instagram Bio</span>
+    </div>
+  </div>
+
+  <!-- 3. E-commerce moda -->
+  <div class="project-card accent-gold" data-id="3">
+    <div class="card-header">
+      <span class="card-niche">Moda</span>
+      <span class="card-format">Texto · Drop</span>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">O Drop que Esgotou em 40 Minutos</h3>
+      <p class="card-desc">Lançamento de coleção com escassez real. Posicionamento de identidade antes de mostrar o produto.</p>
+      <div class="card-preview">
+        Não é roupa. É posição.
+        Quem entende, não precisa de explicação. Quem não entende, não é o nosso público mesmo.
+        Drop 003 — 30 peças…
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="card-btn" onclick="openModal(3)">Ler completo →</button>
+      <span class="card-platform">Instagram Feed</span>
+    </div>
+  </div>
+
+  <!-- 4. Coach -->
+  <div class="project-card accent-violet" data-id="4">
+    <div class="card-header">
+      <span class="card-niche">Coaching</span>
+      <span class="card-format">Texto · Carrossel</span>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">O Texto que Faz o Seguidor Parar e Pensar</h3>
+      <p class="card-desc">Copy para coach de carreira com abordagem provocativa. Quebra objeção antes de apresentar a solução.</p>
+      <div class="card-preview">
+        Você não tá estagnado por falta de esforço. Tá estagnado porque trabalha duro na direção errada.
+        Diferença entre ocupado e produtivo…
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="card-btn" onclick="openModal(4)">Ler completo →</button>
+      <span class="card-platform">Instagram Carrossel</span>
+    </div>
+  </div>
+
+  <!-- 5. Carrossel expandido -->
+  <div class="project-card accent-orange" data-id="5">
+    <div class="card-header">
+      <span class="card-niche">Finanças pessoais</span>
+      <span class="card-format">Carrossel expandido</span>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Do Rascunho ao Carrossel que Para o Scroll</h3>
+      <p class="card-desc">Cliente enviou 4 bullet points secos. Virou um carrossel de 7 slides com abertura, narrativa por slide e CTA final.</p>
+      <div class="card-preview">
+        <strong style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.06em;">Input do cliente</strong><br>
+        "- juros do cartão são altos / - parcelamento machuca / - reserva de emergência importa / - investir cedo"<br><br>
+        <strong style="font-size:11px;color:var(--orange);text-transform:uppercase;letter-spacing:.06em;">Slide 1 →</strong><br>
+        Você não tá endividado por falta de esforço. Tá endividado porque ninguém te ensinou…
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="card-btn" onclick="openModal(5)">Ver todos os slides →</button>
+      <span class="card-platform">Instagram Carrossel</span>
+    </div>
+  </div>
+
+  <!-- 6. Stories -->
+  <div class="project-card accent-blue" data-id="6">
+    <div class="card-header">
+      <span class="card-niche">Moda / E-commerce</span>
+      <span class="card-format">Roteiro de Stories</span>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Sequência de Stories que Vende sem Parecer Anúncio</h3>
+      <p class="card-desc">Arco narrativo de 8 stories — do gancho até o CTA. Cliente manda o produto, eu monto a sequência.</p>
+      <div class="card-preview">
+        <strong style="font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;">Story 1 — Gancho</strong><br>
+        "Eu quase não lançei essa peça. Achei que ninguém ia entender."<br><br>
+        <strong style="font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;">Story 2 → tensão</strong><br>
+        "Fiz 3 vezes. Descartei 3 vezes. Até que…
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="card-btn" onclick="openModal(6)">Ver sequência completa →</button>
+      <span class="card-platform">Instagram Stories</span>
+    </div>
+  </div>
+
+  <!-- 7. Psicóloga -->
+  <div class="project-card accent-teal" data-id="7">
+    <div class="card-header">
+      <span class="card-niche">Saúde Mental</span>
+      <span class="card-format">Bio · Acolhimento</span>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Bio que Acolhe Antes de Vender</h3>
+      <p class="card-desc">Bio para psicóloga com abordagem sensível. Gera conexão emocional antes de apresentar o serviço.</p>
+      <div class="card-preview bio">
+        Psicóloga clínica · CRP 07/12345
+        Acredito que pedir ajuda é um ato de coragem, não de fraqueza
+        Atendo adultos que estão carregando coisas demais sozinhos…
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="card-btn" onclick="openModal(7)">Ler completo →</button>
+      <span class="card-platform">Instagram Bio</span>
+    </div>
+  </div>
+
+  <!-- 8. SaaS / Tech -->
+  <div class="project-card accent-violet" data-id="8">
+    <div class="card-header">
+      <span class="card-niche">Tech / SaaS</span>
+      <span class="card-format">Texto · LinkedIn</span>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Copy Técnico que Não Afasta o Leigo</h3>
+      <p class="card-desc">Texto para produto de software. Traduz feature técnica em benefício real sem simplificar demais.</p>
+      <div class="card-preview">
+        A maioria dos relatórios de vendas responde "o que aconteceu".
+        O nosso responde "o que fazer agora".
+        Lançamos a análise preditiva integrada ao CRM…
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="card-btn" onclick="openModal(8)">Ler completo →</button>
+      <span class="card-platform">LinkedIn</span>
+    </div>
+  </div>
+
+  <!-- 9. Restaurante -->
+  <div class="project-card accent-red" data-id="9">
+    <div class="card-header">
+      <span class="card-niche">Gastronomia</span>
+      <span class="card-format">Texto · Sensorial</span>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Copy que Faz o Seguidor Sentir Fome</h3>
+      <p class="card-desc">Escrita sensorial pra restaurante. O leitor sente o cheiro antes de ver o prato. Sem chamada de "venha provar".</p>
+      <div class="card-preview">
+        O caldo reduz por 4 horas. O chef prova a cada 20 minutos e faz pequenos ajustes — um toque de azeite, uma pitada de…
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="card-btn" onclick="openModal(9)">Ler completo →</button>
+      <span class="card-platform">Instagram Feed</span>
+    </div>
+  </div>
+
+  <!-- 10. Freelancer/Creator -->
+  <div class="project-card accent-gold" data-id="10">
+    <div class="card-header">
+      <span class="card-niche">Creator Economy</span>
+      <span class="card-format">Bio + Texto</span>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">O Creator que Parece Marca</h3>
+      <p class="card-desc">Pacote completo — bio + texto — para criador que já passou da fase de número e quer ser tratado como referência. Posicionamento de marca aplicado em quem ainda é vendido como influencer.</p>
+      <div class="card-preview">
+        Não ensino o caminho mais fácil. Ensino o mais honesto.
+        Já errei o suficiente pra saber o que realmente funciona — e o que parece funcionar mas não funciona…
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="card-btn" onclick="openModal(10)">Ler completo →</button>
+      <span class="card-platform">Instagram Bio + Feed</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ABOUT -->
+<div class="about-section" id="sobre">
+  <div class="about-text">
+    <div class="section-tag">Sobre mim</div>
+    <h2 class="section-title">Escrevo como quem<br>sabe ler o público.</h2>
+    <p>Sou desenvolvedor frontend e analista de dados antes de ser copy. Isso muda como eu escrevo: olho pro seu perfil já pensando onde a pessoa para de rolar e o que faz ela clicar.</p>
+    <p>Todo texto começa com uma pergunta — qual ação você quer que essa pessoa tome? A resposta vem depois.</p>
+    <div class="skills-list">
+      <span class="skill-tag">Textos Instagram</span>
+      <span class="skill-tag">Bio estratégica</span>
+      <span class="skill-tag">Copy de lançamento</span>
+      <span class="skill-tag">Storytelling</span>
+      <span class="skill-tag">LinkedIn</span>
+      <span class="skill-tag">E-commerce</span>
+      <span class="skill-tag">Saúde & wellness</span>
+      <span class="skill-tag">SaaS / Tech</span>
+    </div>
+  </div>
+  <div class="about-metrics">
+    <div class="metric-card">
+      <div class="metric-num" style="color: var(--gold)">48h</div>
+      <div class="metric-label">Entrega de pacotes</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num" style="color: var(--green)">10+</div>
+      <div class="metric-label">Nichos atendidos</div>
+    </div>
+    <div class="metric-card metric-card-clickable" onclick="openPackages()">
+      <div class="metric-num" style="color: var(--blue)">R$150</div>
+      <div class="metric-label">Pacote mensal a partir de
+        <span class="metric-cta">ver pacotes →</span>
+      </div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num" style="color: var(--pink)">1ª</div>
+      <div class="metric-label">Amostra grátis pra você</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section" id="contato">
+  <div class="cta-inner">
+    <h2 class="cta-title">Quer ver como ficaria<br>no seu perfil?</h2>
+    <p class="cta-sub">Mando um texto ou bio feito pro seu nicho — de graça, sem enrolação.</p>
+    <div class="cta-actions">
+      <a href="#form-amostra" onclick="openAmostra(); return false;" class="btn-primary">Quer uma amostra grátis? →</a>
+      <a href="#form-pacote" onclick="openPacote(); return false;" class="btn-secondary">Quer contratar um pacote? →</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Luan<span>.</span></div>
+  <div class="footer-copy">Copy & Conteúdo Estratégico · Porto Alegre, RS</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-meta">
+        <div class="modal-niche" id="modal-niche"></div>
+        <div class="modal-title" id="modal-title"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-context">
+        <div class="modal-context-label">Contexto da peça</div>
+        <div class="modal-context-text" id="modal-context"></div>
+      </div>
+      <div class="modal-content-label">Copy completo</div>
+      <div class="modal-copy" id="modal-copy"></div>
+      <div class="modal-insight">
+        <div class="modal-insight-label">⚡ Por que funciona</div>
+        <div class="modal-insight-text" id="modal-insight"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PACKAGES MODAL -->
+<div class="modal-overlay" id="packages-overlay" onclick="closePackagesOutside(event)">
+  <div class="modal" id="packages-modal">
+    <div class="modal-header">
+      <div class="modal-meta">
+        <div class="modal-niche">Pacotes mensais</div>
+        <div class="modal-title">Escolha o ritmo do seu conteúdo</div>
+      </div>
+      <button class="modal-close" onclick="closePackages()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="packages-grid">
+
+        <div class="package-card">
+          <div class="package-header">
+            <div class="package-name">Starter</div>
+            <div class="package-price">
+              <span class="package-price-prefix">R$</span>150<span class="package-price-period">/mês</span>
+            </div>
+          </div>
+          <p class="package-tagline">Pra quem tá começando a postar com intenção.</p>
+          <ul class="package-features">
+            <li>6 textos por mês</li>
+            <li>Tom de voz alinhado ao seu nicho</li>
+            <li>Entrega quinzenal (3 + 3)</li>
+            <li>Uma rodada de ajustes</li>
+          </ul>
+        </div>
+
+        <div class="package-card featured">
+          <div class="package-badge">Mais escolhido</div>
+          <div class="package-header">
+            <div class="package-name">Refiner</div>
+            <div class="package-price">
+              <span class="package-price-prefix">R$</span>200<span class="package-price-period">/mês</span>
+            </div>
+          </div>
+          <p class="package-tagline">Você já posta com regularidade. Falta o copy fazer o seu trabalho de conversão.</p>
+          <ul class="package-features">
+            <li>12 textos por mês</li>
+            <li>Bio revisada e otimizada</li>
+            <li>Entrega semanal</li>
+            <li>Duas rodadas de ajustes</li>
+            <li>Relatório mensal de performance</li>
+          </ul>
+        </div>
+
+        <div class="package-card">
+          <div class="package-header">
+            <div class="package-name">All Out</div>
+            <div class="package-price">
+              <span class="package-price-prefix">R$</span>300<span class="package-price-period">/mês</span>
+            </div>
+          </div>
+          <p class="package-tagline">Pra quem quer tratar conteúdo como ativo de negócio.</p>
+          <ul class="package-features">
+            <li>20 textos por mês</li>
+            <li>Bio + destaques otimizados</li>
+            <li>1 copy de lançamento ou venda</li>
+            <li>Entrega semanal + ajustes ilimitados</li>
+            <li>Reunião mensal de estratégia (30min)</li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="packages-footer">
+        <p>Não sabe qual escolher? Conta o seu projeto no formulário — eu te ajudo a decidir antes do pagamento.</p>
+        <a href="#form-pacote" onclick="openPacote(); return false;" class="btn-primary">Quero contratar um pacote →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FORM MODAL: AMOSTRA GRÁTIS -->
+<div class="modal-overlay" id="amostra-overlay" onclick="closeAmostraOutside(event)">
+  <div class="modal form-modal" id="amostra-modal" role="dialog" aria-labelledby="amostra-modal-title" aria-modal="true">
+    <div class="modal-header">
+      <div class="modal-meta">
+        <div class="modal-niche">Amostra gratuita</div>
+        <div class="modal-title" id="amostra-modal-title">Pede sua amostra grátis</div>
+      </div>
+      <button class="modal-close" onclick="closeAmostra()" aria-label="Fechar formulário">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="amostra-form-wrap">
+        <form id="form-amostra" class="form-section" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="a-nome">Nome <span class="required-mark">*</span></label>
+            <input class="form-input" type="text" id="a-nome" name="nome" required placeholder="Seu nome">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="a-contato">Melhor contato <span class="required-mark">*</span></label>
+            <input class="form-input" type="text" id="a-contato" name="contato" required placeholder="WhatsApp, e-mail ou @ do Instagram">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="a-nicho">Nicho / segmento do negócio <span class="required-mark">*</span></label>
+            <input class="form-input" type="text" id="a-nicho" name="nicho" required placeholder="Ex: confeitaria artesanal, personal trainer, SaaS…">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="a-tema">Sobre o que você quer a amostra? <span class="required-mark">*</span></label>
+            <textarea class="form-textarea" id="a-tema" name="tema" required placeholder="Tema, produto ou serviço — quanto mais contexto, melhor o resultado"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="a-obs">Tem algo mais que eu deveria saber?</label>
+            <textarea class="form-textarea" id="a-obs" name="obs" placeholder="Tom de voz, referências, contexto extra — opcional"></textarea>
+          </div>
+          <div class="form-error" id="amostra-error" role="alert"></div>
+          <button type="submit" class="btn-submit" id="amostra-submit">Enviar pedido →</button>
+        </form>
+      </div>
+      <div class="form-success" id="amostra-success" role="status">
+        <div class="form-success-icon">✓</div>
+        <div class="form-success-title">Recebi!</div>
+        <div class="form-success-text">Retorno em até 24h pelo contato que você passou.<br><em>— Luan</em></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FORM MODAL: CONTRATAR PACOTE -->
+<div class="modal-overlay" id="pacote-overlay" onclick="closePacoteOutside(event)">
+  <div class="modal form-modal" id="pacote-modal" role="dialog" aria-labelledby="pacote-modal-title" aria-modal="true">
+    <div class="modal-header">
+      <div class="modal-meta">
+        <div class="modal-niche">Contratar pacote</div>
+        <div class="modal-title" id="pacote-modal-title">Escolha seu plano</div>
+      </div>
+      <button class="modal-close" onclick="closePacote()" aria-label="Fechar formulário">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <!-- Etapa 1 -->
+      <div id="pacote-step1">
+        <div class="radio-group" role="radiogroup" aria-label="Escolha um plano">
+          <label class="radio-option" id="opt-starter">
+            <input type="radio" name="plano-step1" value="starter" onchange="selectPlan(this)">
+            <div class="radio-option-label">
+              <div class="radio-option-title">Starter — R$150/mês</div>
+              <div class="radio-option-desc">6 textos por mês</div>
+            </div>
+          </label>
+          <label class="radio-option" id="opt-refiner">
+            <input type="radio" name="plano-step1" value="refiner" onchange="selectPlan(this)">
+            <div class="radio-option-label">
+              <div class="radio-option-title">Refiner — R$200/mês</div>
+              <div class="radio-option-desc">12 textos por mês</div>
+            </div>
+          </label>
+          <label class="radio-option" id="opt-allout">
+            <input type="radio" name="plano-step1" value="allout" onchange="selectPlan(this)">
+            <div class="radio-option-label">
+              <div class="radio-option-title">All Out — R$300/mês</div>
+              <div class="radio-option-desc">20 textos por mês</div>
+            </div>
+          </label>
+        </div>
+        <div style="margin-top: var(--sp-6)">
+          <button class="btn-continue" id="btn-continue" disabled onclick="goToStep2()">Continuar →</button>
+        </div>
+      </div>
+
+      <!-- Etapa 2 -->
+      <div id="pacote-step2" style="display:none">
+        <div class="step-header">
+          <div class="step-plan-badge" id="step2-plan-badge"></div>
+          <button type="button" class="step-change-btn" onclick="goToStep1()">← Trocar plano</button>
+        </div>
+
+        <div id="pacote-form-wrap">
+          <form id="form-pacote" class="form-section" novalidate>
+            <div class="ideas-instruction" id="ideas-instruction"></div>
+            <div class="ideas-grid" id="ideas-grid"></div>
+
+            <hr class="form-divider">
+            <div class="form-section-title">Sobre você e seu negócio</div>
+
+            <div class="form-group">
+              <label class="form-label" for="p-nome">Nome <span class="required-mark">*</span></label>
+              <input class="form-input" type="text" id="p-nome" name="nome" required placeholder="Seu nome">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="p-contato">Contato preferido <span class="required-mark">*</span></label>
+              <input class="form-input" type="text" id="p-contato" name="contato" required placeholder="WhatsApp, e-mail ou @ do Instagram">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="p-negocio">Sobre o seu negócio <span class="required-mark">*</span></label>
+              <textarea class="form-textarea" id="p-negocio" name="negocio" required placeholder="Nicho, o que você vende, há quanto tempo está no mercado"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="p-publico">Quem é o seu público? <span class="required-mark">*</span></label>
+              <textarea class="form-textarea" id="p-publico" name="publico" required placeholder="Idade, perfil, dor principal — quanto mais específico, melhor"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="p-tom">Tom de voz desejado <span class="required-mark">*</span></label>
+              <textarea class="form-textarea" id="p-tom" name="tom" required placeholder="Ex: descontraído e próximo, técnico e direto, inspirador e motivador…"></textarea>
+            </div>
+            <div class="form-group">
+              <div class="form-label" id="plataformas-label">Onde você posta hoje? <span class="required-mark">*</span></div>
+              <div class="checkbox-group" role="group" aria-labelledby="plataformas-label">
+                <label class="checkbox-option"><input type="checkbox" name="plataforma" value="Instagram"> Instagram</label>
+                <label class="checkbox-option"><input type="checkbox" name="plataforma" value="LinkedIn"> LinkedIn</label>
+                <label class="checkbox-option"><input type="checkbox" name="plataforma" value="TikTok"> TikTok</label>
+                <label class="checkbox-option"><input type="checkbox" name="plataforma" value="Facebook"> Facebook</label>
+                <label class="checkbox-option"><input type="checkbox" name="plataforma" value="X/Twitter"> X/Twitter</label>
+                <label class="checkbox-option"><input type="checkbox" name="plataforma" value="YouTube"> YouTube</label>
+                <label class="checkbox-option"><input type="checkbox" name="plataforma" value="Outro"> Outro</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="p-perfil">Link do seu perfil principal</label>
+              <input class="form-input" type="text" id="p-perfil" name="perfil" placeholder="instagram.com/seuperfil">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="p-refs">Concorrentes ou referências de copy que admira</label>
+              <textarea class="form-textarea" id="p-refs" name="refs" placeholder="Perfis ou marcas que você considera benchmark — opcional"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="p-objetivo">Objetivo principal nos próximos 3 meses <span class="required-mark">*</span></label>
+              <textarea class="form-textarea" id="p-objetivo" name="objetivo" required placeholder="Crescer seguidores, vender mais, lançar produto, reposicionar marca…"></textarea>
+            </div>
+            <div class="form-group">
+              <div class="form-label" id="inicio-label">Quando quer começar? <span class="required-mark">*</span></div>
+              <div class="radio-group" role="radiogroup" aria-labelledby="inicio-label">
+                <label class="radio-option compact"><input type="radio" name="inicio" value="Essa semana" required><span class="radio-simple-label">Essa semana</span></label>
+                <label class="radio-option compact"><input type="radio" name="inicio" value="Próximas duas semanas"><span class="radio-simple-label">Próximas duas semanas</span></label>
+                <label class="radio-option compact"><input type="radio" name="inicio" value="Esse mês"><span class="radio-simple-label">Esse mês</span></label>
+                <label class="radio-option compact"><input type="radio" name="inicio" value="Estou avaliando"><span class="radio-simple-label">Estou avaliando</span></label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="p-obs">Tem algo mais que eu deveria saber?</label>
+              <textarea class="form-textarea" id="p-obs" name="obs" placeholder="Contexto extra, preferências, restrições — opcional"></textarea>
+            </div>
+
+            <div class="form-error" id="pacote-error" role="alert"></div>
+            <button type="submit" class="btn-submit" id="pacote-submit">Enviar briefing →</button>
+          </form>
+        </div>
+
+        <div class="form-success" id="pacote-success" role="status">
+          <div class="form-success-icon">✓</div>
+          <div class="form-success-title">Recebi seu briefing!</div>
+          <div class="form-success-text">Retorno em até 24h pelo contato que você passou.<br><em>— Luan</em></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+const projects = {
+  1: {
+    niche: 'Confeitaria · Instagram Feed',
+    title: 'A Torta de Limão da Vó Nunca Foi Assim',
+    context: 'Confeitaria artesanal que vende por encomenda. Produto: torta de limão siciliano. Objetivo: gerar desejo e fazer o seguidor ir direto pro link na bio ou mandar DM.',
+    copy: `Ela ensinou a receita em uma tarde de chuva, com a cozinha cheia de vapor e limões espalhados na mesa.
+
+Eu fiz algumas trocas, testei por semanas e finalmente cheguei numa versão que minha vó aprovaria — e que você não vai encontrar em nenhuma outra confeitaria aqui.
+
+A massa é amanteigada, densa, com aquele fundo quebradiço que derrete. O creme de limão siciliano fica entre azedo e doce, sem pender pra nenhum dos dois. O merengue é italiano, firme por fora e cremoso por dentro.
+
+São 8 unidades por semana. Só.
+
+Se você já tentou me pedir antes e não conseguiu: coloca o nome na lista do link da bio. Próxima semana tem uma reservada pra você. 🍋
+
+#confeitariaartesanal #tortadelimaosiciliano #docesporencomienda #confeitaria #portoalegre`,
+    insight: 'A história da avó cria o vínculo antes de qualquer argumento. A escassez ("8 unidades por semana. Só.") chega curta — três palavras, sem ponto de exclamação, sem "corre que acaba". Quando o CTA aparece, o leitor já decidiu. Só falta a instrução de onde clicar.'
+  },
+  2: {
+    niche: 'Fitness · Instagram Bio',
+    title: 'Bio que Vende sem Parecer que Tá Vendendo',
+    context: 'Personal trainer com 7 anos de experiência, formado em Ed. Física. Público: adultos 25–40 anos que querem emagrecer mas não querem abrir mão da vida social.',
+    copy: `Personal trainer há 7 anos · formado em Ed. Física pela PUCRS
+Já ajudei +200 pessoas a emagrecer sem abandonar o churrasquinho de fim de semana
+
+Método → consistência real, não perfeição
+
+📍 Porto Alegre · online para todo o Brasil
+📲 Consulta grátis — link abaixo`,
+    insight: 'A bio resolve a principal objeção do público ("mas eu gosto de comer") antes de apresentar o serviço. "Consistência real, não perfeição" funciona como filtro: quem busca dieta militar continua rolando, quem busca método sustentável para. Diferencia de todos os PTs que ainda pregam sacrifício.'
+  },
+  3: {
+    niche: 'Moda · Drop de Coleção',
+    title: 'O Drop que Esgotou em 40 Minutos',
+    context: 'E-commerce de streetwear autoral, tiragem limitada. Objetivo: criar urgência e senso de comunidade exclusiva ao mesmo tempo. Público: 18–30 anos, consumidores de moda consciente.',
+    copy: `Não é roupa. É posição.
+
+Quem entende, não precisa de explicação.
+Quem não entende, não é o nosso público mesmo.
+
+Drop 003 — 30 peças.
+Sem segunda chance. Sem reposição. Sem desconto depois.
+
+Fabricado no Brasil, por mãos que a gente conhece pelo nome.
+
+Sábado, 14h. Link na bio.
+
+(O 002 esgotou em 40 minutos. Só tô avisando.)`,
+    insight: '"Não é o nosso público mesmo" funciona porque a exclusão voluntária transforma o produto em símbolo. Já o parêntese final ("esgotou em 40 minutos") vem depois do CTA, sem ponto de exclamação. Aviso casual de quem já tem público formado — quem precisaria vender com pressão não tem confiança pra falar assim.'
+  },
+  4: {
+    niche: 'Coaching · Carrossel',
+    title: 'O Texto que Faz o Seguidor Parar e Pensar',
+    context: 'Coach de carreira que atende profissionais de 28–40 anos em transição ou estagnação. Objetivo: fazer o leitor se identificar com um problema específico antes de apresentar a solução (o programa).',
+    copy: `Você não tá estagnado por falta de esforço.
+Tá estagnado porque trabalha duro na direção errada.
+
+Tem uma diferença enorme entre ser ocupado e ser produtivo.
+Ocupado: reunião às 8h, email às 22h, sensação de que o dia passou rápido demais.
+Produtivo: uma decisão por semana que muda algo real na sua carreira.
+
+A maioria das pessoas que me procuram não precisa trabalhar mais.
+Precisa parar de trabalhar tanto nas tarefas erradas.
+
+Se você leu até aqui e sentiu aquele aperto no peito — esse é o sinal.
+
+Arrasta o carrossel. →`,
+    insight: 'O "aperto no peito" no penúltimo parágrafo é proposital. Antes de o leitor questionar a tese ("será que sou eu mesmo?"), o corpo já reconheceu o sintoma. A instrução de arrastar só entra depois disso — quando a resistência baixou.'
+  },
+  5: {
+    niche: 'Finanças pessoais · Carrossel expandido',
+    title: 'Do Rascunho ao Carrossel que Para o Scroll',
+    context: 'Cliente (educator de finanças pessoais) mandou 4 bullet points sem estrutura. Objetivo: transformar em carrossel de 7 slides com abertura forte, um conceito por slide e CTA final. Esse é o serviço de expansão de conteúdo — você manda o miolo, eu entrego o texto completo.',
+    copy: `INPUT DO CLIENTE:
+"- juros do cartão são altos / - parcelamento machuca / - reserva de emergência importa / - investir cedo"
+
+━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 1 — Gancho
+━━━━━━━━━━━━━━━━━━━━━━━
+O cartão de crédito é o único produto financeiro que te cobra mais quanto mais tempo você fica fiel a ele.
+E ainda chamam o pagamento mínimo de "opção".
+(arrasta →)
+
+━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 2 — O vilão invisível
+━━━━━━━━━━━━━━━━━━━━━━━
+O cartão de crédito tem o juro rotativo mais alto do mercado financeiro brasileiro.
+Média: 400% ao ano.
+Não é exagero. É o número oficial do Banco Central.
+Se você paga o mínimo, a dívida dobra em menos de 3 meses.
+
+━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 3 — O erro que parece inteligente
+━━━━━━━━━━━━━━━━━━━━━━━
+Parcelar "pra não pesar no bolso" é uma das maiores armadilhas financeiras que existem.
+Cada parcela futura é uma decisão que o seu eu do passado tomou pelo seu eu do futuro.
+Quanto mais parcelas, menos liberdade você tem amanhã.
+
+━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 4 — O que muda tudo
+━━━━━━━━━━━━━━━━━━━━━━━
+Reserva de emergência não é investimento.
+É o chão embaixo dos seus pés.
+Sem ela, qualquer imprevisto vira dívida.
+Com ela, o mesmo imprevisto vira só um inconveniente.
+Meta mínima: 3 meses dos seus gastos mensais. Começa com o que você tem.
+
+━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 5 — O tempo que você não recupera
+━━━━━━━━━━━━━━━━━━━━━━━
+R$200 investidos por mês aos 25 anos valem muito mais do que R$400 por mês aos 35.
+Não é motivação. É matemática.
+O ativo mais raro que você tem não é dinheiro. É tempo.
+
+━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 6 — Resumo prático
+━━━━━━━━━━━━━━━━━━━━━━━
+O que fazer agora:
+→ Para de pagar o mínimo do cartão
+→ Monta sua reserva antes de investir
+→ Começa a investir o quanto antes, mesmo que pouco
+→ Para de parcelar o que você pode pagar à vista
+
+━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 7 — CTA
+━━━━━━━━━━━━━━━━━━━━━━━
+Se esse carrossel fez sentido, salva — você vai querer reler.
+E manda pra alguém que ainda tá no rotativo. 💸`,
+    insight: 'O formato "input do cliente → output expandido" é a prova mais direta do serviço. Cada slide tem função própria: gancho, vilão, armadilha, solução, urgência, resumo, CTA. Cliente manda quatro bullets secos, recebe arco narrativo de sete slides com número oficial do Banco Central, exemplo concreto e CTA que pede save (não like).'
+  },
+  6: {
+    niche: 'Moda / E-commerce · Instagram Stories',
+    title: 'Sequência de Stories que Vende sem Parecer Anúncio',
+    context: 'Cliente (marca de moda autoral) queria divulgar uma peça nova sem fazer stories genéricos de "disponível no site". Mandou uma foto do produto e 2 frases de contexto. Virou uma sequência de 8 stories com arco narrativo completo.',
+    copy: `STORY 1 — Gancho
+"Eu quase não lançei essa peça. Achei que ninguém ia entender."
+[foto da peça, enquadramento parcial — não mostra tudo]
+
+STORY 2 — Tensão
+"Fiz 3 vezes. Descartei 3 vezes.
+A proporção não fechava. A cor fugia do que eu tinha na cabeça.
+Até que numa quarta tentativa, parei de tentar controlar."
+
+STORY 3 — Virada
+"Deixei o tecido decidir.
+E foi aí que ficou do jeito certo."
+[foto do processo, bastidor]
+
+STORY 4 — Apresentação
+"Apresentando a [nome da peça].
+Feita à mão. Tiragem única de 12 unidades."
+[foto completa do produto pela primeira vez]
+
+STORY 5 — Detalhe
+"O franzido aqui não é decoração.
+É o que faz o movimento ser esse."
+[vídeo curto mostrando o movimento do tecido]
+
+STORY 6 — Identidade
+"Não é pra todo mundo.
+É pra quem para e olha de verdade."
+
+STORY 7 — Prova
+"As últimas peças que lancei assim esgotaram em menos de 2 dias.
+Dessa vez aviso com antecedência."
+
+STORY 8 — CTA
+"Disponível a partir de [dia] às [hora].
+Link na bio. Sem reposição."
+[botão de link ativo]`,
+    insight: 'A sequência usa suspense nos 3 primeiros stories — o produto só aparece completo no story 4. Isso obriga o espectador a avançar antes de decidir se quer ou não. A escassez ("12 unidades", "sem reposição") só entra depois que a narrativa do bastidor já fez o trabalho.'
+  },
+  7: {
+    niche: 'Saúde Mental · Instagram Bio',
+    title: 'Bio que Acolhe Antes de Vender',
+    context: 'Psicóloga clínica com atendimento online e presencial. Público: adultos com ansiedade, sobrecarga emocional ou em momentos de transição de vida. Tom: acolhimento genuíno, sem infantilizar.',
+    copy: `Psicóloga clínica · CRP 07/12345
+Acredito que pedir ajuda é um ato de coragem, não de fraqueza
+
+Atendo adultos que estão carregando coisas demais sozinhos — ansiedade, transições, relacionamentos, autoestima
+
+Abordagem cognitivo-comportamental
+📍 Porto Alegre · atendimento online para todo o Brasil
+
+Primeira conversa gratuita — link abaixo`,
+    insight: '"Carregando coisas demais sozinhos" é o tipo de frase que cabe em vários tipos de sofrimento adulto sem precisar listar cada um. Ansiedade, separação, exaustão, autoestima — quem tá vivendo qualquer um deles se reconhece. A "primeira conversa gratuita" baixa a barreira pra um público que costuma demorar pra pedir ajuda.'
+  },
+  8: {
+    niche: 'Tech / SaaS · LinkedIn',
+    title: 'Copy Técnico que Não Afasta o Leigo',
+    context: 'Startup B2B com ferramenta de análise preditiva de vendas integrada ao CRM. Público: gerentes comerciais e fundadores. Objetivo: mostrar o diferencial sem transformar o post em manual técnico.',
+    copy: `A maioria dos relatórios de vendas responde "o que aconteceu".
+
+O nosso responde "o que fazer agora".
+
+Lançamos a análise preditiva integrada ao CRM — o sistema identifica quais oportunidades têm mais chance de fechar nos próximos 30 dias, baseado no comportamento histórico do seu time.
+
+Não é BI. Não é dashboard bonito. É um ranking que o seu vendedor abre na segunda de manhã e já sabe onde colocar energia.
+
+Testamos com 3 equipes comerciais no último trimestre. A taxa de conversão subiu em todas as três.
+
+Se você gerencia um time de vendas e quer testar: deixa um comentário ou manda mensagem. Estamos selecionando 10 empresas para o beta fechado.`,
+    insight: 'A abertura "o que aconteceu / o que fazer agora" condensa o diferencial em uma estrutura que qualquer executivo entende sem precisar de contexto técnico. "Não é BI. Não é dashboard bonito." antecipa e destrói as objeções antes que o leitor as formule.'
+  },
+  9: {
+    niche: 'Gastronomia · Instagram Feed',
+    title: 'Copy que Faz o Seguidor Sentir Fome',
+    context: 'Restaurante de cozinha contemporânea com foco em processo artesanal. Objetivo: fazer o prato parecer tão especial no texto quanto na foto. Tom: sensorial, preciso, sem clichês gastronômicos.',
+    copy: `O caldo reduz por 4 horas.
+
+O chef prova a cada 20 minutos e faz pequenos ajustes — um toque de azeite, uma pitada de noz-moscada, um pouquinho mais de vinho branco.
+
+Quando chega na sua mesa, parece simples.
+Porque levou tempo até ficar assim.
+
+Risoto de funghi com trufas negras · cardápio desta semana
+Reservas pelo link na bio — peça a mesa da janela.`,
+    insight: 'Os detalhes de processo ("prova a cada 20 minutos", "4 horas reduzindo") criam percepção de valor sem precisar usar "premium" ou "gourmet". E "parece simples porque levou tempo" é posicionamento direto: fala com o tipo de cliente que pergunta como o prato chegou ali antes de perguntar quanto custa.'
+  },
+  10: {
+    niche: 'Creator Economy · Bio + Texto',
+    title: 'O Creator que Parece Marca',
+    context: 'Criador de conteúdo sobre empreendedorismo e finanças pessoais. Quer ser visto como referência e não como mais um influencer. Pacote completo: bio + um texto de feed.',
+    copy: `BIO:
+Não ensino o caminho mais fácil. Ensino o mais honesto.
+
+Conteúdo sobre dinheiro, empreendedorismo e as coisas que ninguém fala em curso.
+Já errei o suficiente pra saber o que realmente funciona.
+
+📩 Colaborações: [email]
+🔗 Materiais gratuitos — link abaixo
+
+—
+
+TEXTO:
+Fui no banco pedir crédito com meu primeiro CNPJ aberto.
+
+O gerente olhou pro meu faturamento, sorriu e disse: "vem daqui 6 meses".
+
+Saí na raiva. Voltei 8 meses depois com faturamento 3x maior e não precisei mais do banco.
+
+A lição não foi sobre crédito.
+Foi sobre construir o que você precisa antes de pedir permissão pra alguém te dar.
+
+Continua sendo o princípio que rege tudo que faço.
+
+Qual foi a "porta fechada" que te forçou a construir algo melhor? 🔽`,
+    insight: 'A bio se posiciona em "honesto" e filtra logo na entrada quem busca atalho. O texto funciona pelo nível de detalhe — banco, primeiro CNPJ, gerente que sorriu, 8 meses depois. Empreendedorismo é o nicho mais saturado de bullshit motivacional; cada detalhe checável vale ouro.'
+  }
+};
+
+function openModal(id) {
+  const p = projects[id];
+  document.getElementById('modal-niche').textContent = p.niche;
+  document.getElementById('modal-title').textContent = p.title;
+  document.getElementById('modal-context').textContent = p.context;
+  
+  const copyEl = document.getElementById('modal-copy');
+  let formattedCopy = p.copy
+    .replace(/(#\S+)/g, '<span class="hashtags">$1</span>');
+  copyEl.innerHTML = formattedCopy;
+  
+  document.getElementById('modal-insight').textContent = p.insight;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+function openPackages() {
+  document.getElementById('packages-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePackages() {
+  document.getElementById('packages-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closePackagesOutside(e) {
+  if (e.target === document.getElementById('packages-overlay')) closePackages();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeModal(); closePackages(); closeAmostra(); closePacote(); }
+});
+
+// NAV scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// Intersection observer for cards
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      entry.target.style.animationDelay = (i * 60) + 'ms';
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.project-card').forEach(card => observer.observe(card));
+
+// ── FORM LOGIC ──
+const PLANS = {
+  starter: { name: 'Starter', price: 'R$150/mês', qty: 6 },
+  refiner: { name: 'Refiner', price: 'R$200/mês', qty: 12 },
+  allout:  { name: 'All Out', price: 'R$300/mês', qty: 20 }
+};
+let activePlan = null;
+
+function openAmostra() {
+  document.getElementById('amostra-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('a-nome').focus(), 280);
+}
+function closeAmostra() {
+  document.getElementById('amostra-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeAmostraOutside(e) {
+  if (e.target === document.getElementById('amostra-overlay')) closeAmostra();
+}
+
+function openPacote() {
+  document.getElementById('pacote-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closePacote() {
+  document.getElementById('pacote-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closePacoteOutside(e) {
+  if (e.target === document.getElementById('pacote-overlay')) closePacote();
+}
+
+function selectPlan(radio) {
+  activePlan = radio.value;
+  document.querySelectorAll('#pacote-step1 .radio-option').forEach(o => o.classList.remove('selected'));
+  radio.closest('.radio-option').classList.add('selected');
+  document.getElementById('btn-continue').disabled = false;
+}
+
+function buildIdeas(qty, existing) {
+  existing = existing || [];
+  const grid = document.getElementById('ideas-grid');
+  grid.innerHTML = '';
+  for (let i = 1; i <= qty; i++) {
+    const div = document.createElement('div');
+    div.className = 'idea-item';
+    const ta = document.createElement('textarea');
+    ta.className = 'form-textarea idea-textarea';
+    ta.name = 'ideia_' + i;
+    ta.id = 'ideia-' + i;
+    ta.required = true;
+    ta.placeholder = 'Descreva sua ideia: tema, ângulo, contexto, qualquer detalhe que ajude';
+    ta.rows = 3;
+    if (existing[i - 1]) ta.value = existing[i - 1];
+    const label = document.createElement('div');
+    label.className = 'idea-number';
+    label.textContent = 'Ideia ' + i;
+    div.appendChild(label);
+    div.appendChild(ta);
+    grid.appendChild(div);
+  }
+}
+
+function goToStep2() {
+  if (!activePlan) return;
+  const plan = PLANS[activePlan];
+  // Preserve ideas already typed up to new plan's count; extras lost on downgrade
+  const existing = Array.from(document.querySelectorAll('#ideas-grid textarea')).map(t => t.value);
+  document.getElementById('pacote-modal-title').textContent = 'Preencha o briefing';
+  document.getElementById('step2-plan-badge').textContent = plan.name + ' · ' + plan.price;
+  document.getElementById('ideas-instruction').innerHTML =
+    'Descreva abaixo as <strong>' + plan.qty + ' ideias</strong> de texto que você quer encomendar. As ideias podem ser independentes ou se relacionar entre si (ex: uma série/sequência) — se uma ideia for continuação de outra, mencione isso na própria caixa.';
+  buildIdeas(plan.qty, existing);
+  document.getElementById('pacote-step1').style.display = 'none';
+  document.getElementById('pacote-step2').style.display = 'block';
+  document.getElementById('pacote-modal').scrollTop = 0;
+}
+
+function goToStep1() {
+  document.getElementById('pacote-modal-title').textContent = 'Escolha seu plano';
+  document.getElementById('pacote-step2').style.display = 'none';
+  document.getElementById('pacote-step1').style.display = 'block';
+  document.getElementById('pacote-modal').scrollTop = 0;
+}
+
+async function submitFormspree(formEl, endpoint, successId, errorId, submitId) {
+  const btn = document.getElementById(submitId);
+  const errEl = document.getElementById(errorId);
+  const sucEl = document.getElementById(successId);
+  const origText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Enviando…';
+  errEl.classList.remove('visible');
+  try {
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      body: new FormData(formEl),
+      headers: { Accept: 'application/json' }
+    });
+    if (!res.ok) throw new Error();
+    formEl.closest('[id$="-form-wrap"]').style.display = 'none';
+    sucEl.classList.add('visible');
+    formEl.closest('.modal').scrollTop = 0;
+  } catch (_) {
+    errEl.textContent = 'Não consegui enviar agora. Tenta de novo ou me manda direto pelo Instagram.';
+    errEl.classList.add('visible');
+    btn.disabled = false;
+    btn.textContent = origText;
+  }
+}
+
+document.getElementById('form-amostra').addEventListener('submit', function(e) {
+  e.preventDefault();
+  if (!this.checkValidity()) { this.reportValidity(); return; }
+  submitFormspree(this, 'FORMSPREE_AMOSTRA_ENDPOINT', 'amostra-success', 'amostra-error', 'amostra-submit');
+});
+
+document.getElementById('form-pacote').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const checked = this.querySelectorAll('input[name="plataforma"]:checked');
+  if (!checked.length) {
+    const err = document.getElementById('pacote-error');
+    err.textContent = 'Selecione pelo menos uma plataforma onde você posta.';
+    err.classList.add('visible');
+    return;
+  }
+  let planField = this.querySelector('input[name="plano_selecionado"]');
+  if (!planField) {
+    planField = document.createElement('input');
+    planField.type = 'hidden';
+    planField.name = 'plano_selecionado';
+    this.appendChild(planField);
+  }
+  planField.value = PLANS[activePlan] ? PLANS[activePlan].name : '';
+  if (!this.checkValidity()) { this.reportValidity(); return; }
+  submitFormspree(this, 'FORMSPREE_PACOTE_ENDPOINT', 'pacote-success', 'pacote-error', 'pacote-submit');
+});
+
+// Checkbox visual sync
+document.querySelectorAll('.checkbox-option input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('change', function() {
+    this.closest('.checkbox-option').classList.toggle('checked', this.checked);
+  });
+});
+</script>
+</body>
+</html>
