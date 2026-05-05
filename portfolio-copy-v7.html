@@ -2049,7 +2049,7 @@ async function submitFormspree(formEl, endpoint, successId, errorId, submitId) {
 document.getElementById('form-amostra').addEventListener('submit', function(e) {
   e.preventDefault();
   if (!this.checkValidity()) { this.reportValidity(); return; }
-  submitFormspree(this, 'FORMSPREE_AMOSTRA_ENDPOINT', 'amostra-success', 'amostra-error', 'amostra-submit');
+  submitFormspree(this, 'https://formspree.io/f/mrejqqyn', 'amostra-success', 'amostra-error', 'amostra-submit');
 });
 
 document.getElementById('form-pacote').addEventListener('submit', function(e) {
@@ -2070,7 +2070,7 @@ document.getElementById('form-pacote').addEventListener('submit', function(e) {
   }
   planField.value = PLANS[activePlan] ? PLANS[activePlan].name : '';
   if (!this.checkValidity()) { this.reportValidity(); return; }
-  submitFormspree(this, 'FORMSPREE_PACOTE_ENDPOINT', 'pacote-success', 'pacote-error', 'pacote-submit');
+  submitFormspree(this, 'https://formspree.io/f/xbdwoopr', 'pacote-success', 'pacote-error', 'pacote-submit');
 });
 
 // Checkbox visual sync
