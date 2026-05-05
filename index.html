@@ -890,6 +890,14 @@ footer {
 }
 .form-input::placeholder, .form-textarea::placeholder { color: var(--text-3); }
 .form-textarea { resize: vertical; min-height: 96px; line-height: 1.6; }
+select.form-input {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%236E6A62' d='M5 7L0 2h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+select.form-input option { background: var(--bg-3); color: var(--text-1); }
 
 .radio-group { display: flex; flex-direction: column; gap: var(--sp-3); }
 .radio-option {
@@ -1316,9 +1324,9 @@ footer {
       <div class="metric-label">Nichos atendidos</div>
     </div>
     <div class="metric-card metric-card-clickable" onclick="openPackages()">
-      <div class="metric-num" style="color: var(--blue)">R$150</div>
-      <div class="metric-label">Pacote mensal a partir de
-        <span class="metric-cta">ver pacotes →</span>
+      <div class="metric-num" style="color: var(--blue)">R$50</div>
+      <div class="metric-label">A partir de
+        <span class="metric-cta">ver opções →</span>
       </div>
     </div>
     <div class="metric-card">
@@ -1376,13 +1384,33 @@ footer {
   <div class="modal" id="packages-modal">
     <div class="modal-header">
       <div class="modal-meta">
-        <div class="modal-niche">Pacotes mensais</div>
-        <div class="modal-title">Escolha o ritmo do seu conteúdo</div>
+        <div class="modal-niche">Contratos disponíveis</div>
+        <div class="modal-title">Como você quer trabalhar?</div>
       </div>
       <button class="modal-close" onclick="closePackages()">✕</button>
     </div>
     <div class="modal-body">
       <div class="packages-grid">
+
+        <div class="package-card" style="border-color: rgba(79,196,207,0.3); background: linear-gradient(180deg, rgba(79,196,207,0.06) 0%, var(--bg-3) 60%);">
+          <div class="package-badge" style="background: var(--teal); color: #0A0A0B;">Avulso</div>
+          <div class="package-header">
+            <div class="package-name">Comissão Única</div>
+            <div class="package-price">
+              <span class="package-price-prefix">R$</span>50<span class="package-price-period"> único</span>
+            </div>
+          </div>
+          <p class="package-tagline">Precisa de um texto específico, sem assinar nada. Paga uma vez, recebe uma vez.</p>
+          <ul class="package-features">
+            <li>1 texto da sua escolha</li>
+            <li>Tom de voz alinhado ao seu nicho</li>
+            <li>Uma rodada de ajustes</li>
+            <li>Entrega em até 48h</li>
+          </ul>
+          <div style="margin-top: var(--sp-6)">
+            <a href="#" onclick="closePackages(); openComissao(); return false;" class="btn-primary" style="display:flex; justify-content:center;">Contratar agora →</a>
+          </div>
+        </div>
 
         <div class="package-card">
           <div class="package-header">
@@ -1526,6 +1554,13 @@ footer {
               <div class="radio-option-desc">20 textos por mês</div>
             </div>
           </label>
+          <label class="radio-option" id="opt-comissao" style="border-color: rgba(79,196,207,0.25);">
+            <input type="radio" name="plano-step1" value="comissao" onchange="selectPlan(this)">
+            <div class="radio-option-label">
+              <div class="radio-option-title">Comissão Única — R$50</div>
+              <div class="radio-option-desc">1 texto avulso, sem mensalidade</div>
+            </div>
+          </label>
         </div>
         <div style="margin-top: var(--sp-6)">
           <button class="btn-continue" id="btn-continue" disabled onclick="goToStep2()">Continuar →</button>
@@ -1617,6 +1652,64 @@ footer {
         </div>
       </div>
 
+    </div>
+  </div>
+</div>
+
+<!-- FORM MODAL: COMISSÃO ÚNICA -->
+<div class="modal-overlay" id="comissao-overlay" onclick="closeComissaoOutside(event)">
+  <div class="modal form-modal" id="comissao-modal" role="dialog" aria-labelledby="comissao-modal-title" aria-modal="true">
+    <div class="modal-header">
+      <div class="modal-meta">
+        <div class="modal-niche">Comissão única</div>
+        <div class="modal-title" id="comissao-modal-title">Pede o seu texto</div>
+      </div>
+      <button class="modal-close" onclick="closeComissao()" aria-label="Fechar formulário">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="comissao-form-wrap">
+        <form id="form-comissao" class="form-section" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="c-nome">Nome <span class="required-mark">*</span></label>
+            <input class="form-input" type="text" id="c-nome" name="nome" required placeholder="Seu nome">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="c-contato">Melhor contato <span class="required-mark">*</span></label>
+            <input class="form-input" type="text" id="c-contato" name="contato" required placeholder="WhatsApp, e-mail ou @ do Instagram">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="c-tipo">Tipo de texto <span class="required-mark">*</span></label>
+            <select class="form-input" id="c-tipo" name="tipo" required>
+              <option value="" disabled selected>Selecione o tipo</option>
+              <option value="Caption / legenda">Caption / legenda</option>
+              <option value="Bio">Bio</option>
+              <option value="E-mail marketing">E-mail marketing</option>
+              <option value="Thread">Thread</option>
+              <option value="Copy de venda / CTA">Copy de venda / CTA</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="c-nicho">Nicho / negócio <span class="required-mark">*</span></label>
+            <input class="form-input" type="text" id="c-nicho" name="nicho" required placeholder="Ex: confeitaria artesanal, coaching, SaaS…">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="c-briefing">Briefing do texto <span class="required-mark">*</span></label>
+            <textarea class="form-textarea" id="c-briefing" name="briefing" required placeholder="O que você quer comunicar? Produto, serviço, contexto — quanto mais detalhe, melhor o resultado"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="c-tom">Tom de voz</label>
+            <textarea class="form-textarea" id="c-tom" name="tom" placeholder="Ex: descontraído, técnico, direto — opcional"></textarea>
+          </div>
+          <div class="form-error" id="comissao-error" role="alert"></div>
+          <button type="submit" class="btn-submit" id="comissao-submit">Enviar pedido →</button>
+        </form>
+      </div>
+      <div class="form-success" id="comissao-success" role="status">
+        <div class="form-success-icon">✓</div>
+        <div class="form-success-title">Recebi!</div>
+        <div class="form-success-text">Retorno em até 24h com o seu texto.<br><em>— Luan</em></div>
+      </div>
     </div>
   </div>
 </div>
@@ -1913,7 +2006,7 @@ function closePackagesOutside(e) {
 }
 
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeModal(); closePackages(); closeAmostra(); closePacote(); }
+  if (e.key === 'Escape') { closeModal(); closePackages(); closeAmostra(); closePacote(); closeComissao(); }
 });
 
 // NAV scroll
@@ -1967,6 +2060,19 @@ function closePacoteOutside(e) {
   if (e.target === document.getElementById('pacote-overlay')) closePacote();
 }
 
+function openComissao() {
+  document.getElementById('comissao-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('c-nome').focus(), 280);
+}
+function closeComissao() {
+  document.getElementById('comissao-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeComissaoOutside(e) {
+  if (e.target === document.getElementById('comissao-overlay')) closeComissao();
+}
+
 function selectPlan(radio) {
   activePlan = radio.value;
   document.querySelectorAll('#pacote-step1 .radio-option').forEach(o => o.classList.remove('selected'));
@@ -2000,6 +2106,11 @@ function buildIdeas(qty, existing) {
 
 function goToStep2() {
   if (!activePlan) return;
+  if (activePlan === 'comissao') {
+    closePacote();
+    openComissao();
+    return;
+  }
   const plan = PLANS[activePlan];
   // Preserve ideas already typed up to new plan's count; extras lost on downgrade
   const existing = Array.from(document.querySelectorAll('#ideas-grid textarea')).map(t => t.value);
@@ -2071,6 +2182,12 @@ document.getElementById('form-pacote').addEventListener('submit', function(e) {
   planField.value = PLANS[activePlan] ? PLANS[activePlan].name : '';
   if (!this.checkValidity()) { this.reportValidity(); return; }
   submitFormspree(this, 'https://formspree.io/f/xbdwoopr', 'pacote-success', 'pacote-error', 'pacote-submit');
+});
+
+document.getElementById('form-comissao').addEventListener('submit', function(e) {
+  e.preventDefault();
+  if (!this.checkValidity()) { this.reportValidity(); return; }
+  submitFormspree(this, 'https://formspree.io/f/mrejkblp', 'comissao-success', 'comissao-error', 'comissao-submit');
 });
 
 // Checkbox visual sync
