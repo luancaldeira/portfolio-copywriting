@@ -1025,6 +1025,44 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
   100% { left: 200%; }
 }
 
+/* ── LANG SWITCH ── */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-md);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-3);
+  cursor: pointer;
+  padding: 5px 9px;
+  transition: color 0.2s ease, background 0.2s ease;
+  line-height: 1;
+}
+.lang-btn:hover { color: var(--text-2); }
+.lang-btn.active {
+  background: var(--gold-dim);
+  color: var(--gold);
+}
+.lang-divider {
+  width: 1px;
+  height: 16px;
+  background: var(--border-md);
+  flex-shrink: 0;
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   nav { padding: 0 var(--sp-6); }
@@ -1037,6 +1075,9 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
   .projects-header { padding: 0 var(--sp-6) var(--sp-10); }
   section { padding: var(--sp-16) var(--sp-6); }
 }
+@media (max-width: 400px) {
+  .nav-cta { font-size: 11px; padding: 7px 11px; }
+}
 </style>
 </head>
 <body>
@@ -1044,36 +1085,43 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-logo">Luan<span>.</span></div>
-  <a href="#form-amostra" onclick="openAmostra(); return false;" class="nav-cta">Quero uma amostra grátis →</a>
+  <div class="nav-right">
+    <div class="lang-switch" role="group" aria-label="Language / Idioma">
+      <button class="lang-btn active" id="btn-pt" onclick="applyLang('pt')" aria-pressed="true">PT</button>
+      <div class="lang-divider"></div>
+      <button class="lang-btn" id="btn-en" onclick="applyLang('en')" aria-pressed="false">EN</button>
+    </div>
+    <a href="#form-amostra" onclick="openAmostra(); return false;" class="nav-cta" data-i18n="nav.cta">Quero uma amostra grátis →</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-grid"></div>
   <div class="hero-inner">
-    <div class="hero-tag">Portfólio · Copy & Conteúdo</div>
-    <h1 class="hero-title">
+    <div class="hero-tag" data-i18n="hero.tag">Portfólio · Copy & Conteúdo</div>
+    <h1 class="hero-title" data-i18n="hero.title">
       Palavras que<br><em>vendem</em> enquanto<br>você dorme
     </h1>
-    <p class="hero-sub">
+    <p class="hero-sub" data-i18n="hero.sub">
       Escrevo textos e bio pra quem posta toda semana e ainda não vê resultado vir junto.
     </p>
     <div class="hero-actions">
-      <a href="#form-amostra" onclick="openAmostra(); return false;" class="btn-primary">Quer uma amostra grátis? →</a>
-      <a href="#form-pacote" onclick="openPacote(); return false;" class="btn-secondary">Quer contratar um pacote? →</a>
+      <a href="#form-amostra" onclick="openAmostra(); return false;" class="btn-primary" data-i18n="hero.cta1">Quer uma amostra grátis? →</a>
+      <a href="#form-pacote" onclick="openPacote(); return false;" class="btn-secondary" data-i18n="hero.cta2">Quer contratar um pacote? →</a>
     </div>
     <div class="hero-stats">
       <div class="stat-item">
         <div class="stat-num">10</div>
-        <div class="stat-label">nichos no portfólio</div>
+        <div class="stat-label" data-i18n="hero.stat1">nichos no portfólio</div>
       </div>
       <div class="stat-item">
         <div class="stat-num">3x</div>
-        <div class="stat-label">engajamento dos meus clientes</div>
+        <div class="stat-label" data-i18n="hero.stat2">engajamento dos meus clientes</div>
       </div>
       <div class="stat-item">
         <div class="stat-num">48h</div>
-        <div class="stat-label">do briefing à entrega</div>
+        <div class="stat-label" data-i18n="hero.stat3">do briefing à entrega</div>
       </div>
     </div>
   </div>
@@ -1081,9 +1129,9 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
 
 <!-- PROJECTS -->
 <div class="projects-header" id="projetos">
-  <div class="section-tag">Portfólio</div>
-  <h2 class="section-title">10 projetos, 10 nichos</h2>
-  <p class="section-sub">Cada peça foi escrita pra um nicho diferente, com uma abordagem diferente. Clica pra ler o copy completo — e o porquê de cada escolha.</p>
+  <div class="section-tag" data-i18n="projects.tag">Portfólio</div>
+  <h2 class="section-title" data-i18n="projects.title">10 projetos, 10 nichos</h2>
+  <p class="section-sub" data-i18n="projects.sub">Cada peça foi escrita pra um nicho diferente, com uma abordagem diferente. Clica pra ler o copy completo — e o porquê de cada escolha.</p>
 </div>
 
 <div class="projects-grid">
@@ -1091,19 +1139,19 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
   <!-- 1. Confeitaria -->
   <div class="project-card accent-pink" data-id="1">
     <div class="card-header">
-      <span class="card-niche">Confeitaria</span>
+      <span class="card-niche" data-card-niche="1">Confeitaria</span>
       <span class="card-format">Texto · Instagram</span>
     </div>
     <div class="card-body">
-      <h3 class="card-title">A Torta de Limão da Vó Nunca Foi Assim</h3>
-      <p class="card-desc">Storytelling emocional pra vender produto com memória afetiva. Nostalgia primeiro, escassez no final.</p>
+      <h3 class="card-title" data-card-title="1">A Torta de Limão da Vó Nunca Foi Assim</h3>
+      <p class="card-desc" data-card-desc="1">Storytelling emocional pra vender produto com memória afetiva. Nostalgia primeiro, escassez no final.</p>
       <div class="card-preview">
         Ela ensinou a receita em uma tarde de chuva, com a cozinha cheia de vapor e limões espalhados na mesa.
         Eu fiz algumas trocas, testei por semanas e finalmente cheguei numa versão que…
       </div>
     </div>
     <div class="card-footer">
-      <button class="card-btn" onclick="openModal(1)">Ler completo →</button>
+      <button class="card-btn" onclick="openModal(1)" data-i18n="card.read">Ler completo →</button>
       <span class="card-platform">Instagram Feed</span>
     </div>
   </div>
@@ -1111,12 +1159,12 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
   <!-- 2. Personal trainer -->
   <div class="project-card accent-green" data-id="2">
     <div class="card-header">
-      <span class="card-niche">Fitness</span>
+      <span class="card-niche" data-card-niche="2">Fitness</span>
       <span class="card-format">Bio · Instagram</span>
     </div>
     <div class="card-body">
-      <h3 class="card-title">Bio que Vende sem Parecer que Tá Vendendo</h3>
-      <p class="card-desc">Bio estratégica pra personal trainer. Prova social no começo, objeção quebrada no meio, CTA discreto no fim.</p>
+      <h3 class="card-title" data-card-title="2">Bio que Vende sem Parecer que Tá Vendendo</h3>
+      <p class="card-desc" data-card-desc="2">Bio estratégica pra personal trainer. Prova social no começo, objeção quebrada no meio, CTA discreto no fim.</p>
       <div class="card-preview bio">
         Personal trainer há 7 anos · formado em Ed. Física pela PUCRS
         Já ajudei +200 pessoas a emagrecer sem abandonar o churrasquinho de fim de semana
@@ -1124,7 +1172,7 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
       </div>
     </div>
     <div class="card-footer">
-      <button class="card-btn" onclick="openModal(2)">Ler completo →</button>
+      <button class="card-btn" onclick="openModal(2)" data-i18n="card.read">Ler completo →</button>
       <span class="card-platform">Instagram Bio</span>
     </div>
   </div>
@@ -1132,12 +1180,12 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
   <!-- 3. E-commerce moda -->
   <div class="project-card accent-gold" data-id="3">
     <div class="card-header">
-      <span class="card-niche">Moda</span>
+      <span class="card-niche" data-card-niche="3">Moda</span>
       <span class="card-format">Texto · Drop</span>
     </div>
     <div class="card-body">
-      <h3 class="card-title">O Drop que Esgotou em 40 Minutos</h3>
-      <p class="card-desc">Lançamento de coleção com escassez real. Posicionamento de identidade antes de mostrar o produto.</p>
+      <h3 class="card-title" data-card-title="3">O Drop que Esgotou em 40 Minutos</h3>
+      <p class="card-desc" data-card-desc="3">Lançamento de coleção com escassez real. Posicionamento de identidade antes de mostrar o produto.</p>
       <div class="card-preview">
         Não é roupa. É posição.
         Quem entende, não precisa de explicação. Quem não entende, não é o nosso público mesmo.
@@ -1145,7 +1193,7 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
       </div>
     </div>
     <div class="card-footer">
-      <button class="card-btn" onclick="openModal(3)">Ler completo →</button>
+      <button class="card-btn" onclick="openModal(3)" data-i18n="card.read">Ler completo →</button>
       <span class="card-platform">Instagram Feed</span>
     </div>
   </div>
@@ -1153,19 +1201,19 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
   <!-- 4. Coach -->
   <div class="project-card accent-violet" data-id="4">
     <div class="card-header">
-      <span class="card-niche">Coaching</span>
+      <span class="card-niche" data-card-niche="4">Coaching</span>
       <span class="card-format">Texto · Carrossel</span>
     </div>
     <div class="card-body">
-      <h3 class="card-title">O Texto que Faz o Seguidor Parar e Pensar</h3>
-      <p class="card-desc">Copy para coach de carreira com abordagem provocativa. Quebra objeção antes de apresentar a solução.</p>
+      <h3 class="card-title" data-card-title="4">O Texto que Faz o Seguidor Parar e Pensar</h3>
+      <p class="card-desc" data-card-desc="4">Copy para coach de carreira com abordagem provocativa. Quebra objeção antes de apresentar a solução.</p>
       <div class="card-preview">
         Você não tá estagnado por falta de esforço. Tá estagnado porque trabalha duro na direção errada.
         Diferença entre ocupado e produtivo…
       </div>
     </div>
     <div class="card-footer">
-      <button class="card-btn" onclick="openModal(4)">Ler completo →</button>
+      <button class="card-btn" onclick="openModal(4)" data-i18n="card.read">Ler completo →</button>
       <span class="card-platform">Instagram Carrossel</span>
     </div>
   </div>
@@ -1173,12 +1221,12 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
   <!-- 5. Carrossel expandido -->
   <div class="project-card accent-orange" data-id="5">
     <div class="card-header">
-      <span class="card-niche">Finanças pessoais</span>
+      <span class="card-niche" data-card-niche="5">Finanças pessoais</span>
       <span class="card-format">Carrossel expandido</span>
     </div>
     <div class="card-body">
-      <h3 class="card-title">Do Rascunho ao Carrossel que Para o Scroll</h3>
-      <p class="card-desc">Cliente enviou 4 bullet points secos. Virou um carrossel de 7 slides com abertura, narrativa por slide e CTA final.</p>
+      <h3 class="card-title" data-card-title="5">Do Rascunho ao Carrossel que Para o Scroll</h3>
+      <p class="card-desc" data-card-desc="5">Cliente enviou 4 bullet points secos. Virou um carrossel de 7 slides com abertura, narrativa por slide e CTA final.</p>
       <div class="card-preview">
         <strong style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.06em;">Input do cliente</strong><br>
         "- juros do cartão são altos / - parcelamento machuca / - reserva de emergência importa / - investir cedo"<br><br>
@@ -1187,7 +1235,7 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
       </div>
     </div>
     <div class="card-footer">
-      <button class="card-btn" onclick="openModal(5)">Ver todos os slides →</button>
+      <button class="card-btn" onclick="openModal(5)" data-i18n="card.slides">Ver todos os slides →</button>
       <span class="card-platform">Instagram Carrossel</span>
     </div>
   </div>
@@ -1195,12 +1243,12 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
   <!-- 6. Stories -->
   <div class="project-card accent-blue" data-id="6">
     <div class="card-header">
-      <span class="card-niche">Moda / E-commerce</span>
+      <span class="card-niche" data-card-niche="6">Moda / E-commerce</span>
       <span class="card-format">Roteiro de Stories</span>
     </div>
     <div class="card-body">
-      <h3 class="card-title">Sequência de Stories que Vende sem Parecer Anúncio</h3>
-      <p class="card-desc">Arco narrativo de 8 stories — do gancho até o CTA. Cliente manda o produto, eu monto a sequência.</p>
+      <h3 class="card-title" data-card-title="6">Sequência de Stories que Vende sem Parecer Anúncio</h3>
+      <p class="card-desc" data-card-desc="6">Arco narrativo de 8 stories — do gancho até o CTA. Cliente manda o produto, eu monto a sequência.</p>
       <div class="card-preview">
         <strong style="font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;">Story 1 — Gancho</strong><br>
         "Eu quase não lançei essa peça. Achei que ninguém ia entender."<br><br>
@@ -1209,7 +1257,7 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
       </div>
     </div>
     <div class="card-footer">
-      <button class="card-btn" onclick="openModal(6)">Ver sequência completa →</button>
+      <button class="card-btn" onclick="openModal(6)" data-i18n="card.sequence">Ver sequência completa →</button>
       <span class="card-platform">Instagram Stories</span>
     </div>
   </div>
@@ -1217,12 +1265,12 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
   <!-- 7. Psicóloga -->
   <div class="project-card accent-teal" data-id="7">
     <div class="card-header">
-      <span class="card-niche">Saúde Mental</span>
+      <span class="card-niche" data-card-niche="7">Saúde Mental</span>
       <span class="card-format">Bio · Acolhimento</span>
     </div>
     <div class="card-body">
-      <h3 class="card-title">Bio que Acolhe Antes de Vender</h3>
-      <p class="card-desc">Bio para psicóloga com abordagem sensível. Gera conexão emocional antes de apresentar o serviço.</p>
+      <h3 class="card-title" data-card-title="7">Bio que Acolhe Antes de Vender</h3>
+      <p class="card-desc" data-card-desc="7">Bio para psicóloga com abordagem sensível. Gera conexão emocional antes de apresentar o serviço.</p>
       <div class="card-preview bio">
         Psicóloga clínica · CRP 07/12345
         Acredito que pedir ajuda é um ato de coragem, não de fraqueza
@@ -1230,7 +1278,7 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
       </div>
     </div>
     <div class="card-footer">
-      <button class="card-btn" onclick="openModal(7)">Ler completo →</button>
+      <button class="card-btn" onclick="openModal(7)" data-i18n="card.read">Ler completo →</button>
       <span class="card-platform">Instagram Bio</span>
     </div>
   </div>
@@ -1238,12 +1286,12 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
   <!-- 8. SaaS / Tech -->
   <div class="project-card accent-violet" data-id="8">
     <div class="card-header">
-      <span class="card-niche">Tech / SaaS</span>
+      <span class="card-niche" data-card-niche="8">Tech / SaaS</span>
       <span class="card-format">Texto · LinkedIn</span>
     </div>
     <div class="card-body">
-      <h3 class="card-title">Copy Técnico que Não Afasta o Leigo</h3>
-      <p class="card-desc">Texto para produto de software. Traduz feature técnica em benefício real sem simplificar demais.</p>
+      <h3 class="card-title" data-card-title="8">Copy Técnico que Não Afasta o Leigo</h3>
+      <p class="card-desc" data-card-desc="8">Texto para produto de software. Traduz feature técnica em benefício real sem simplificar demais.</p>
       <div class="card-preview">
         A maioria dos relatórios de vendas responde "o que aconteceu".
         O nosso responde "o que fazer agora".
@@ -1251,7 +1299,7 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
       </div>
     </div>
     <div class="card-footer">
-      <button class="card-btn" onclick="openModal(8)">Ler completo →</button>
+      <button class="card-btn" onclick="openModal(8)" data-i18n="card.read">Ler completo →</button>
       <span class="card-platform">LinkedIn</span>
     </div>
   </div>
@@ -1259,18 +1307,18 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
   <!-- 9. Restaurante -->
   <div class="project-card accent-red" data-id="9">
     <div class="card-header">
-      <span class="card-niche">Gastronomia</span>
+      <span class="card-niche" data-card-niche="9">Gastronomia</span>
       <span class="card-format">Texto · Sensorial</span>
     </div>
     <div class="card-body">
-      <h3 class="card-title">Copy que Faz o Seguidor Sentir Fome</h3>
-      <p class="card-desc">Escrita sensorial pra restaurante. O leitor sente o cheiro antes de ver o prato. Sem chamada de "venha provar".</p>
+      <h3 class="card-title" data-card-title="9">Copy que Faz o Seguidor Sentir Fome</h3>
+      <p class="card-desc" data-card-desc="9">Escrita sensorial pra restaurante. O leitor sente o cheiro antes de ver o prato. Sem chamada de "venha provar".</p>
       <div class="card-preview">
         O caldo reduz por 4 horas. O chef prova a cada 20 minutos e faz pequenos ajustes — um toque de azeite, uma pitada de…
       </div>
     </div>
     <div class="card-footer">
-      <button class="card-btn" onclick="openModal(9)">Ler completo →</button>
+      <button class="card-btn" onclick="openModal(9)" data-i18n="card.read">Ler completo →</button>
       <span class="card-platform">Instagram Feed</span>
     </div>
   </div>
@@ -1278,19 +1326,19 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
   <!-- 10. Freelancer/Creator -->
   <div class="project-card accent-gold" data-id="10">
     <div class="card-header">
-      <span class="card-niche">Creator Economy</span>
+      <span class="card-niche" data-card-niche="10">Creator Economy</span>
       <span class="card-format">Bio + Texto</span>
     </div>
     <div class="card-body">
-      <h3 class="card-title">O Creator que Parece Marca</h3>
-      <p class="card-desc">Pacote completo — bio + texto — para criador que já passou da fase de número e quer ser tratado como referência. Posicionamento de marca aplicado em quem ainda é vendido como influencer.</p>
+      <h3 class="card-title" data-card-title="10">O Creator que Parece Marca</h3>
+      <p class="card-desc" data-card-desc="10">Pacote completo — bio + texto — para criador que já passou da fase de número e quer ser tratado como referência. Posicionamento de marca aplicado em quem ainda é vendido como influencer.</p>
       <div class="card-preview">
         Não ensino o caminho mais fácil. Ensino o mais honesto.
         Já errei o suficiente pra saber o que realmente funciona — e o que parece funcionar mas não funciona…
       </div>
     </div>
     <div class="card-footer">
-      <button class="card-btn" onclick="openModal(10)">Ler completo →</button>
+      <button class="card-btn" onclick="openModal(10)" data-i18n="card.read">Ler completo →</button>
       <span class="card-platform">Instagram Bio + Feed</span>
     </div>
   </div>
@@ -1300,39 +1348,39 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
 <!-- ABOUT -->
 <div class="about-section" id="sobre">
   <div class="about-text">
-    <div class="section-tag">Sobre mim</div>
-    <h2 class="section-title">Escrevo como quem<br>sabe ler o público.</h2>
-    <p>Sou desenvolvedor frontend e analista de dados antes de ser copy. Isso muda como eu escrevo: olho pro seu perfil já pensando onde a pessoa para de rolar e o que faz ela clicar.</p>
-    <p>Todo texto começa com uma pergunta — qual ação você quer que essa pessoa tome? A resposta vem depois.</p>
+    <div class="section-tag" data-i18n="about.tag">Sobre mim</div>
+    <h2 class="section-title" data-i18n="about.title">Escrevo como quem<br>sabe ler o público.</h2>
+    <p data-i18n="about.p1">Sou desenvolvedor frontend e analista de dados antes de ser copy. Isso muda como eu escrevo: olho pro seu perfil já pensando onde a pessoa para de rolar e o que faz ela clicar.</p>
+    <p data-i18n="about.p2">Todo texto começa com uma pergunta — qual ação você quer que essa pessoa tome? A resposta vem depois.</p>
     <div class="skills-list">
-      <span class="skill-tag">Textos Instagram</span>
-      <span class="skill-tag">Bio estratégica</span>
-      <span class="skill-tag">Copy de lançamento</span>
-      <span class="skill-tag">Storytelling</span>
-      <span class="skill-tag">LinkedIn</span>
-      <span class="skill-tag">E-commerce</span>
-      <span class="skill-tag">Saúde & wellness</span>
-      <span class="skill-tag">SaaS / Tech</span>
+      <span class="skill-tag" data-i18n="skill.1">Textos Instagram</span>
+      <span class="skill-tag" data-i18n="skill.2">Bio estratégica</span>
+      <span class="skill-tag" data-i18n="skill.3">Copy de lançamento</span>
+      <span class="skill-tag" data-i18n="skill.4">Storytelling</span>
+      <span class="skill-tag" data-i18n="skill.5">LinkedIn</span>
+      <span class="skill-tag" data-i18n="skill.6">E-commerce</span>
+      <span class="skill-tag" data-i18n="skill.7">Saúde & wellness</span>
+      <span class="skill-tag" data-i18n="skill.8">SaaS / Tech</span>
     </div>
   </div>
   <div class="about-metrics">
     <div class="metric-card">
       <div class="metric-num" style="color: var(--gold)">48h</div>
-      <div class="metric-label">Entrega de pacotes</div>
+      <div class="metric-label" data-i18n="metric.delivery">Entrega de pacotes</div>
     </div>
     <div class="metric-card">
       <div class="metric-num" style="color: var(--green)">10+</div>
-      <div class="metric-label">Nichos atendidos</div>
+      <div class="metric-label" data-i18n="metric.niches">Nichos atendidos</div>
     </div>
     <div class="metric-card metric-card-clickable" onclick="openPackages()">
-      <div class="metric-num" style="color: var(--blue)">R$50</div>
-      <div class="metric-label">A partir de
+      <div class="metric-num" style="color: var(--blue)" id="metric-price">R$97</div>
+      <div class="metric-label" data-i18n="metric.starting">A partir de
         <span class="metric-cta">ver opções →</span>
       </div>
     </div>
     <div class="metric-card">
-      <div class="metric-num" style="color: var(--pink)">1ª</div>
-      <div class="metric-label">Amostra grátis pra você</div>
+      <div class="metric-num" style="color: var(--pink)" data-i18n="metric.first">1ª</div>
+      <div class="metric-label" data-i18n="metric.sample">Amostra grátis pra você</div>
     </div>
   </div>
 </div>
@@ -1340,11 +1388,11 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
 <!-- CTA -->
 <div class="cta-section" id="contato">
   <div class="cta-inner">
-    <h2 class="cta-title">Quer ver como ficaria<br>no seu perfil?</h2>
-    <p class="cta-sub">Mando um texto ou bio feito pro seu nicho — de graça, sem enrolação.</p>
+    <h2 class="cta-title" data-i18n="cta.title">Quer ver como ficaria<br>no seu perfil?</h2>
+    <p class="cta-sub" data-i18n="cta.sub">Mando um texto ou bio feito pro seu nicho — de graça, sem enrolação.</p>
     <div class="cta-actions">
-      <a href="#form-amostra" onclick="openAmostra(); return false;" class="btn-primary">Quer uma amostra grátis? →</a>
-      <a href="#form-pacote" onclick="openPacote(); return false;" class="btn-secondary">Quer contratar um pacote? →</a>
+      <a href="#form-amostra" onclick="openAmostra(); return false;" class="btn-primary" data-i18n="hero.cta1">Quer uma amostra grátis? →</a>
+      <a href="#form-pacote" onclick="openPacote(); return false;" class="btn-secondary" data-i18n="hero.cta2">Quer contratar um pacote? →</a>
     </div>
   </div>
 </div>
@@ -1352,7 +1400,7 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Luan<span>.</span></div>
-  <div class="footer-copy">Copy & Conteúdo Estratégico · Porto Alegre, RS</div>
+  <div class="footer-copy" data-i18n="footer.copy">Copy & Conteúdo Estratégico · Porto Alegre, RS</div>
 </footer>
 
 <!-- MODAL -->
@@ -1367,13 +1415,13 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
     </div>
     <div class="modal-body">
       <div class="modal-context">
-        <div class="modal-context-label">Contexto da peça</div>
+        <div class="modal-context-label" data-i18n="modal.context-label">Contexto da peça</div>
         <div class="modal-context-text" id="modal-context"></div>
       </div>
-      <div class="modal-content-label">Copy completo</div>
-      <div class="modal-copy" id="modal-copy"></div>
+      <div class="modal-content-label" data-i18n="modal.copy-label">Copy completo</div>
+<div class="modal-copy" id="modal-copy"></div>
       <div class="modal-insight">
-        <div class="modal-insight-label">⚡ Por que funciona</div>
+        <div class="modal-insight-label" data-i18n="modal.insight-label">⚡ Por que funciona</div>
         <div class="modal-insight-text" id="modal-insight"></div>
       </div>
     </div>
@@ -1385,8 +1433,8 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
   <div class="modal" id="packages-modal">
     <div class="modal-header">
       <div class="modal-meta">
-        <div class="modal-niche">Contratos disponíveis</div>
-        <div class="modal-title">Como você quer trabalhar?</div>
+        <div class="modal-niche" data-i18n="pkg.niche">Contratos disponíveis</div>
+        <div class="modal-title" data-i18n="pkg.title">Como você quer trabalhar?</div>
       </div>
       <button class="modal-close" onclick="closePackages()">✕</button>
     </div>
@@ -1394,80 +1442,80 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
       <div class="packages-grid">
 
         <div class="package-card" style="border-color: rgba(79,196,207,0.3); background: linear-gradient(180deg, rgba(79,196,207,0.06) 0%, var(--bg-3) 60%);">
-          <div class="package-badge" style="background: var(--teal); color: #0A0A0B;">Avulso</div>
+          <div class="package-badge" style="background: var(--teal); color: #0A0A0B;" data-i18n="pkg.badge.single">Avulso</div>
           <div class="package-header">
-            <div class="package-name">Comissão Única</div>
-            <div class="package-price">
-              <span class="package-price-prefix">R$</span>50<span class="package-price-period"> único</span>
+            <div class="package-name" id="pkg-name-single" data-i18n="pkg.name.single">Comissão Única</div>
+            <div class="package-price" id="pkg-price-single">
+              <span class="package-price-prefix">R$</span>97<span class="package-price-period"> único</span>
             </div>
           </div>
-          <p class="package-tagline">Precisa de um texto específico, sem assinar nada. Paga uma vez, recebe uma vez.</p>
+          <p class="package-tagline" data-i18n="pkg.single.tagline">Precisa de um texto específico, sem assinar nada. Paga uma vez, recebe uma vez.</p>
           <ul class="package-features">
-            <li>1 texto da sua escolha</li>
-            <li>Tom de voz alinhado ao seu nicho</li>
-            <li>Uma rodada de ajustes</li>
-            <li>Entrega em até 48h</li>
+            <li data-i18n="pkg.single.f1">1 texto da sua escolha</li>
+            <li data-i18n="pkg.single.f2">Tom de voz alinhado ao seu nicho</li>
+            <li data-i18n="pkg.single.f3">Uma rodada de ajustes</li>
+            <li data-i18n="pkg.single.f4">Entrega em até 48h</li>
           </ul>
           <div style="margin-top: var(--sp-6)">
-            <a href="#" onclick="closePackages(); openComissao(); return false;" class="btn-primary" style="display:flex; justify-content:center;">Contratar agora →</a>
+            <a href="#" onclick="closePackages(); openComissao(); return false;" class="btn-primary" style="display:flex; justify-content:center;" data-i18n="pkg.single.cta">Contratar agora →</a>
           </div>
         </div>
 
         <div class="package-card">
           <div class="package-header">
             <div class="package-name">Starter</div>
-            <div class="package-price">
-              <span class="package-price-prefix">R$</span>150<span class="package-price-period">/mês</span>
+            <div class="package-price" id="pkg-price-starter">
+              <span class="package-price-prefix">R$</span>247<span class="package-price-period">/mês</span>
             </div>
           </div>
-          <p class="package-tagline">Pra quem tá começando a postar com intenção.</p>
+          <p class="package-tagline" data-i18n="pkg.starter.tagline">Pra quem tá começando a postar com intenção.</p>
           <ul class="package-features">
-            <li>6 textos por mês</li>
-            <li>Tom de voz alinhado ao seu nicho</li>
-            <li>Entrega quinzenal (3 + 3)</li>
-            <li>Uma rodada de ajustes</li>
+            <li data-i18n="pkg.starter.f1">6 textos por mês</li>
+            <li data-i18n="pkg.starter.f2">Tom de voz alinhado ao seu nicho</li>
+            <li data-i18n="pkg.starter.f3">Entrega quinzenal (3 + 3)</li>
+            <li data-i18n="pkg.starter.f4">Uma rodada de ajustes</li>
           </ul>
         </div>
 
         <div class="package-card featured">
-          <div class="package-badge">Mais escolhido</div>
+          <div class="package-badge" data-i18n="pkg.badge.popular">Mais escolhido</div>
           <div class="package-header">
             <div class="package-name">Refiner</div>
-            <div class="package-price">
-              <span class="package-price-prefix">R$</span>200<span class="package-price-period">/mês</span>
+            <div class="package-price" id="pkg-price-refiner">
+              <span class="package-price-prefix">R$</span>397<span class="package-price-period">/mês</span>
             </div>
           </div>
-          <p class="package-tagline">Você já posta com regularidade. Falta o copy fazer o seu trabalho de conversão.</p>
+          <p class="package-tagline" data-i18n="pkg.refiner.tagline">Você já posta com regularidade. Falta o copy fazer o seu trabalho de conversão.</p>
           <ul class="package-features">
-            <li>12 textos por mês</li>
-            <li>Bio revisada e otimizada</li>
-            <li>Entrega semanal</li>
-            <li>Duas rodadas de ajustes</li>
-            <li>Relatório mensal de performance</li>
+            <li data-i18n="pkg.refiner.f1">12 textos por mês</li>
+            <li data-i18n="pkg.refiner.f2">Bio revisada e otimizada</li>
+            <li data-i18n="pkg.refiner.f3">Entrega semanal</li>
+            <li data-i18n="pkg.refiner.f4">Duas rodadas de ajustes</li>
+            <li data-i18n="pkg.refiner.f5">Relatório mensal de performance</li>
           </ul>
         </div>
 
         <div class="package-card">
           <div class="package-header">
             <div class="package-name">All Out</div>
-            <div class="package-price">
-              <span class="package-price-prefix">R$</span>300<span class="package-price-period">/mês</span>
+            <div class="package-price" id="pkg-price-allout">
+              <span class="package-price-prefix">R$</span>597<span class="package-price-period">/mês</span>
             </div>
           </div>
-          <p class="package-tagline">Pra quem quer tratar conteúdo como ativo de negócio.</p>
+          <p class="package-tagline" data-i18n="pkg.allout.tagline">Pra quem quer tratar conteúdo como ativo de negócio.</p>
           <ul class="package-features">
-            <li>20 textos por mês</li>
-            <li>Bio + destaques otimizados</li>
-            <li>1 copy de lançamento ou venda</li>
-            <li>Entrega semanal + ajustes ilimitados</li>
-            <li>Reunião mensal de estratégia (30min)</li>
+            <li data-i18n="pkg.allout.f1">20 textos por mês</li>
+            <li data-i18n="pkg.allout.f2">Bio + destaques otimizados</li>
+            <li data-i18n="pkg.allout.f3">1 copy de lançamento ou venda</li>
+            <li data-i18n="pkg.allout.f4">Entrega semanal + ajustes ilimitados</li>
+            <li data-i18n="pkg.allout.f5">Reunião mensal de estratégia (30min)</li>
           </ul>
         </div>
 
       </div>
       <div class="packages-footer">
-        <p>Não sabe qual escolher? Conta o seu projeto no formulário — eu te ajudo a decidir antes do pagamento.</p>
-        <a href="#form-pacote" onclick="openPacote(); return false;" class="btn-primary">Quero contratar um pacote →</a>
+        <p data-i18n="pkg.footer.text">Não sabe qual escolher? Conta o seu projeto no formulário — eu te ajudo a decidir antes do pagamento.</p>
+        <a href="#form-pacote" onclick="openPacote(); return false;" class="btn-primary" data-i18n="pkg.footer.cta">Quero contratar um pacote →</a>
       </div>
     </div>
   </div>
@@ -1478,8 +1526,8 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
   <div class="modal form-modal" id="amostra-modal" role="dialog" aria-labelledby="amostra-modal-title" aria-modal="true">
     <div class="modal-header">
       <div class="modal-meta">
-        <div class="modal-niche">Amostra gratuita</div>
-        <div class="modal-title" id="amostra-modal-title">Pede sua amostra grátis</div>
+        <div class="modal-niche" data-i18n="form.amostra.niche">Amostra gratuita</div>
+        <div class="modal-title" id="amostra-modal-title" data-i18n="form.amostra.title">Pede sua amostra grátis</div>
       </div>
       <button class="modal-close" onclick="closeAmostra()" aria-label="Fechar formulário">✕</button>
     </div>
@@ -1487,33 +1535,33 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
       <div id="amostra-form-wrap">
         <form id="form-amostra" class="form-section" novalidate>
           <div class="form-group">
-            <label class="form-label" for="a-nome">Nome <span class="required-mark">*</span></label>
-            <input class="form-input" type="text" id="a-nome" name="nome" required placeholder="Seu nome">
+            <label class="form-label" for="a-nome"><span data-i18n="form.name">Nome</span> <span class="required-mark">*</span></label>
+            <input class="form-input" type="text" id="a-nome" name="nome" required placeholder="Seu nome" data-i18n-attr="placeholder:form.name.placeholder">
           </div>
           <div class="form-group">
-            <label class="form-label" for="a-contato">Melhor contato <span class="required-mark">*</span></label>
-            <input class="form-input" type="text" id="a-contato" name="contato" required placeholder="WhatsApp, e-mail ou @ do Instagram">
+            <label class="form-label" for="a-contato"><span data-i18n="form.contact">Melhor contato</span> <span class="required-mark">*</span></label>
+            <input class="form-input" type="text" id="a-contato" name="contato" required placeholder="WhatsApp, e-mail ou @ do Instagram" data-i18n-attr="placeholder:form.contact.placeholder">
           </div>
           <div class="form-group">
-            <label class="form-label" for="a-nicho">Nicho / segmento do negócio <span class="required-mark">*</span></label>
-            <input class="form-input" type="text" id="a-nicho" name="nicho" required placeholder="Ex: confeitaria artesanal, personal trainer, SaaS…">
+            <label class="form-label" for="a-nicho"><span data-i18n="form.niche">Nicho / segmento do negócio</span> <span class="required-mark">*</span></label>
+            <input class="form-input" type="text" id="a-nicho" name="nicho" required placeholder="Ex: confeitaria artesanal, personal trainer, SaaS…" data-i18n-attr="placeholder:form.niche.placeholder">
           </div>
           <div class="form-group">
-            <label class="form-label" for="a-tema">Sobre o que você quer a amostra? <span class="required-mark">*</span></label>
-            <textarea class="form-textarea" id="a-tema" name="tema" required placeholder="Tema, produto ou serviço — quanto mais contexto, melhor o resultado"></textarea>
+            <label class="form-label" for="a-tema"><span data-i18n="form.amostra.topic">Sobre o que você quer a amostra?</span> <span class="required-mark">*</span></label>
+            <textarea class="form-textarea" id="a-tema" name="tema" required placeholder="Tema, produto ou serviço — quanto mais contexto, melhor o resultado" data-i18n-attr="placeholder:form.amostra.topic.placeholder"></textarea>
           </div>
           <div class="form-group">
-            <label class="form-label" for="a-obs">Tem algo mais que eu deveria saber?</label>
-            <textarea class="form-textarea" id="a-obs" name="obs" placeholder="Tom de voz, referências, contexto extra — opcional"></textarea>
+            <label class="form-label" for="a-obs" data-i18n="form.extra">Tem algo mais que eu deveria saber?</label>
+            <textarea class="form-textarea" id="a-obs" name="obs" placeholder="Tom de voz, referências, contexto extra — opcional" data-i18n-attr="placeholder:form.extra.placeholder"></textarea>
           </div>
           <div class="form-error" id="amostra-error" role="alert"></div>
-          <button type="submit" class="btn-submit" id="amostra-submit">Enviar pedido →</button>
+          <button type="submit" class="btn-submit" id="amostra-submit" data-i18n="form.amostra.submit">Enviar pedido →</button>
         </form>
       </div>
       <div class="form-success" id="amostra-success" role="status">
         <div class="form-success-icon">✓</div>
-        <div class="form-success-title">Recebi!</div>
-        <div class="form-success-text">Retorno em até 24h pelo contato que você passou.<br><em>— Luan</em></div>
+        <div class="form-success-title" data-i18n="form.amostra.success.title">Recebi!</div>
+        <div class="form-success-text" data-i18n="form.amostra.success.text">Retorno em até 24h pelo contato que você passou.<br><em>— Luan</em></div>
       </div>
     </div>
   </div>
@@ -1524,8 +1572,8 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
   <div class="modal form-modal" id="pacote-modal" role="dialog" aria-labelledby="pacote-modal-title" aria-modal="true">
     <div class="modal-header">
       <div class="modal-meta">
-        <div class="modal-niche">Contratar pacote</div>
-        <div class="modal-title" id="pacote-modal-title">Escolha seu plano</div>
+        <div class="modal-niche" data-i18n="form.pacote.niche">Contratar pacote</div>
+        <div class="modal-title" id="pacote-modal-title" data-i18n="form.pacote.title">Escolha seu plano</div>
       </div>
       <button class="modal-close" onclick="closePacote()" aria-label="Fechar formulário">✕</button>
     </div>
@@ -1537,35 +1585,35 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
           <label class="radio-option" id="opt-starter">
             <input type="radio" name="plano-step1" value="starter" onchange="selectPlan(this)">
             <div class="radio-option-label">
-              <div class="radio-option-title">Starter — R$150/mês</div>
-              <div class="radio-option-desc">6 textos por mês</div>
+              <div class="radio-option-title" id="opt-starter-title">Starter — R$247/mês</div>
+              <div class="radio-option-desc" data-i18n="plan.starter.desc">6 textos por mês</div>
             </div>
           </label>
           <label class="radio-option" id="opt-refiner">
             <input type="radio" name="plano-step1" value="refiner" onchange="selectPlan(this)">
             <div class="radio-option-label">
-              <div class="radio-option-title">Refiner — R$200/mês</div>
-              <div class="radio-option-desc">12 textos por mês</div>
+              <div class="radio-option-title" id="opt-refiner-title">Refiner — R$397/mês</div>
+              <div class="radio-option-desc" data-i18n="plan.refiner.desc">12 textos por mês</div>
             </div>
           </label>
           <label class="radio-option" id="opt-allout">
             <input type="radio" name="plano-step1" value="allout" onchange="selectPlan(this)">
             <div class="radio-option-label">
-              <div class="radio-option-title">All Out — R$300/mês</div>
-              <div class="radio-option-desc">20 textos por mês</div>
+              <div class="radio-option-title" id="opt-allout-title">All Out — R$597/mês</div>
+              <div class="radio-option-desc" data-i18n="plan.allout.desc">20 textos por mês</div>
             </div>
           </label>
           <label class="radio-option" id="opt-comissao" style="border-color: rgba(79,196,207,0.25);">
             <input type="radio" name="plano-step1" value="comissao" onchange="selectPlan(this)">
             <div class="radio-option-label">
-              <div class="radio-option-title">Comissão Única — R$50</div>
-              <div class="radio-option-desc">1 texto avulso, sem mensalidade</div>
-              <div class="radio-option-note">Naturalmente mais polido e milimetricamente calculado pra ser efetivo — cada detalhe pensado pra acertar em cheio.</div>
+              <div class="radio-option-title" id="opt-comissao-title">Comissão Única — R$97</div>
+              <div class="radio-option-desc" data-i18n="plan.comissao.desc">1 texto avulso, sem mensalidade</div>
+              <div class="radio-option-note" data-i18n="plan.comissao.note">Naturalmente mais polido e milimetricamente calculado pra ser efetivo — cada detalhe pensado pra acertar em cheio.</div>
             </div>
           </label>
         </div>
         <div style="margin-top: var(--sp-6)">
-          <button class="btn-continue" id="btn-continue" disabled onclick="goToStep2()">Continuar →</button>
+          <button class="btn-continue" id="btn-continue" disabled onclick="goToStep2()" data-i18n="form.continue">Continuar →</button>
         </div>
       </div>
 
@@ -1573,7 +1621,7 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
       <div id="pacote-step2" style="display:none">
         <div class="step-header">
           <div class="step-plan-badge" id="step2-plan-badge"></div>
-          <button type="button" class="step-change-btn" onclick="goToStep1()">← Trocar plano</button>
+          <button type="button" class="step-change-btn" onclick="goToStep1()" data-i18n="form.change-plan">← Trocar plano</button>
         </div>
 
         <div id="pacote-form-wrap">
@@ -1582,30 +1630,30 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
             <div class="ideas-grid" id="ideas-grid"></div>
 
             <hr class="form-divider">
-            <div class="form-section-title">Sobre você e seu negócio</div>
+            <div class="form-section-title" data-i18n="form.about-section">Sobre você e seu negócio</div>
 
             <div class="form-group">
-              <label class="form-label" for="p-nome">Nome <span class="required-mark">*</span></label>
-              <input class="form-input" type="text" id="p-nome" name="nome" required placeholder="Seu nome">
+              <label class="form-label" for="p-nome"><span data-i18n="form.name">Nome</span> <span class="required-mark">*</span></label>
+              <input class="form-input" type="text" id="p-nome" name="nome" required placeholder="Seu nome" data-i18n-attr="placeholder:form.name.placeholder">
             </div>
             <div class="form-group">
-              <label class="form-label" for="p-contato">Contato preferido <span class="required-mark">*</span></label>
-              <input class="form-input" type="text" id="p-contato" name="contato" required placeholder="WhatsApp, e-mail ou @ do Instagram">
+              <label class="form-label" for="p-contato"><span data-i18n="form.contact.preferred">Contato preferido</span> <span class="required-mark">*</span></label>
+              <input class="form-input" type="text" id="p-contato" name="contato" required placeholder="WhatsApp, e-mail ou @ do Instagram" data-i18n-attr="placeholder:form.contact.placeholder">
             </div>
             <div class="form-group">
-              <label class="form-label" for="p-negocio">Sobre o seu negócio <span class="required-mark">*</span></label>
-              <textarea class="form-textarea" id="p-negocio" name="negocio" required placeholder="Nicho, o que você vende, há quanto tempo está no mercado"></textarea>
+              <label class="form-label" for="p-negocio"><span data-i18n="form.business">Sobre o seu negócio</span> <span class="required-mark">*</span></label>
+              <textarea class="form-textarea" id="p-negocio" name="negocio" required placeholder="Nicho, o que você vende, há quanto tempo está no mercado" data-i18n-attr="placeholder:form.business.placeholder"></textarea>
             </div>
             <div class="form-group">
-              <label class="form-label" for="p-publico">Quem é o seu público? <span class="required-mark">*</span></label>
-              <textarea class="form-textarea" id="p-publico" name="publico" required placeholder="Idade, perfil, dor principal — quanto mais específico, melhor"></textarea>
+              <label class="form-label" for="p-publico"><span data-i18n="form.audience">Quem é o seu público?</span> <span class="required-mark">*</span></label>
+              <textarea class="form-textarea" id="p-publico" name="publico" required placeholder="Idade, perfil, dor principal — quanto mais específico, melhor" data-i18n-attr="placeholder:form.audience.placeholder"></textarea>
             </div>
             <div class="form-group">
-              <label class="form-label" for="p-tom">Tom de voz desejado <span class="required-mark">*</span></label>
-              <textarea class="form-textarea" id="p-tom" name="tom" required placeholder="Ex: descontraído e próximo, técnico e direto, inspirador e motivador…"></textarea>
+              <label class="form-label" for="p-tom"><span data-i18n="form.voice">Tom de voz desejado</span> <span class="required-mark">*</span></label>
+              <textarea class="form-textarea" id="p-tom" name="tom" required placeholder="Ex: descontraído e próximo, técnico e direto, inspirador e motivador…" data-i18n-attr="placeholder:form.voice.placeholder"></textarea>
             </div>
             <div class="form-group">
-              <div class="form-label" id="plataformas-label">Onde você posta hoje? <span class="required-mark">*</span></div>
+              <div class="form-label" id="plataformas-label"><span data-i18n="form.platforms">Onde você posta hoje?</span> <span class="required-mark">*</span></div>
               <div class="checkbox-group" role="group" aria-labelledby="plataformas-label">
                 <label class="checkbox-option"><input type="checkbox" name="plataforma" value="Instagram"> Instagram</label>
                 <label class="checkbox-option"><input type="checkbox" name="plataforma" value="LinkedIn"> LinkedIn</label>
@@ -1613,44 +1661,44 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
                 <label class="checkbox-option"><input type="checkbox" name="plataforma" value="Facebook"> Facebook</label>
                 <label class="checkbox-option"><input type="checkbox" name="plataforma" value="X/Twitter"> X/Twitter</label>
                 <label class="checkbox-option"><input type="checkbox" name="plataforma" value="YouTube"> YouTube</label>
-                <label class="checkbox-option"><input type="checkbox" name="plataforma" value="Outro"> Outro</label>
+                <label class="checkbox-option"><input type="checkbox" name="plataforma" value="Outro" data-i18n-val="form.other">Outro</label>
               </div>
             </div>
             <div class="form-group">
-              <label class="form-label" for="p-perfil">Link do seu perfil principal</label>
+              <label class="form-label" for="p-perfil" data-i18n="form.profile-link">Link do seu perfil principal</label>
               <input class="form-input" type="text" id="p-perfil" name="perfil" placeholder="instagram.com/seuperfil">
             </div>
             <div class="form-group">
-              <label class="form-label" for="p-refs">Concorrentes ou referências de copy que admira</label>
-              <textarea class="form-textarea" id="p-refs" name="refs" placeholder="Perfis ou marcas que você considera benchmark — opcional"></textarea>
+              <label class="form-label" for="p-refs" data-i18n="form.refs">Concorrentes ou referências de copy que admira</label>
+              <textarea class="form-textarea" id="p-refs" name="refs" placeholder="Perfis ou marcas que você considera benchmark — opcional" data-i18n-attr="placeholder:form.refs.placeholder"></textarea>
             </div>
             <div class="form-group">
-              <label class="form-label" for="p-objetivo">Objetivo principal nos próximos 3 meses <span class="required-mark">*</span></label>
-              <textarea class="form-textarea" id="p-objetivo" name="objetivo" required placeholder="Crescer seguidores, vender mais, lançar produto, reposicionar marca…"></textarea>
+              <label class="form-label" for="p-objetivo"><span data-i18n="form.goal">Objetivo principal nos próximos 3 meses</span> <span class="required-mark">*</span></label>
+              <textarea class="form-textarea" id="p-objetivo" name="objetivo" required placeholder="Crescer seguidores, vender mais, lançar produto, reposicionar marca…" data-i18n-attr="placeholder:form.goal.placeholder"></textarea>
             </div>
             <div class="form-group">
-              <div class="form-label" id="inicio-label">Quando quer começar? <span class="required-mark">*</span></div>
+              <div class="form-label" id="inicio-label"><span data-i18n="form.start-when">Quando quer começar?</span> <span class="required-mark">*</span></div>
               <div class="radio-group" role="radiogroup" aria-labelledby="inicio-label">
-                <label class="radio-option compact"><input type="radio" name="inicio" value="Essa semana" required><span class="radio-simple-label">Essa semana</span></label>
-                <label class="radio-option compact"><input type="radio" name="inicio" value="Próximas duas semanas"><span class="radio-simple-label">Próximas duas semanas</span></label>
-                <label class="radio-option compact"><input type="radio" name="inicio" value="Esse mês"><span class="radio-simple-label">Esse mês</span></label>
-                <label class="radio-option compact"><input type="radio" name="inicio" value="Estou avaliando"><span class="radio-simple-label">Estou avaliando</span></label>
+                <label class="radio-option compact"><input type="radio" name="inicio" value="Essa semana" required><span class="radio-simple-label" data-i18n="form.start.w1">Essa semana</span></label>
+                <label class="radio-option compact"><input type="radio" name="inicio" value="Próximas duas semanas"><span class="radio-simple-label" data-i18n="form.start.w2">Próximas duas semanas</span></label>
+                <label class="radio-option compact"><input type="radio" name="inicio" value="Esse mês"><span class="radio-simple-label" data-i18n="form.start.w3">Esse mês</span></label>
+                <label class="radio-option compact"><input type="radio" name="inicio" value="Estou avaliando"><span class="radio-simple-label" data-i18n="form.start.w4">Estou avaliando</span></label>
               </div>
             </div>
             <div class="form-group">
-              <label class="form-label" for="p-obs">Tem algo mais que eu deveria saber?</label>
-              <textarea class="form-textarea" id="p-obs" name="obs" placeholder="Contexto extra, preferências, restrições — opcional"></textarea>
+              <label class="form-label" for="p-obs" data-i18n="form.extra">Tem algo mais que eu deveria saber?</label>
+              <textarea class="form-textarea" id="p-obs" name="obs" placeholder="Contexto extra, preferências, restrições — opcional" data-i18n-attr="placeholder:form.extra.placeholder"></textarea>
             </div>
 
             <div class="form-error" id="pacote-error" role="alert"></div>
-            <button type="submit" class="btn-submit" id="pacote-submit">Enviar briefing →</button>
+            <button type="submit" class="btn-submit" id="pacote-submit" data-i18n="form.pacote.submit">Enviar briefing →</button>
           </form>
         </div>
 
         <div class="form-success" id="pacote-success" role="status">
           <div class="form-success-icon">✓</div>
-          <div class="form-success-title">Recebi seu briefing!</div>
-          <div class="form-success-text">Retorno em até 24h pelo contato que você passou.<br><em>— Luan</em></div>
+          <div class="form-success-title" data-i18n="form.pacote.success.title">Recebi seu briefing!</div>
+          <div class="form-success-text" data-i18n="form.pacote.success.text">Retorno em até 24h pelo contato que você passou.<br><em>— Luan</em></div>
         </div>
       </div>
 
@@ -1663,8 +1711,8 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
   <div class="modal form-modal" id="comissao-modal" role="dialog" aria-labelledby="comissao-modal-title" aria-modal="true">
     <div class="modal-header">
       <div class="modal-meta">
-        <div class="modal-niche">Comissão única</div>
-        <div class="modal-title" id="comissao-modal-title">Pede o seu texto</div>
+        <div class="modal-niche" data-i18n="form.comissao.niche">Comissão única</div>
+        <div class="modal-title" id="comissao-modal-title" data-i18n="form.comissao.title">Pede o seu texto</div>
       </div>
       <button class="modal-close" onclick="closeComissao()" aria-label="Fechar formulário">✕</button>
     </div>
@@ -1672,56 +1720,370 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
       <div id="comissao-form-wrap">
         <form id="form-comissao" class="form-section" novalidate>
           <div class="form-group">
-            <label class="form-label" for="c-nome">Nome <span class="required-mark">*</span></label>
-            <input class="form-input" type="text" id="c-nome" name="nome" required placeholder="Seu nome">
+            <label class="form-label" for="c-nome"><span data-i18n="form.name">Nome</span> <span class="required-mark">*</span></label>
+            <input class="form-input" type="text" id="c-nome" name="nome" required placeholder="Seu nome" data-i18n-attr="placeholder:form.name.placeholder">
           </div>
           <div class="form-group">
-            <label class="form-label" for="c-contato">Melhor contato <span class="required-mark">*</span></label>
-            <input class="form-input" type="text" id="c-contato" name="contato" required placeholder="WhatsApp, e-mail ou @ do Instagram">
+            <label class="form-label" for="c-contato"><span data-i18n="form.contact">Melhor contato</span> <span class="required-mark">*</span></label>
+            <input class="form-input" type="text" id="c-contato" name="contato" required placeholder="WhatsApp, e-mail ou @ do Instagram" data-i18n-attr="placeholder:form.contact.placeholder">
           </div>
           <div class="form-group">
-            <label class="form-label" for="c-tipo">Tipo de texto <span class="required-mark">*</span></label>
-            <select class="form-input" id="c-tipo" name="tipo" required>
-              <option value="" disabled selected>Selecione o tipo</option>
-              <option value="Caption / legenda">Caption / legenda</option>
-              <option value="Bio">Bio</option>
-              <option value="E-mail marketing">E-mail marketing</option>
-              <option value="Thread">Thread</option>
-              <option value="Copy de venda / CTA">Copy de venda / CTA</option>
-              <option value="Outro">Outro</option>
+            <label class="form-label" name="c-tipo"><span data-i18n="form.piece-type">Tipo de texto</span> <span class="required-mark">*</span></label>
+            <select class="form-input" id="c-tipo" name="tipo" required data-i18n-select="form.tipo">
+              <option value="" disabled selected data-i18n-opt="form.tipo.placeholder">Selecione o tipo</option>
+              <option value="Caption / legenda" data-i18n-opt="form.tipo.caption">Caption / legenda</option>
+              <option value="Bio" data-i18n-opt="form.tipo.bio">Bio</option>
+              <option value="E-mail marketing" data-i18n-opt="form.tipo.email">E-mail marketing</option>
+              <option value="Thread" data-i18n-opt="form.tipo.thread">Thread</option>
+              <option value="Copy de venda / CTA" data-i18n-opt="form.tipo.sales">Copy de venda / CTA</option>
+              <option value="Outro" data-i18n-opt="form.tipo.other">Outro</option>
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label" for="c-nicho">Nicho / negócio <span class="required-mark">*</span></label>
-            <input class="form-input" type="text" id="c-nicho" name="nicho" required placeholder="Ex: confeitaria artesanal, coaching, SaaS…">
+            <label class="form-label" for="c-nicho"><span data-i18n="form.niche-biz">Nicho / negócio</span> <span class="required-mark">*</span></label>
+            <input class="form-input" type="text" id="c-nicho" name="nicho" required placeholder="Ex: confeitaria artesanal, coaching, SaaS…" data-i18n-attr="placeholder:form.niche.placeholder">
           </div>
           <div class="form-group">
-            <label class="form-label" for="c-briefing">Briefing do texto <span class="required-mark">*</span></label>
-            <textarea class="form-textarea" id="c-briefing" name="briefing" required placeholder="O que você quer comunicar? Produto, serviço, contexto — quanto mais detalhe, melhor o resultado"></textarea>
+            <label class="form-label" for="c-briefing"><span data-i18n="form.briefing">Briefing do texto</span> <span class="required-mark">*</span></label>
+            <textarea class="form-textarea" id="c-briefing" name="briefing" required placeholder="O que você quer comunicar? Produto, serviço, contexto — quanto mais detalhe, melhor o resultado" data-i18n-attr="placeholder:form.briefing.placeholder"></textarea>
           </div>
           <div class="form-group">
-            <label class="form-label" for="c-tom">Tom de voz</label>
-            <textarea class="form-textarea" id="c-tom" name="tom" placeholder="Ex: descontraído, técnico, direto — opcional"></textarea>
+            <label class="form-label" for="c-tom" data-i18n="form.voice-simple">Tom de voz</label>
+            <textarea class="form-textarea" id="c-tom" name="tom" placeholder="Ex: descontraído, técnico, direto — opcional" data-i18n-attr="placeholder:form.voice.simple.placeholder"></textarea>
           </div>
           <div class="form-error" id="comissao-error" role="alert"></div>
-          <button type="submit" class="btn-submit" id="comissao-submit">Enviar pedido →</button>
+          <button type="submit" class="btn-submit" id="comissao-submit" data-i18n="form.amostra.submit">Enviar pedido →</button>
         </form>
       </div>
       <div class="form-success" id="comissao-success" role="status">
         <div class="form-success-icon">✓</div>
-        <div class="form-success-title">Recebi!</div>
-        <div class="form-success-text">Retorno em até 24h com o seu texto.<br><em>— Luan</em></div>
+        <div class="form-success-title" data-i18n="form.comissao.success.title">Recebi!</div>
+        <div class="form-success-text" data-i18n="form.comissao.success.text">Retorno em até 24h com o seu texto.<br><em>— Luan</em></div>
       </div>
     </div>
   </div>
 </div>
 
 <script>
+// ── I18N ──
+const I18N = {
+  pt: {
+    'nav.cta': 'Quero uma amostra grátis →',
+    'hero.tag': 'Portfólio · Copy & Conteúdo',
+    'hero.title': 'Palavras que<br><em>vendem</em> enquanto<br>você dorme',
+    'hero.sub': 'Escrevo textos e bio pra quem posta toda semana e ainda não vê resultado vir junto.',
+    'hero.cta1': 'Quer uma amostra grátis? →',
+    'hero.cta2': 'Quer contratar um pacote? →',
+    'hero.stat1': 'nichos no portfólio',
+    'hero.stat2': 'engajamento dos meus clientes',
+    'hero.stat3': 'do briefing à entrega',
+    'projects.tag': 'Portfólio',
+    'projects.title': '10 projetos, 10 nichos',
+    'projects.sub': 'Cada peça foi escrita pra um nicho diferente, com uma abordagem diferente. Clica pra ler o copy completo — e o porquê de cada escolha.',
+    'card.read': 'Ler completo →',
+    'card.slides': 'Ver todos os slides →',
+    'card.sequence': 'Ver sequência completa →',
+    'about.tag': 'Sobre mim',
+    'about.title': 'Escrevo como quem<br>sabe ler o público.',
+    'about.p1': 'Sou desenvolvedor frontend e analista de dados antes de ser copy. Isso muda como eu escrevo: olho pro seu perfil já pensando onde a pessoa para de rolar e o que faz ela clicar.',
+    'about.p2': 'Todo texto começa com uma pergunta — qual ação você quer que essa pessoa tome? A resposta vem depois.',
+    'skill.1': 'Textos Instagram',
+    'skill.2': 'Bio estratégica',
+    'skill.3': 'Copy de lançamento',
+    'skill.4': 'Storytelling',
+    'skill.5': 'LinkedIn',
+    'skill.6': 'E-commerce',
+    'skill.7': 'Saúde & wellness',
+    'skill.8': 'SaaS / Tech',
+    'metric.delivery': 'Entrega de pacotes',
+    'metric.niches': 'Nichos atendidos',
+    'metric.starting': 'A partir de <span class="metric-cta">ver opções →</span>',
+    'metric.sample': 'Amostra grátis pra você',
+    'metric.price': 'R$97',
+    'metric.first': '1ª',
+    'pkg.name.single': 'Comissão Única',
+    'cta.title': 'Quer ver como ficaria<br>no seu perfil?',
+    'cta.sub': 'Mando um texto ou bio feito pro seu nicho — de graça, sem enrolação.',
+    'footer.copy': 'Copy & Conteúdo Estratégico · Porto Alegre, RS',
+    'modal.context-label': 'Contexto da peça',
+    'modal.copy-label': 'Copy completo',
+    'modal.insight-label': '⚡ Por que funciona',
+    'modal.sample-note': '',
+    'pkg.niche': 'Contratos disponíveis',
+    'pkg.title': 'Como você quer trabalhar?',
+    'pkg.badge.single': 'Avulso',
+    'pkg.badge.popular': 'Mais escolhido',
+    'pkg.single.tagline': 'Precisa de um texto específico, sem assinar nada. Paga uma vez, recebe uma vez.',
+    'pkg.single.f1': '1 texto da sua escolha',
+    'pkg.single.f2': 'Tom de voz alinhado ao seu nicho',
+    'pkg.single.f3': 'Uma rodada de ajustes',
+    'pkg.single.f4': 'Entrega em até 48h',
+    'pkg.single.cta': 'Contratar agora →',
+    'pkg.starter.tagline': 'Pra quem tá começando a postar com intenção.',
+    'pkg.starter.f1': '6 textos por mês',
+    'pkg.starter.f2': 'Tom de voz alinhado ao seu nicho',
+    'pkg.starter.f3': 'Entrega quinzenal (3 + 3)',
+    'pkg.starter.f4': 'Uma rodada de ajustes',
+    'pkg.refiner.tagline': 'Você já posta com regularidade. Falta o copy fazer o seu trabalho de conversão.',
+    'pkg.refiner.f1': '12 textos por mês',
+    'pkg.refiner.f2': 'Bio revisada e otimizada',
+    'pkg.refiner.f3': 'Entrega semanal',
+    'pkg.refiner.f4': 'Duas rodadas de ajustes',
+    'pkg.refiner.f5': 'Relatório mensal de performance',
+    'pkg.allout.tagline': 'Pra quem quer tratar conteúdo como ativo de negócio.',
+    'pkg.allout.f1': '20 textos por mês',
+    'pkg.allout.f2': 'Bio + destaques otimizados',
+    'pkg.allout.f3': '1 copy de lançamento ou venda',
+    'pkg.allout.f4': 'Entrega semanal + ajustes ilimitados',
+    'pkg.allout.f5': 'Reunião mensal de estratégia (30min)',
+    'pkg.footer.text': 'Não sabe qual escolher? Conta o seu projeto no formulário — eu te ajudo a decidir antes do pagamento.',
+    'pkg.footer.cta': 'Quero contratar um pacote →',
+    'pkg.price.single': '<span class="package-price-prefix">R$</span>97<span class="package-price-period"> único</span>',
+    'pkg.price.starter': '<span class="package-price-prefix">R$</span>247<span class="package-price-period">/mês</span>',
+    'pkg.price.refiner': '<span class="package-price-prefix">R$</span>397<span class="package-price-period">/mês</span>',
+    'pkg.price.allout': '<span class="package-price-prefix">R$</span>597<span class="package-price-period">/mês</span>',
+    'form.amostra.niche': 'Amostra gratuita',
+    'form.amostra.title': 'Pede sua amostra grátis',
+    'form.amostra.submit': 'Enviar pedido →',
+    'form.amostra.success.title': 'Recebi!',
+    'form.amostra.success.text': 'Retorno em até 24h pelo contato que você passou.<br><em>— Luan</em>',
+    'form.amostra.topic': 'Sobre o que você quer a amostra?',
+    'form.amostra.topic.placeholder': 'Tema, produto ou serviço — quanto mais contexto, melhor o resultado',
+    'form.pacote.niche': 'Contratar pacote',
+    'form.pacote.title': 'Escolha seu plano',
+    'form.pacote.submit': 'Enviar briefing →',
+    'form.pacote.success.title': 'Recebi seu briefing!',
+    'form.pacote.success.text': 'Retorno em até 24h pelo contato que você passou.<br><em>— Luan</em>',
+    'form.comissao.niche': 'Comissão única',
+    'form.comissao.title': 'Pede o seu texto',
+    'form.comissao.success.title': 'Recebi!',
+    'form.comissao.success.text': 'Retorno em até 24h com o seu texto.<br><em>— Luan</em>',
+    'form.name': 'Nome',
+    'form.name.placeholder': 'Seu nome',
+    'form.contact': 'Melhor contato',
+    'form.contact.preferred': 'Contato preferido',
+    'form.contact.placeholder': 'WhatsApp, e-mail ou @ do Instagram',
+    'form.niche': 'Nicho / segmento do negócio',
+    'form.niche-biz': 'Nicho / negócio',
+    'form.niche.placeholder': 'Ex: confeitaria artesanal, coaching, SaaS…',
+    'form.extra': 'Tem algo mais que eu deveria saber?',
+    'form.extra.placeholder': 'Tom de voz, referências, contexto extra — opcional',
+    'form.close': 'Fechar formulário',
+    'form.continue': 'Continuar →',
+    'form.change-plan': '← Trocar plano',
+    'form.about-section': 'Sobre você e seu negócio',
+    'form.business': 'Sobre o seu negócio',
+    'form.business.placeholder': 'Nicho, o que você vende, há quanto tempo está no mercado',
+    'form.audience': 'Quem é o seu público?',
+    'form.audience.placeholder': 'Idade, perfil, dor principal — quanto mais específico, melhor',
+    'form.voice': 'Tom de voz desejado',
+    'form.voice.placeholder': 'Ex: descontraído e próximo, técnico e direto, inspirador e motivador…',
+    'form.voice-simple': 'Tom de voz',
+    'form.voice.simple.placeholder': 'Ex: descontraído, técnico, direto — opcional',
+    'form.platforms': 'Onde você posta hoje?',
+    'form.profile-link': 'Link do seu perfil principal',
+    'form.refs': 'Concorrentes ou referências de copy que admira',
+    'form.refs.placeholder': 'Perfis ou marcas que você considera benchmark — opcional',
+    'form.goal': 'Objetivo principal nos próximos 3 meses',
+    'form.goal.placeholder': 'Crescer seguidores, vender mais, lançar produto, reposicionar marca…',
+    'form.start-when': 'Quando quer começar?',
+    'form.start.w1': 'Essa semana',
+    'form.start.w2': 'Próximas duas semanas',
+    'form.start.w3': 'Esse mês',
+    'form.start.w4': 'Estou avaliando',
+    'form.piece-type': 'Tipo de texto',
+    'form.briefing': 'Briefing do texto',
+    'form.briefing.placeholder': 'O que você quer comunicar? Produto, serviço, contexto — quanto mais detalhe, melhor o resultado',
+    'form.other': 'Outro',
+    'form.tipo.placeholder': 'Selecione o tipo',
+    'form.tipo.caption': 'Caption / legenda',
+    'form.tipo.bio': 'Bio',
+    'form.tipo.email': 'E-mail marketing',
+    'form.tipo.thread': 'Thread',
+    'form.tipo.sales': 'Copy de venda / CTA',
+    'form.tipo.other': 'Outro',
+    'form.error.platform': 'Selecione pelo menos uma plataforma onde você posta.',
+    'form.error.send': 'Não consegui enviar agora. Tenta de novo ou me manda direto pelo Instagram.',
+    'form.sending': 'Enviando…',
+    'plan.starter.desc': '6 textos por mês',
+    'plan.refiner.desc': '12 textos por mês',
+    'plan.allout.desc': '20 textos por mês',
+    'plan.comissao.desc': '1 texto avulso, sem mensalidade',
+    'plan.comissao.note': 'Naturalmente mais polido e milimetricamente calculado pra ser efetivo — cada detalhe pensado pra acertar em cheio.',
+    'ideas.placeholder': 'Descreva sua ideia: tema, ângulo, contexto, qualquer detalhe que ajude',
+    'ideas.label': 'Ideia',
+    'ideas.instruction': 'Descreva abaixo as <strong>{qty} ideias</strong> de texto que você quer encomendar. As ideias podem ser independentes ou se relacionar entre si (ex: uma série/sequência) — se uma ideia for continuação de outra, mencione isso na própria caixa.',
+    'step2.title': 'Preencha o briefing',
+    'step1.title': 'Escolha seu plano',
+  },
+  en: {
+    'nav.cta': 'Get a free sample →',
+    'hero.tag': 'Portfolio · Copy & Content',
+    'hero.title': 'Words that<br><em>sell</em> while<br>you sleep',
+    'hero.sub': 'I write captions and bios for creators posting weekly without seeing the results catch up.',
+    'hero.cta1': 'Get a free sample? →',
+    'hero.cta2': 'Hire a package? →',
+    'hero.stat1': 'niches in portfolio',
+    'hero.stat2': 'engagement for my clients',
+    'hero.stat3': 'brief to delivery',
+    'projects.tag': 'Portfolio',
+    'projects.title': '10 projects, 10 niches',
+    'projects.sub': 'Each piece written for a different niche, with a different approach. Click to read the full copy — and the reasoning behind every choice.',
+    'card.read': 'Read full →',
+    'card.slides': 'View all slides →',
+    'card.sequence': 'View full sequence →',
+    'about.tag': 'About me',
+    'about.title': 'I write like someone<br>who knows how to read the audience.',
+    'about.p1': "I'm a frontend developer and data analyst before being a copywriter. That shapes how I write: I look at your profile thinking about where people stop scrolling and what makes them click.",
+    'about.p2': 'Every piece starts with a question — what action do you want this person to take? The answer comes after.',
+    'skill.1': 'Instagram captions',
+    'skill.2': 'Strategic bios',
+    'skill.3': 'Launch copy',
+    'skill.4': 'Storytelling',
+    'skill.5': 'LinkedIn',
+    'skill.6': 'E-commerce',
+    'skill.7': 'Health & wellness',
+    'skill.8': 'SaaS / Tech',
+    'metric.delivery': 'Package delivery',
+    'metric.niches': 'Niches covered',
+    'metric.starting': 'Starting at <span class="metric-cta">see options →</span>',
+    'metric.sample': 'Free sample for you',
+    'metric.price': '$17',
+    'metric.first': '1st',
+    'pkg.name.single': 'Single Commission',
+    'cta.title': 'Want to see how it would look<br>on your profile?',
+    'cta.sub': "I'll send a caption or bio written for your niche — free, no strings.",
+    'footer.copy': 'Strategic Copy & Content · Porto Alegre, BR',
+    'modal.context-label': 'Piece context',
+    'modal.copy-label': 'Full copy',
+    'modal.insight-label': '⚡ Why it works',
+    'modal.sample-note': 'Sample in Portuguese — these are real Brazilian market deliverables.',
+    'pkg.niche': 'Available contracts',
+    'pkg.title': 'How do you want to work?',
+    'pkg.badge.single': 'One-off',
+    'pkg.badge.popular': 'Most chosen',
+    'pkg.single.tagline': 'Need a specific piece, no subscription. Pay once, get once.',
+    'pkg.single.f1': '1 piece of your choice',
+    'pkg.single.f2': 'Voice aligned with your niche',
+    'pkg.single.f3': 'One round of revisions',
+    'pkg.single.f4': 'Delivery within 48h',
+    'pkg.single.cta': 'Hire now →',
+    'pkg.starter.tagline': 'For creators starting to post with intent.',
+    'pkg.starter.f1': '6 pieces per month',
+    'pkg.starter.f2': 'Voice aligned with your niche',
+    'pkg.starter.f3': 'Biweekly delivery (3 + 3)',
+    'pkg.starter.f4': 'One round of revisions',
+    'pkg.refiner.tagline': 'You already post regularly. Now the copy needs to do the conversion work.',
+    'pkg.refiner.f1': '12 pieces per month',
+    'pkg.refiner.f2': 'Bio reviewed and optimized',
+    'pkg.refiner.f3': 'Weekly delivery',
+    'pkg.refiner.f4': 'Two rounds of revisions',
+    'pkg.refiner.f5': 'Monthly performance report',
+    'pkg.allout.tagline': 'For those who treat content as a business asset.',
+    'pkg.allout.f1': '20 pieces per month',
+    'pkg.allout.f2': 'Bio + highlights optimized',
+    'pkg.allout.f3': '1 launch or sales copy',
+    'pkg.allout.f4': 'Weekly delivery + unlimited revisions',
+    'pkg.allout.f5': 'Monthly strategy call (30min)',
+    'pkg.footer.text': "Not sure which to pick? Tell me about your project — I'll help you decide before payment.",
+    'pkg.footer.cta': 'I want to hire a package →',
+    'pkg.price.single': '<span class="package-price-prefix">$</span>17<span class="package-price-period"> one-time</span>',
+    'pkg.price.starter': '<span class="package-price-prefix">$</span>44<span class="package-price-period">/mo</span>',
+    'pkg.price.refiner': '<span class="package-price-prefix">$</span>70<span class="package-price-period">/mo</span>',
+    'pkg.price.allout': '<span class="package-price-prefix">$</span>105<span class="package-price-period">/mo</span>',
+    'form.amostra.niche': 'Free sample',
+    'form.amostra.title': 'Request your free sample',
+    'form.amostra.submit': 'Send request →',
+    'form.amostra.success.title': 'Got it!',
+    'form.amostra.success.text': "I'll reply within 24h via the contact you provided.<br><em>— Luan</em>",
+    'form.amostra.topic': "What's the sample about?",
+    'form.amostra.topic.placeholder': 'Topic, product or service — the more context, the better the result',
+    'form.pacote.niche': 'Hire a package',
+    'form.pacote.title': 'Choose your plan',
+    'form.pacote.submit': 'Send brief →',
+    'form.pacote.success.title': 'Got your brief!',
+    'form.pacote.success.text': "I'll reply within 24h via the contact you provided.<br><em>— Luan</em>",
+    'form.comissao.niche': 'Single commission',
+    'form.comissao.title': 'Request your piece',
+    'form.comissao.success.title': 'Got it!',
+    'form.comissao.success.text': "I'll reply within 24h with your piece.<br><em>— Luan</em>",
+    'form.name': 'Name',
+    'form.name.placeholder': 'Your name',
+    'form.contact': 'Best contact',
+    'form.contact.preferred': 'Preferred contact',
+    'form.contact.placeholder': 'WhatsApp, email or Instagram @',
+    'form.niche': 'Niche / business segment',
+    'form.niche-biz': 'Niche / business',
+    'form.niche.placeholder': 'E.g. artisan bakery, coaching, SaaS…',
+    'form.extra': 'Anything else I should know?',
+    'form.extra.placeholder': 'Voice, references, extra context — optional',
+    'form.close': 'Close form',
+    'form.continue': 'Continue →',
+    'form.change-plan': '← Change plan',
+    'form.about-section': 'About you and your business',
+    'form.business': 'About your business',
+    'form.business.placeholder': 'Niche, what you sell, how long you have been in the market',
+    'form.audience': 'Who is your audience?',
+    'form.audience.placeholder': 'Age, profile, main pain point — the more specific, the better',
+    'form.voice': 'Desired voice',
+    'form.voice.placeholder': 'E.g. relaxed and warm, technical and direct, inspiring and motivating…',
+    'form.voice-simple': 'Voice',
+    'form.voice.simple.placeholder': 'E.g. relaxed, technical, direct — optional',
+    'form.platforms': 'Where do you post?',
+    'form.profile-link': 'Link to your main profile',
+    'form.refs': 'Competitors or copy references you admire',
+    'form.refs.placeholder': 'Profiles or brands you consider a benchmark — optional',
+    'form.goal': 'Main goal in the next 3 months',
+    'form.goal.placeholder': 'Grow followers, sell more, launch a product, reposition brand…',
+    'form.start-when': 'When do you want to start?',
+    'form.start.w1': 'This week',
+    'form.start.w2': 'Next two weeks',
+    'form.start.w3': 'This month',
+    'form.start.w4': 'Just exploring',
+    'form.piece-type': 'Piece type',
+    'form.briefing': 'Piece brief',
+    'form.briefing.placeholder': 'What do you want to communicate? Product, service, context — the more detail, the better the result',
+    'form.other': 'Other',
+    'form.tipo.placeholder': 'Select a type',
+    'form.tipo.caption': 'Caption',
+    'form.tipo.bio': 'Bio',
+    'form.tipo.email': 'Email marketing',
+    'form.tipo.thread': 'Thread',
+    'form.tipo.sales': 'Sales copy / CTA',
+    'form.tipo.other': 'Other',
+    'form.error.platform': 'Select at least one platform where you post.',
+    'form.error.send': "Couldn't send right now. Try again or DM me on Instagram.",
+    'form.sending': 'Sending…',
+    'plan.starter.desc': '6 pieces per month',
+    'plan.refiner.desc': '12 pieces per month',
+    'plan.allout.desc': '20 pieces per month',
+    'plan.comissao.desc': '1 one-off piece, no subscription',
+    'plan.comissao.note': 'Naturally more polished and finely tuned to land — every detail chosen to hit dead center.',
+    'ideas.placeholder': 'Describe your idea: topic, angle, context, any detail that helps',
+    'ideas.label': 'Idea',
+    'ideas.instruction': 'Describe below the <strong>{qty} pieces</strong> you want to order. Ideas can be independent or related (e.g. a series) — if one continues another, mention it in that box.',
+    'step2.title': 'Fill in the brief',
+    'step1.title': 'Choose your plan',
+  }
+};
+
+// ── PROJECTS (bilingual metadata, copy always PT) ──
 const projects = {
   1: {
-    niche: 'Confeitaria · Instagram Feed',
-    title: 'A Torta de Limão da Vó Nunca Foi Assim',
-    context: 'Confeitaria artesanal que vende por encomenda. Produto: torta de limão siciliano. Objetivo: gerar desejo e fazer o seguidor ir direto pro link na bio ou mandar DM.',
+    pt: {
+      niche: 'Confeitaria · Instagram Feed',
+      title: 'A Torta de Limão da Vó Nunca Foi Assim',
+      desc: 'Storytelling emocional pra vender produto com memória afetiva. Nostalgia primeiro, escassez no final.',
+      context: 'Confeitaria artesanal que vende por encomenda. Produto: torta de limão siciliano. Objetivo: gerar desejo e fazer o seguidor ir direto pro link na bio ou mandar DM.',
+      insight: 'A história da avó cria o vínculo antes de qualquer argumento. A escassez ("8 unidades por semana. Só.") chega curta — três palavras, sem ponto de exclamação, sem "corre que acaba". Quando o CTA aparece, o leitor já decidiu. Só falta a instrução de onde clicar.'
+    },
+    en: {
+      niche: 'Bakery · Instagram Feed',
+      title: "Grandma's Lemon Tart, Reimagined",
+      desc: 'Emotional storytelling to sell a product tied to memory. Nostalgia first, scarcity at the end.',
+      context: "Artisan bakery selling by order only. Product: Sicilian lemon tart. Goal: generate desire and drive followers straight to the bio link or DM.",
+      insight: "The grandmother's story builds the bond before any argument. The scarcity (\"8 units per week. That's it.\") lands short — three words, no exclamation mark, no urgency-bait. By the time the CTA arrives, the reader has already decided. All that's left is where to click."
+    },
     copy: `Ela ensinou a receita em uma tarde de chuva, com a cozinha cheia de vapor e limões espalhados na mesa.
 
 Eu fiz algumas trocas, testei por semanas e finalmente cheguei numa versão que minha vó aprovaria — e que você não vai encontrar em nenhuma outra confeitaria aqui.
@@ -1733,12 +2095,33 @@ São 8 unidades por semana. Só.
 Se você já tentou me pedir antes e não conseguiu: coloca o nome na lista do link da bio. Próxima semana tem uma reservada pra você. 🍋
 
 #confeitariaartesanal #tortadelimaosiciliano #docesporencomienda #confeitaria #portoalegre`,
-    insight: 'A história da avó cria o vínculo antes de qualquer argumento. A escassez ("8 unidades por semana. Só.") chega curta — três palavras, sem ponto de exclamação, sem "corre que acaba". Quando o CTA aparece, o leitor já decidiu. Só falta a instrução de onde clicar.'
+    copy_en: `She taught me the recipe on a rainy afternoon, kitchen full of steam, lemons spread across the counter.
+
+I made some changes. Tested for weeks. Eventually landed on a version she'd approve — and that you won't find at any other bakery around here.
+
+The crust is buttery, dense, with that crumbly base that dissolves on contact. The Sicilian lemon cream sits between sour and sweet without tipping either way. Italian meringue: firm outside, creamy in.
+
+Eight per week. That's it.
+
+If you've tried to order before and couldn't: drop your name on the waitlist at the bio link. There's one reserved for you next week. 🍋
+
+#artisanbakery #lemontart #ordersonly #bakery`
   },
   2: {
-    niche: 'Fitness · Instagram Bio',
-    title: 'Bio que Vende sem Parecer que Tá Vendendo',
-    context: 'Personal trainer com 7 anos de experiência, formado em Ed. Física. Público: adultos 25–40 anos que querem emagrecer mas não querem abrir mão da vida social.',
+    pt: {
+      niche: 'Fitness · Instagram Bio',
+      title: 'Bio que Vende sem Parecer que Tá Vendendo',
+      desc: 'Bio estratégica pra personal trainer. Prova social no começo, objeção quebrada no meio, CTA discreto no fim.',
+      context: 'Personal trainer com 7 anos de experiência, formado em Ed. Física. Público: adultos 25–40 anos que querem emagrecer mas não querem abrir mão da vida social.',
+      insight: 'A bio resolve a principal objeção do público ("mas eu gosto de comer") antes de apresentar o serviço. "Consistência real, não perfeição" funciona como filtro: quem busca dieta militar continua rolando, quem busca método sustentável para. Diferencia de todos os PTs que ainda pregam sacrifício.'
+    },
+    en: {
+      niche: 'Fitness · Instagram Bio',
+      title: "A Bio That Sells Without Looking Like It's Selling",
+      desc: 'Strategic bio for a personal trainer. Social proof first, objection crushed in the middle, discreet CTA at the end.',
+      context: 'Personal trainer with 7 years of experience, degree in Physical Education. Audience: adults 25–40 who want to lose weight without giving up their social life.',
+      insight: 'The bio resolves the main audience objection ("but I like to eat") before presenting the service. "Real consistency, not perfection" acts as a filter: those seeking a strict diet keep scrolling, those seeking a sustainable method stop. Sets this PT apart from everyone still preaching sacrifice.'
+    },
     copy: `Personal trainer há 7 anos · formado em Ed. Física pela PUCRS
 Já ajudei +200 pessoas a emagrecer sem abandonar o churrasquinho de fim de semana
 
@@ -1746,12 +2129,29 @@ Método → consistência real, não perfeição
 
 📍 Porto Alegre · online para todo o Brasil
 📲 Consulta grátis — link abaixo`,
-    insight: 'A bio resolve a principal objeção do público ("mas eu gosto de comer") antes de apresentar o serviço. "Consistência real, não perfeição" funciona como filtro: quem busca dieta militar continua rolando, quem busca método sustentável para. Diferencia de todos os PTs que ainda pregam sacrifício.'
+    copy_en: `Personal trainer · 7 years · BS in Exercise Science at PUCRS
+Helped 200+ people lose weight without giving up weekend barbecues
+
+Method → real consistency, not perfection
+
+📍 Porto Alegre · online across Brazil
+📲 Free consult — link below`
   },
   3: {
-    niche: 'Moda · Drop de Coleção',
-    title: 'O Drop que Esgotou em 40 Minutos',
-    context: 'E-commerce de streetwear autoral, tiragem limitada. Objetivo: criar urgência e senso de comunidade exclusiva ao mesmo tempo. Público: 18–30 anos, consumidores de moda consciente.',
+    pt: {
+      niche: 'Moda · Drop de Coleção',
+      title: 'O Drop que Esgotou em 40 Minutos',
+      desc: 'Lançamento de coleção com escassez real. Posicionamento de identidade antes de mostrar o produto.',
+      context: 'E-commerce de streetwear autoral, tiragem limitada. Objetivo: criar urgência e senso de comunidade exclusiva ao mesmo tempo. Público: 18–30 anos, consumidores de moda consciente.',
+      insight: '"Não é o nosso público mesmo" funciona porque a exclusão voluntária transforma o produto em símbolo. Já o parêntese final ("esgotou em 40 minutos") vem depois do CTA, sem ponto de exclamação. Aviso casual de quem já tem público formado — quem precisaria vender com pressão não tem confiança pra falar assim.'
+    },
+    en: {
+      niche: 'Fashion · Collection Drop',
+      title: 'The Drop That Sold Out in 40 Minutes',
+      desc: 'Collection launch with real scarcity. Identity positioning before the product even shows.',
+      context: 'Original streetwear e-commerce, limited runs. Goal: create urgency and a sense of exclusive community simultaneously. Audience: 18–30, conscious fashion consumers.',
+      insight: '"Not our audience anyway" works because voluntary exclusion turns the product into a symbol. The closing parenthesis ("sold out in 40 minutes") lands after the CTA, no exclamation mark — the casual tone of a brand that already has a crowd. Anyone who needed pressure-selling wouldn\'t have the confidence to write it this way.'
+    },
     copy: `Não é roupa. É posição.
 
 Quem entende, não precisa de explicação.
@@ -1765,12 +2165,35 @@ Fabricado no Brasil, por mãos que a gente conhece pelo nome.
 Sábado, 14h. Link na bio.
 
 (O 002 esgotou em 40 minutos. Só tô avisando.)`,
-    insight: '"Não é o nosso público mesmo" funciona porque a exclusão voluntária transforma o produto em símbolo. Já o parêntese final ("esgotou em 40 minutos") vem depois do CTA, sem ponto de exclamação. Aviso casual de quem já tem público formado — quem precisaria vender com pressão não tem confiança pra falar assim.'
+    copy_en: `Not clothes. A position.
+
+If you get it, you don't need an explanation.
+If you don't, you're not the audience anyway.
+
+Drop 003 — 30 pieces.
+No second chance. No restock. No discount after.
+
+Made in Brazil, by hands we know by name.
+
+Saturday, 2pm. Link in bio.
+
+(Drop 002 sold out in 40 minutes. Just saying.)`
   },
   4: {
-    niche: 'Coaching · Carrossel',
-    title: 'O Texto que Faz o Seguidor Parar e Pensar',
-    context: 'Coach de carreira que atende profissionais de 28–40 anos em transição ou estagnação. Objetivo: fazer o leitor se identificar com um problema específico antes de apresentar a solução (o programa).',
+    pt: {
+      niche: 'Coaching · Carrossel',
+      title: 'O Texto que Faz o Seguidor Parar e Pensar',
+      desc: 'Copy para coach de carreira com abordagem provocativa. Quebra objeção antes de apresentar a solução.',
+      context: 'Coach de carreira que atende profissionais de 28–40 anos em transição ou estagnação. Objetivo: fazer o leitor se identificar com um problema específico antes de apresentar a solução (o programa).',
+      insight: 'O "aperto no peito" no penúltimo parágrafo é proposital. Antes de o leitor questionar a tese ("será que sou eu mesmo?"), o corpo já reconheceu o sintoma. A instrução de arrastar só entra depois disso — quando a resistência baixou.'
+    },
+    en: {
+      niche: 'Coaching · Carousel',
+      title: 'The Caption That Makes Followers Stop and Think',
+      desc: 'Copy for a career coach using a provocative angle. Objection broken before the solution is presented.',
+      context: 'Career coach serving professionals 28–40 in transition or stagnation. Goal: make the reader identify with a specific problem before revealing the solution (the program).',
+      insight: 'The "knot in your chest" line is deliberate. Before the reader can question the thesis ("is that really me?"), the body has already recognized the symptom. The swipe instruction only appears after that — when resistance has dropped.'
+    },
     copy: `Você não tá estagnado por falta de esforço.
 Tá estagnado porque trabalha duro na direção errada.
 
@@ -1784,12 +2207,35 @@ Precisa parar de trabalhar tanto nas tarefas erradas.
 Se você leu até aqui e sentiu aquele aperto no peito — esse é o sinal.
 
 Arrasta o carrossel. →`,
-    insight: 'O "aperto no peito" no penúltimo parágrafo é proposital. Antes de o leitor questionar a tese ("será que sou eu mesmo?"), o corpo já reconheceu o sintoma. A instrução de arrastar só entra depois disso — quando a resistência baixou.'
+    copy_en: `You're not stuck because you're not working hard enough.
+You're stuck because you're working hard in the wrong direction.
+
+There's a real difference between busy and productive.
+Busy: 8am meeting, 10pm email, a day that went by too fast.
+Productive: one decision per week that actually changes something in your career.
+
+Most people who reach out to me don't need to work more.
+They need to stop working so hard on the wrong things.
+
+If you read this far and felt something tighten in your chest — that's the signal.
+
+Swipe. →`
   },
   5: {
-    niche: 'Finanças pessoais · Carrossel expandido',
-    title: 'Do Rascunho ao Carrossel que Para o Scroll',
-    context: 'Cliente (educator de finanças pessoais) mandou 4 bullet points sem estrutura. Objetivo: transformar em carrossel de 7 slides com abertura forte, um conceito por slide e CTA final. Esse é o serviço de expansão de conteúdo — você manda o miolo, eu entrego o texto completo.',
+    pt: {
+      niche: 'Finanças pessoais · Carrossel expandido',
+      title: 'Do Rascunho ao Carrossel que Para o Scroll',
+      desc: 'Cliente enviou 4 bullet points secos. Virou um carrossel de 7 slides com abertura, narrativa por slide e CTA final.',
+      context: 'Cliente (educator de finanças pessoais) mandou 4 bullet points sem estrutura. Objetivo: transformar em carrossel de 7 slides com abertura forte, um conceito por slide e CTA final. Esse é o serviço de expansão de conteúdo — você manda o miolo, eu entrego o texto completo.',
+      insight: 'O formato "input do cliente → output expandido" é a prova mais direta do serviço. Cada slide tem função própria: gancho, vilão, armadilha, solução, urgência, resumo, CTA. Cliente manda quatro bullets secos, recebe arco narrativo de sete slides com número oficial do Banco Central, exemplo concreto e CTA que pede save (não like).'
+    },
+    en: {
+      niche: 'Personal Finance · Expanded Carousel',
+      title: 'From Rough Draft to Scroll-Stopping Carousel',
+      desc: 'Client sent 4 dry bullet points. Turned into a 7-slide carousel with a hook, one concept per slide, and a final CTA.',
+      context: 'Client (personal finance educator) sent 4 unstructured bullet points. Goal: turn them into a 7-slide carousel with a strong hook, one concept per slide, and a closing CTA. This is the content expansion service — you send the raw material, I deliver the finished piece.',
+      insight: 'The "client input → expanded output" format is the most direct proof of the service. Each slide has a role: hook, villain, trap, solution, urgency, summary, CTA. Client sends four dry bullets and gets a seven-slide narrative arc with an official Central Bank figure, a concrete example, and a CTA that asks for a save (not a like).'
+    },
     copy: `INPUT DO CLIENTE:
 "- juros do cartão são altos / - parcelamento machuca / - reserva de emergência importa / - investir cedo"
 
@@ -1845,12 +2291,78 @@ SLIDE 7 — CTA
 ━━━━━━━━━━━━━━━━━━━━━━━
 Se esse carrossel fez sentido, salva — você vai querer reler.
 E manda pra alguém que ainda tá no rotativo. 💸`,
-    insight: 'O formato "input do cliente → output expandido" é a prova mais direta do serviço. Cada slide tem função própria: gancho, vilão, armadilha, solução, urgência, resumo, CTA. Cliente manda quatro bullets secos, recebe arco narrativo de sete slides com número oficial do Banco Central, exemplo concreto e CTA que pede save (não like).'
+    copy_en: `CLIENT'S BRIEF:
+"- credit card interest is high / - installments hurt / - emergency fund matters / - invest early"
+
+━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 1 — Hook
+━━━━━━━━━━━━━━━━━━━━━━━
+Credit cards are the only financial product that charges you more the longer you stay loyal.
+
+And they call the minimum payment an "option."
+(swipe →)
+
+━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 2 — The invisible villain
+━━━━━━━━━━━━━━━━━━━━━━━
+Revolving credit card debt carries the highest interest rate in the Brazilian financial market.
+Average: 400% a year.
+Not hyperbole. Official figure from the Central Bank.
+Pay the minimum and the balance doubles in under three months.
+
+━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 3 — The mistake that looks smart
+━━━━━━━━━━━━━━━━━━━━━━━
+Splitting purchases into installments "so it doesn't hit all at once" is one of the biggest financial traps out there.
+Every future installment is a decision your past self made for your future self.
+More installments = less freedom tomorrow.
+
+━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 4 — The thing that changes everything
+━━━━━━━━━━━━━━━━━━━━━━━
+An emergency fund is not an investment.
+It's the floor under your feet.
+Without it, any surprise expense becomes debt.
+With it, the same thing becomes a minor inconvenience.
+Minimum target: 3 months of expenses. Start with what you have.
+
+━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 5 — The time you can't get back
+━━━━━━━━━━━━━━━━━━━━━━━
+$200 invested per month at 25 is worth far more than $400 per month at 35.
+Not motivation. Math.
+Your scarcest asset isn't money. It's time.
+
+━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 6 — Practical summary
+━━━━━━━━━━━━━━━━━━━━━━━
+What to do now:
+→ Stop paying the credit card minimum
+→ Build your emergency fund before investing
+→ Start investing as early as possible, even if small
+→ Stop splitting things you could pay upfront
+
+━━━━━━━━━━━━━━━━━━━━━━━
+SLIDE 7 — CTA
+━━━━━━━━━━━━━━━━━━━━━━━
+If this made sense, save it — you'll want to come back.
+Send it to someone still on revolving debt. 💸`
   },
   6: {
-    niche: 'Moda / E-commerce · Instagram Stories',
-    title: 'Sequência de Stories que Vende sem Parecer Anúncio',
-    context: 'Cliente (marca de moda autoral) queria divulgar uma peça nova sem fazer stories genéricos de "disponível no site". Mandou uma foto do produto e 2 frases de contexto. Virou uma sequência de 8 stories com arco narrativo completo.',
+    pt: {
+      niche: 'Moda / E-commerce · Instagram Stories',
+      title: 'Sequência de Stories que Vende sem Parecer Anúncio',
+      desc: 'Arco narrativo de 8 stories — do gancho até o CTA. Cliente manda o produto, eu monto a sequência.',
+      context: 'Cliente (marca de moda autoral) queria divulgar uma peça nova sem fazer stories genéricos de "disponível no site". Mandou uma foto do produto e 2 frases de contexto. Virou uma sequência de 8 stories com arco narrativo completo.',
+      insight: 'A sequência usa suspense nos 3 primeiros stories — o produto só aparece completo no story 4. Isso obriga o espectador a avançar antes de decidir se quer ou não. A escassez ("12 unidades", "sem reposição") só entra depois que a narrativa do bastidor já fez o trabalho.'
+    },
+    en: {
+      niche: 'Fashion / E-commerce · Instagram Stories',
+      title: "A Stories Sequence That Sells Without Feeling Like an Ad",
+      desc: '8-story narrative arc — from the hook to the CTA. Client sends the product, I build the sequence.',
+      context: 'Client (original fashion brand) wanted to promote a new piece without generic "available on the site" stories. Sent one product photo and 2 lines of context. Became a full 8-story narrative arc.',
+      insight: 'The sequence builds suspense across the first 3 stories — the product only appears in full at story 4. That forces viewers to advance before deciding whether they want it. Scarcity ("12 units", "no restock") only enters after the behind-the-scenes narrative has already done its work.'
+    },
     copy: `STORY 1 — Gancho
 "Eu quase não lançei essa peça. Achei que ninguém ia entender."
 [foto da peça, enquadramento parcial — não mostra tudo]
@@ -1887,12 +2399,58 @@ STORY 8 — CTA
 "Disponível a partir de [dia] às [hora].
 Link na bio. Sem reposição."
 [botão de link ativo]`,
-    insight: 'A sequência usa suspense nos 3 primeiros stories — o produto só aparece completo no story 4. Isso obriga o espectador a avançar antes de decidir se quer ou não. A escassez ("12 unidades", "sem reposição") só entra depois que a narrativa do bastidor já fez o trabalho.'
+    copy_en: `STORY 1 — Hook
+"I almost didn't release this piece. Thought no one would get it."
+[photo of piece, partially cropped — doesn't show everything]
+
+STORY 2 — Tension
+"Made it three times. Scrapped it three times.
+The proportions weren't landing. The color kept drifting from what I had in my head.
+Then on the fourth try, I stopped trying to control it."
+
+STORY 3 — Turn
+"I let the fabric decide.
+That's when it finally came together."
+[photo of the process, behind the scenes]
+
+STORY 4 — Introduction
+"Introducing the [piece name].
+Handmade. Run of 12."
+[first full photo of the product]
+
+STORY 5 — Detail
+"The gather here isn't decoration.
+It's what gives the movement."
+[short video showing the fabric in motion]
+
+STORY 6 — Identity
+"Not for everyone.
+For whoever stops and actually looks."
+
+STORY 7 — Proof
+"The last pieces I dropped like this sold out in under two days.
+Giving you a heads up this time."
+
+STORY 8 — CTA
+"Available [day] at [time].
+Link in bio. No restock."
+[active link button]`
   },
   7: {
-    niche: 'Saúde Mental · Instagram Bio',
-    title: 'Bio que Acolhe Antes de Vender',
-    context: 'Psicóloga clínica com atendimento online e presencial. Público: adultos com ansiedade, sobrecarga emocional ou em momentos de transição de vida. Tom: acolhimento genuíno, sem infantilizar.',
+    pt: {
+      niche: 'Saúde Mental · Instagram Bio',
+      title: 'Bio que Acolhe Antes de Vender',
+      desc: 'Bio para psicóloga com abordagem sensível. Gera conexão emocional antes de apresentar o serviço.',
+      context: 'Psicóloga clínica com atendimento online e presencial. Público: adultos com ansiedade, sobrecarga emocional ou em momentos de transição de vida. Tom: acolhimento genuíno, sem infantilizar.',
+      insight: '"Carregando coisas demais sozinhos" é o tipo de frase que cabe em vários tipos de sofrimento adulto sem precisar listar cada um. Ansiedade, separação, exaustão, autoestima — quem tá vivendo qualquer um deles se reconhece. A "primeira conversa gratuita" baixa a barreira pra um público que costuma demorar pra pedir ajuda.'
+    },
+    en: {
+      niche: 'Mental Health · Instagram Bio',
+      title: 'A Bio That Holds Space Before Selling',
+      desc: 'Bio for a psychologist with a sensitive approach. Builds emotional connection before presenting the service.',
+      context: 'Clinical psychologist with online and in-person sessions. Audience: adults dealing with anxiety, emotional overload, or life transitions. Tone: genuine care, without being condescending.',
+      insight: '"Carrying too much alone" is the kind of line that fits many forms of adult suffering without needing to list them all. Anxiety, separation, burnout, self-esteem — anyone living through any of them recognizes themselves. "First conversation free" lowers the barrier for an audience that tends to delay asking for help.'
+    },
     copy: `Psicóloga clínica · CRP 07/12345
 Acredito que pedir ajuda é um ato de coragem, não de fraqueza
 
@@ -1902,12 +2460,31 @@ Abordagem cognitivo-comportamental
 📍 Porto Alegre · atendimento online para todo o Brasil
 
 Primeira conversa gratuita — link abaixo`,
-    insight: '"Carregando coisas demais sozinhos" é o tipo de frase que cabe em vários tipos de sofrimento adulto sem precisar listar cada um. Ansiedade, separação, exaustão, autoestima — quem tá vivendo qualquer um deles se reconhece. A "primeira conversa gratuita" baixa a barreira pra um público que costuma demorar pra pedir ajuda.'
+    copy_en: `Clinical psychologist · License 07/12345
+I think asking for help is courage, not weakness
+
+I work with adults carrying too much alone — anxiety, life transitions, relationships, self-esteem
+
+Cognitive-behavioral approach
+📍 Porto Alegre · online sessions across Brazil
+
+First conversation free — link below`
   },
   8: {
-    niche: 'Tech / SaaS · LinkedIn',
-    title: 'Copy Técnico que Não Afasta o Leigo',
-    context: 'Startup B2B com ferramenta de análise preditiva de vendas integrada ao CRM. Público: gerentes comerciais e fundadores. Objetivo: mostrar o diferencial sem transformar o post em manual técnico.',
+    pt: {
+      niche: 'Tech / SaaS · LinkedIn',
+      title: 'Copy Técnico que Não Afasta o Leigo',
+      desc: 'Texto para produto de software. Traduz feature técnica em benefício real sem simplificar demais.',
+      context: 'Startup B2B com ferramenta de análise preditiva de vendas integrada ao CRM. Público: gerentes comerciais e fundadores. Objetivo: mostrar o diferencial sem transformar o post em manual técnico.',
+      insight: 'A abertura "o que aconteceu / o que fazer agora" condensa o diferencial em uma estrutura que qualquer executivo entende sem precisar de contexto técnico. "Não é BI. Não é dashboard bonito." antecipa e destrói as objeções antes que o leitor as formule.'
+    },
+    en: {
+      niche: 'Tech / SaaS · LinkedIn',
+      title: "Technical Copy That Doesn't Lose the Layperson",
+      desc: 'Copy for a software product. Translates a technical feature into a real benefit without dumbing it down.',
+      context: 'B2B startup with a predictive sales analytics tool integrated into the CRM. Audience: sales managers and founders. Goal: highlight the differentiator without turning the post into a technical manual.',
+      insight: 'The opener "what happened / what to do now" distills the differentiator into a structure any executive grasps without technical context. "Not BI. Not a pretty dashboard." anticipates and destroys objections before the reader even forms them.'
+    },
     copy: `A maioria dos relatórios de vendas responde "o que aconteceu".
 
 O nosso responde "o que fazer agora".
@@ -1919,12 +2496,33 @@ Não é BI. Não é dashboard bonito. É um ranking que o seu vendedor abre na s
 Testamos com 3 equipes comerciais no último trimestre. A taxa de conversão subiu em todas as três.
 
 Se você gerencia um time de vendas e quer testar: deixa um comentário ou manda mensagem. Estamos selecionando 10 empresas para o beta fechado.`,
-    insight: 'A abertura "o que aconteceu / o que fazer agora" condensa o diferencial em uma estrutura que qualquer executivo entende sem precisar de contexto técnico. "Não é BI. Não é dashboard bonito." antecipa e destrói as objeções antes que o leitor as formule.'
+    copy_en: `Most sales reports answer "what happened."
+
+Ours answers "what to do next."
+
+We just shipped predictive analytics inside the CRM — the system spots which opportunities have the best chance of closing in the next 30 days, based on your team's historical patterns.
+
+Not BI. Not a pretty dashboard. A ranked list your reps open Monday morning and already know where to focus.
+
+Tested with three sales teams last quarter. Conversion rate went up across all three.
+
+If you run a sales team and want to try it: drop a comment or send a message. Picking 10 companies for the closed beta.`
   },
   9: {
-    niche: 'Gastronomia · Instagram Feed',
-    title: 'Copy que Faz o Seguidor Sentir Fome',
-    context: 'Restaurante de cozinha contemporânea com foco em processo artesanal. Objetivo: fazer o prato parecer tão especial no texto quanto na foto. Tom: sensorial, preciso, sem clichês gastronômicos.',
+    pt: {
+      niche: 'Gastronomia · Instagram Feed',
+      title: 'Copy que Faz o Seguidor Sentir Fome',
+      desc: 'Escrita sensorial pra restaurante. O leitor sente o cheiro antes de ver o prato. Sem chamada de "venha provar".',
+      context: 'Restaurante de cozinha contemporânea com foco em processo artesanal. Objetivo: fazer o prato parecer tão especial no texto quanto na foto. Tom: sensorial, preciso, sem clichês gastronômicos.',
+      insight: 'Os detalhes de processo ("prova a cada 20 minutos", "4 horas reduzindo") criam percepção de valor sem precisar usar "premium" ou "gourmet". E "parece simples porque levou tempo" é posicionamento direto: fala com o tipo de cliente que pergunta como o prato chegou ali antes de perguntar quanto custa.'
+    },
+    en: {
+      niche: 'Food / Dining · Instagram Feed',
+      title: 'Copy That Makes Followers Hungry',
+      desc: 'Sensory writing for a restaurant. The reader smells the dish before seeing it. No "come try it" calls.',
+      context: 'Contemporary restaurant focused on artisan process. Goal: make the dish read as special as it looks. Tone: sensory, precise, no gastro-clichés.',
+      insight: 'Process details ("tastes it every 20 minutes", "4 hours reducing") build perceived value without needing "premium" or "gourmet". And "looks simple because it took time" is direct positioning — it speaks to the kind of customer who asks how the dish was made before asking what it costs.'
+    },
     copy: `O caldo reduz por 4 horas.
 
 O chef prova a cada 20 minutos e faz pequenos ajustes — um toque de azeite, uma pitada de noz-moscada, um pouquinho mais de vinho branco.
@@ -1934,12 +2532,31 @@ Porque levou tempo até ficar assim.
 
 Risoto de funghi com trufas negras · cardápio desta semana
 Reservas pelo link na bio — peça a mesa da janela.`,
-    insight: 'Os detalhes de processo ("prova a cada 20 minutos", "4 horas reduzindo") criam percepção de valor sem precisar usar "premium" ou "gourmet". E "parece simples porque levou tempo" é posicionamento direto: fala com o tipo de cliente que pergunta como o prato chegou ali antes de perguntar quanto custa.'
+    copy_en: `The stock reduces for four hours.
+
+The chef tastes it every twenty minutes and makes small adjustments — a drizzle of olive oil, a pinch of nutmeg, a splash more white wine.
+
+By the time it reaches your table, it looks simple.
+Because it took time to get there.
+
+Mushroom risotto with black truffle · this week's menu
+Reservations at the bio link — ask for the window table.`
   },
   10: {
-    niche: 'Creator Economy · Bio + Texto',
-    title: 'O Creator que Parece Marca',
-    context: 'Criador de conteúdo sobre empreendedorismo e finanças pessoais. Quer ser visto como referência e não como mais um influencer. Pacote completo: bio + um texto de feed.',
+    pt: {
+      niche: 'Creator Economy · Bio + Texto',
+      title: 'O Creator que Parece Marca',
+      desc: 'Pacote completo — bio + texto — para criador que já passou da fase de número e quer ser tratado como referência. Posicionamento de marca aplicado em quem ainda é vendido como influencer.',
+      context: 'Criador de conteúdo sobre empreendedorismo e finanças pessoais. Quer ser visto como referência e não como mais um influencer. Pacote completo: bio + um texto de feed.',
+      insight: 'A bio se posiciona em "honesto" e filtra logo na entrada quem busca atalho. O texto funciona pelo nível de detalhe — banco, primeiro CNPJ, gerente que sorriu, 8 meses depois. Empreendedorismo é o nicho mais saturado de bullshit motivacional; cada detalhe checável vale ouro.'
+    },
+    en: {
+      niche: 'Creator Economy · Bio + Post',
+      title: 'The Creator Who Reads Like a Brand',
+      desc: 'Full package — bio + post — for a creator past the follower-count phase who wants to be treated as a reference. Brand positioning applied to someone still being sold as an influencer.',
+      context: 'Content creator covering entrepreneurship and personal finance. Wants to be seen as a reference, not just another influencer. Full package: bio + one feed post.',
+      insight: '"Honest" is the positioning and it filters from the first line anyone looking for shortcuts. The post works through its specificity — the bank, the first CNPJ, the manager who smiled, 8 months later. Entrepreneurship is the niche most saturated with motivational nonsense; every verifiable detail is worth gold.'
+    },
     copy: `BIO:
 Não ensino o caminho mais fácil. Ensino o mais honesto.
 
@@ -1964,22 +2581,125 @@ Foi sobre construir o que você precisa antes de pedir permissão pra alguém te
 Continua sendo o princípio que rege tudo que faço.
 
 Qual foi a "porta fechada" que te forçou a construir algo melhor? 🔽`,
-    insight: 'A bio se posiciona em "honesto" e filtra logo na entrada quem busca atalho. O texto funciona pelo nível de detalhe — banco, primeiro CNPJ, gerente que sorriu, 8 meses depois. Empreendedorismo é o nicho mais saturado de bullshit motivacional; cada detalhe checável vale ouro.'
+    copy_en: `BIO:
+I don't teach the easy path. I teach the honest one.
+
+Content about money, entrepreneurship, and the things no course ever covers.
+Failed enough times to know what actually works.
+
+📩 Collaborations: [email]
+🔗 Free resources — link below
+
+—
+
+POST:
+I walked into a bank to ask for credit with my first business registration.
+
+The manager looked at my revenue, smiled, and said: "come back in six months."
+
+Left angry. Came back eight months later with revenue 3x higher and didn't need the bank anymore.
+
+The lesson wasn't about credit.
+It was about building what you need before asking someone's permission to give it to you.
+
+Still the principle behind everything I do.
+
+What was the "closed door" that made you build something better? 🔽`
   }
 };
 
+// ── LANG ──
+let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('en') ? 'en' : 'pt');
+
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+
+  const t = I18N[lang];
+
+  // Swap innerHTML for data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  // Swap attributes for data-i18n-attr elements
+  document.querySelectorAll('[data-i18n-attr]').forEach(el => {
+    const pairs = el.getAttribute('data-i18n-attr').split(',');
+    pairs.forEach(pair => {
+      const [attr, key] = pair.trim().split(':');
+      if (t[key] !== undefined) el.setAttribute(attr, t[key]);
+    });
+  });
+
+  // Update select options (tipo de texto)
+  document.querySelectorAll('[data-i18n-opt]').forEach(el => {
+    const key = el.getAttribute('data-i18n-opt');
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+
+  // Update card metadata
+  for (let id = 1; id <= 10; id++) {
+    const proj = projects[id];
+    if (!proj) continue;
+    const data = proj[lang];
+    const nicheEl = document.querySelector('[data-card-niche="' + id + '"]');
+    const titleEl = document.querySelector('[data-card-title="' + id + '"]');
+    const descEl  = document.querySelector('[data-card-desc="' + id + '"]');
+    if (nicheEl) nicheEl.textContent = data.niche.split(' · ')[0];
+    if (titleEl) titleEl.textContent = data.title;
+    if (descEl)  descEl.textContent  = data.desc;
+  }
+
+  // Update package prices
+  document.getElementById('pkg-price-single').innerHTML  = t['pkg.price.single'];
+  document.getElementById('pkg-price-starter').innerHTML = t['pkg.price.starter'];
+  document.getElementById('pkg-price-refiner').innerHTML = t['pkg.price.refiner'];
+  document.getElementById('pkg-price-allout').innerHTML  = t['pkg.price.allout'];
+
+  // Update metric price card
+  document.getElementById('metric-price').textContent = t['metric.price'];
+
+  // Update plan radio titles
+  document.getElementById('opt-starter-title').textContent  = 'Starter — ' + (lang === 'pt' ? 'R$247/mês' : '$44/mo');
+  document.getElementById('opt-refiner-title').textContent  = 'Refiner — ' + (lang === 'pt' ? 'R$397/mês' : '$70/mo');
+  document.getElementById('opt-allout-title').textContent   = 'All Out — ' + (lang === 'pt' ? 'R$597/mês' : '$105/mo');
+  document.getElementById('opt-comissao-title').textContent = 'Comissão Única — ' + (lang === 'pt' ? 'R$97' : '$17');
+
+  // Toggle lang button active state
+  document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-pt').setAttribute('aria-pressed', lang === 'pt');
+  document.getElementById('btn-en').setAttribute('aria-pressed', lang === 'en');
+
+  // Update PLANS for current lang
+  PLANS.starter.price = lang === 'pt' ? 'R$247/mês' : '$44/mo';
+  PLANS.refiner.price = lang === 'pt' ? 'R$397/mês' : '$70/mo';
+  PLANS.allout.price  = lang === 'pt' ? 'R$597/mês' : '$105/mo';
+
+  // Re-render step2 badge if visible
+  if (activePlan && activePlan !== 'comissao' && PLANS[activePlan]) {
+    const badge = document.getElementById('step2-plan-badge');
+    if (badge && badge.textContent) {
+      badge.textContent = PLANS[activePlan].name + ' · ' + PLANS[activePlan].price;
+    }
+  }
+}
+
 function openModal(id) {
-  const p = projects[id];
-  document.getElementById('modal-niche').textContent = p.niche;
-  document.getElementById('modal-title').textContent = p.title;
-  document.getElementById('modal-context').textContent = p.context;
-  
+  const proj = projects[id];
+  const data = proj[currentLang] || proj.pt;
+  document.getElementById('modal-niche').textContent = data.niche;
+  document.getElementById('modal-title').textContent = data.title;
+  document.getElementById('modal-context').textContent = data.context;
+
   const copyEl = document.getElementById('modal-copy');
-  let formattedCopy = p.copy
-    .replace(/(#\S+)/g, '<span class="hashtags">$1</span>');
-  copyEl.innerHTML = formattedCopy;
-  
-  document.getElementById('modal-insight').textContent = p.insight;
+  const rawCopy = currentLang === 'en' ? (proj.copy_en || proj.copy) : proj.copy;
+  copyEl.innerHTML = rawCopy.replace(/(#\S+)/g, '<span class="hashtags">$1</span>');
+
+  document.getElementById('modal-insight').textContent = data.insight;
+
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -2031,9 +2751,9 @@ document.querySelectorAll('.project-card').forEach(card => observer.observe(card
 
 // ── FORM LOGIC ──
 const PLANS = {
-  starter: { name: 'Starter', price: 'R$150/mês', qty: 6 },
-  refiner: { name: 'Refiner', price: 'R$200/mês', qty: 12 },
-  allout:  { name: 'All Out', price: 'R$300/mês', qty: 20 }
+  starter: { name: 'Starter', price: 'R$247/mês', qty: 6 },
+  refiner: { name: 'Refiner', price: 'R$397/mês', qty: 12 },
+  allout:  { name: 'All Out', price: 'R$597/mês', qty: 20 }
 };
 let activePlan = null;
 
@@ -2085,6 +2805,7 @@ function selectPlan(radio) {
 function buildIdeas(qty, existing) {
   existing = existing || [];
   const grid = document.getElementById('ideas-grid');
+  const t = I18N[currentLang];
   grid.innerHTML = '';
   for (let i = 1; i <= qty; i++) {
     const div = document.createElement('div');
@@ -2094,12 +2815,12 @@ function buildIdeas(qty, existing) {
     ta.name = 'ideia_' + i;
     ta.id = 'ideia-' + i;
     ta.required = true;
-    ta.placeholder = 'Descreva sua ideia: tema, ângulo, contexto, qualquer detalhe que ajude';
+    ta.placeholder = t['ideas.placeholder'];
     ta.rows = 3;
     if (existing[i - 1]) ta.value = existing[i - 1];
     const label = document.createElement('div');
     label.className = 'idea-number';
-    label.textContent = 'Ideia ' + i;
+    label.textContent = I18N[currentLang]['ideas.label'] + ' ' + i;
     div.appendChild(label);
     div.appendChild(ta);
     grid.appendChild(div);
@@ -2114,12 +2835,13 @@ function goToStep2() {
     return;
   }
   const plan = PLANS[activePlan];
+  const t = I18N[currentLang];
   // Preserve ideas already typed up to new plan's count; extras lost on downgrade
-  const existing = Array.from(document.querySelectorAll('#ideas-grid textarea')).map(t => t.value);
-  document.getElementById('pacote-modal-title').textContent = 'Preencha o briefing';
+  const existing = Array.from(document.querySelectorAll('#ideas-grid textarea')).map(el => el.value);
+  document.getElementById('pacote-modal-title').textContent = t['step2.title'];
   document.getElementById('step2-plan-badge').textContent = plan.name + ' · ' + plan.price;
   document.getElementById('ideas-instruction').innerHTML =
-    'Descreva abaixo as <strong>' + plan.qty + ' ideias</strong> de texto que você quer encomendar. As ideias podem ser independentes ou se relacionar entre si (ex: uma série/sequência) — se uma ideia for continuação de outra, mencione isso na própria caixa.';
+    t['ideas.instruction'].replace('{qty}', plan.qty);
   buildIdeas(plan.qty, existing);
   document.getElementById('pacote-step1').style.display = 'none';
   document.getElementById('pacote-step2').style.display = 'block';
@@ -2127,7 +2849,8 @@ function goToStep2() {
 }
 
 function goToStep1() {
-  document.getElementById('pacote-modal-title').textContent = 'Escolha seu plano';
+  const t = I18N[currentLang];
+  document.getElementById('pacote-modal-title').textContent = t['step1.title'];
   document.getElementById('pacote-step2').style.display = 'none';
   document.getElementById('pacote-step1').style.display = 'block';
   document.getElementById('pacote-modal').scrollTop = 0;
@@ -2137,10 +2860,22 @@ async function submitFormspree(formEl, endpoint, successId, errorId, submitId) {
   const btn = document.getElementById(submitId);
   const errEl = document.getElementById(errorId);
   const sucEl = document.getElementById(successId);
+  const t = I18N[currentLang];
   const origText = btn.textContent;
   btn.disabled = true;
-  btn.textContent = 'Enviando…';
+  btn.textContent = t['form.sending'];
   errEl.classList.remove('visible');
+
+  // Append lang field so Formspree submissions include the language context
+  let langField = formEl.querySelector('input[name="_lang"]');
+  if (!langField) {
+    langField = document.createElement('input');
+    langField.type = 'hidden';
+    langField.name = '_lang';
+    formEl.appendChild(langField);
+  }
+  langField.value = currentLang;
+
   try {
     const res = await fetch(endpoint, {
       method: 'POST',
@@ -2152,7 +2887,7 @@ async function submitFormspree(formEl, endpoint, successId, errorId, submitId) {
     sucEl.classList.add('visible');
     formEl.closest('.modal').scrollTop = 0;
   } catch (_) {
-    errEl.textContent = 'Não consegui enviar agora. Tenta de novo ou me manda direto pelo Instagram.';
+    errEl.textContent = t['form.error.send'];
     errEl.classList.add('visible');
     btn.disabled = false;
     btn.textContent = origText;
@@ -2170,7 +2905,7 @@ document.getElementById('form-pacote').addEventListener('submit', function(e) {
   const checked = this.querySelectorAll('input[name="plataforma"]:checked');
   if (!checked.length) {
     const err = document.getElementById('pacote-error');
-    err.textContent = 'Selecione pelo menos uma plataforma onde você posta.';
+    err.textContent = I18N[currentLang]['form.error.platform'];
     err.classList.add('visible');
     return;
   }
@@ -2197,6 +2932,11 @@ document.querySelectorAll('.checkbox-option input[type="checkbox"]').forEach(cb 
   cb.addEventListener('change', function() {
     this.closest('.checkbox-option').classList.toggle('checked', this.checked);
   });
+});
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  applyLang(currentLang);
 });
 </script>
 </body>
