@@ -598,52 +598,73 @@ section {
   .benefits-grid { grid-template-columns: 1fr; }
 }
 
-/* ── PROJECTS GRID ── */
+/* ── PROJECTS HEADER ── */
 .projects-header {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 var(--sp-8) var(--sp-12);
 }
 
-.projects-grid {
+/* ── PROJECTS CAROUSEL ── */
+.carousel-container {
+  position: relative;
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 var(--sp-8) var(--sp-24);
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: var(--sp-6);
 }
 
-.project-card {
+.carousel-counter {
+  position: absolute;
+  top: 0; right: var(--sp-8);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-3);
+  letter-spacing: 0.05em;
+}
+
+.carousel-viewport {
+  overflow: hidden;
+  position: relative;
+  padding: var(--sp-10) 0 var(--sp-6);
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.carousel-track {
+  display: flex;
+  align-items: stretch;
+  gap: var(--sp-6);
+  will-change: transform;
+  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.carousel-track.dragging { transition: none; cursor: grabbing; }
+
+.carousel-card {
+  flex: 0 0 auto;
+  width: 80vw;
+  max-width: 700px;
   background: var(--bg-2);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  cursor: pointer;
-  position: relative;
-  transition: border-color var(--dur-md) var(--ease-out), transform var(--dur-md) var(--ease-spring), box-shadow var(--dur-md) var(--ease-out);
-  opacity: 0; transform: translateY(24px);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-10);
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.85);
+  opacity: 0.25;
+  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), opacity 0.5s cubic-bezier(0.16,1,0.3,1), border-color var(--dur-md) var(--ease-out), box-shadow var(--dur-md) var(--ease-out);
 }
-.project-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  transform: scaleX(0);
-  transition: transform var(--dur-md) var(--ease-out);
-}
-.project-card:hover::before { transform: scaleX(1); }
-.project-card.visible {
-  animation: fadeInUp 0.6s var(--ease-out) both;
-}
-.project-card:hover {
+.carousel-card.adjacent { transform: scale(0.92); opacity: 0.6; }
+.carousel-card.active {
+  transform: scale(1);
+  opacity: 1;
   border-color: var(--border-hi);
-  transform: translateY(-6px) scale(1.01);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
 }
 
 .card-header {
-  padding: var(--sp-6);
+  padding: 0 0 var(--sp-6);
   border-bottom: 1px solid var(--border);
+  margin-bottom: var(--sp-6);
   display: flex; justify-content: space-between; align-items: flex-start;
 }
 
@@ -665,11 +686,11 @@ section {
   font-weight: 500;
 }
 
-.card-body { padding: var(--sp-6); }
+.card-body { padding: 0; flex: 1; display: flex; flex-direction: column; }
 
 .card-title {
   font-family: var(--font-display);
-  font-size: 20px;
+  font-size: 26px;
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.2;
@@ -683,33 +704,30 @@ section {
   margin-bottom: var(--sp-6);
 }
 
-.card-preview {
+.carousel-copy {
   background: var(--bg-3);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: var(--sp-4);
-  font-size: 14px;
-  line-height: 1.6;
+  padding: var(--sp-6);
+  font-size: 15px;
+  line-height: 1.7;
   color: var(--text-1);
-  position: relative;
-  overflow: hidden;
-  max-height: 140px;
+  white-space: pre-wrap;
+  overflow-y: auto;
+  max-height: 340px;
+  flex: 1;
 }
-.card-preview::after {
-  content: '';
-  position: absolute; bottom: 0; left: 0; right: 0;
-  height: 48px;
-  background: linear-gradient(transparent, var(--bg-3));
-}
-
-.card-preview.bio {
+.carousel-copy .hashtags {
+  color: var(--blue);
+  display: block;
+  margin-top: var(--sp-3);
   font-size: 13px;
-  color: var(--text-2);
 }
 
 .card-footer {
-  padding: var(--sp-4) var(--sp-6);
+  padding: var(--sp-6) 0 0;
   border-top: 1px solid var(--border);
+  margin-top: var(--sp-6);
   display: flex; justify-content: space-between; align-items: center;
 }
 
@@ -742,6 +760,47 @@ section {
   font-size: 11px;
   color: var(--text-3);
 }
+
+/* nav arrows */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--bg-2);
+  border: 1px solid var(--border-md);
+  color: var(--text-1);
+  font-size: 20px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: transform var(--dur-md) var(--ease-spring), color var(--dur-md) var(--ease-out), border-color var(--dur-md) var(--ease-out);
+}
+.carousel-arrow:hover { color: var(--gold); border-color: var(--gold); transform: translateY(-50%) scale(1.1); }
+.carousel-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+.carousel-arrow:disabled:hover { color: var(--text-1); border-color: var(--border-md); transform: translateY(-50%); }
+.carousel-arrow-left { left: 0; }
+.carousel-arrow-right { right: 0; }
+
+/* dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-6);
+}
+.carousel-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--dur-md) var(--ease-out), transform var(--dur-md) var(--ease-out);
+}
+.carousel-dot:hover { background: var(--border-hi); }
+.carousel-dot.active { background: var(--gold); transform: scale(1.3); }
 
 /* Color accents per card */
 .accent-gold .card-niche { color: var(--gold); background: var(--gold-dim); border-color: rgba(201,169,110,0.2); }
@@ -1422,7 +1481,10 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
 @media (max-width: 768px) {
   nav { padding: 0 var(--sp-6); }
   .nav-links { display: none; }
-  .projects-grid { grid-template-columns: 1fr; padding: 0 var(--sp-6) var(--sp-16); }
+  .carousel-container { padding: 0 var(--sp-6) var(--sp-16); }
+  .carousel-card { width: 100%; padding: var(--sp-6); }
+  .carousel-arrow { display: none; }
+  .carousel-counter { right: var(--sp-6); }
   .about-section { grid-template-columns: 1fr; gap: var(--sp-12); }
   .hero-stats { gap: var(--sp-6); }
   .cta-actions { flex-direction: column; align-items: center; }
@@ -1516,281 +1578,26 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
   <p class="section-sub" data-i18n="projects.sub">Cada peça foi escrita pra um nicho diferente, com uma abordagem diferente. Clica pra ler o copy completo — e o porquê de cada escolha.</p>
 </div>
 
-<div class="projects-grid">
-
-  <!-- 1. Confeitaria -->
-  <div class="project-card accent-pink" data-id="1">
-    <div class="card-header">
-      <span class="card-niche" data-card-niche="1">Confeitaria</span>
-      <span class="card-format">Texto · Instagram</span>
-    </div>
-    <div class="card-body">
-      <h3 class="card-title" data-card-title="1">A Torta de Limão da Vó Nunca Foi Assim</h3>
-      <p class="card-desc" data-card-desc="1">Storytelling emocional pra vender produto com memória afetiva. Nostalgia primeiro, escassez no final.</p>
-      <div class="card-preview">
-        Ela ensinou a receita em uma tarde de chuva, com a cozinha cheia de vapor e limões espalhados na mesa.
-        Eu fiz algumas trocas, testei por semanas e finalmente cheguei numa versão que…
-      </div>
-    </div>
-    <div class="card-footer">
-      <button class="card-btn" onclick="openModal(1)" data-i18n="card.read">Ler completo →</button>
-      <span class="card-platform">Instagram Feed</span>
+<div class="carousel-container">
+  <div class="carousel-counter" id="carouselCounter">1 / 10</div>
+  
+  <div class="carousel-viewport" id="carouselViewport">
+    <div class="carousel-track" id="carouselTrack">
+      <!-- Cards serão gerados via JS -->
     </div>
   </div>
-
-  <!-- 2. Personal trainer -->
-  <div class="project-card accent-green" data-id="2">
-    <div class="card-header">
-      <span class="card-niche" data-card-niche="2">Fitness</span>
-      <span class="card-format">Bio · Instagram</span>
-    </div>
-    <div class="card-body">
-      <h3 class="card-title" data-card-title="2">Bio que Vende sem Parecer que Tá Vendendo</h3>
-      <p class="card-desc" data-card-desc="2">Bio estratégica pra personal trainer. Prova social no começo, objeção quebrada no meio, CTA discreto no fim.</p>
-      <div class="card-preview bio">
-        Personal trainer há 7 anos · formado em Ed. Física pela PUCRS
-        Já ajudei +200 pessoas a emagrecer sem abandonar o churrasquinho de fim de semana
-        Método → consistência real, não perfeição…
-      </div>
-    </div>
-    <div class="card-footer">
-      <button class="card-btn" onclick="openModal(2)" data-i18n="card.read">Ler completo →</button>
-      <span class="card-platform">Instagram Bio</span>
-    </div>
-  </div>
-
-  <!-- 3. E-commerce moda -->
-  <div class="project-card accent-gold" data-id="3">
-    <div class="card-header">
-      <span class="card-niche" data-card-niche="3">Moda</span>
-      <span class="card-format">Texto · Drop</span>
-    </div>
-    <div class="card-body">
-      <h3 class="card-title" data-card-title="3">O Drop que Esgotou em 40 Minutos</h3>
-      <p class="card-desc" data-card-desc="3">Lançamento de coleção com escassez real. Posicionamento de identidade antes de mostrar o produto.</p>
-      <div class="card-preview">
-        Não é roupa. É posição.
-        Quem entende, não precisa de explicação. Quem não entende, não é o nosso público mesmo.
-        Drop 003 — 30 peças…
-      </div>
-    </div>
-    <div class="card-footer">
-      <button class="card-btn" onclick="openModal(3)" data-i18n="card.read">Ler completo →</button>
-      <span class="card-platform">Instagram Feed</span>
-    </div>
-  </div>
-
-  <!-- 4. Coach -->
-  <div class="project-card accent-violet" data-id="4">
-    <div class="card-header">
-      <span class="card-niche" data-card-niche="4">Coaching</span>
-      <span class="card-format">Texto · Carrossel</span>
-    </div>
-    <div class="card-body">
-      <h3 class="card-title" data-card-title="4">O Texto que Faz o Seguidor Parar e Pensar</h3>
-      <p class="card-desc" data-card-desc="4">Copy para coach de carreira com abordagem provocativa. Quebra objeção antes de apresentar a solução.</p>
-      <div class="card-preview">
-        Você não tá estagnado por falta de esforço. Tá estagnado porque trabalha duro na direção errada.
-        Diferença entre ocupado e produtivo…
-      </div>
-    </div>
-    <div class="card-footer">
-      <button class="card-btn" onclick="openModal(4)" data-i18n="card.read">Ler completo →</button>
-      <span class="card-platform">Instagram Carrossel</span>
-    </div>
-  </div>
-
-  <!-- 5. Carrossel expandido -->
-  <div class="project-card accent-orange" data-id="5">
-    <div class="card-header">
-      <span class="card-niche" data-card-niche="5">Finanças pessoais</span>
-      <span class="card-format">Carrossel expandido</span>
-    </div>
-    <div class="card-body">
-      <h3 class="card-title" data-card-title="5">Do Rascunho ao Carrossel que Para o Scroll</h3>
-      <p class="card-desc" data-card-desc="5">Cliente enviou 4 bullet points secos. Virou um carrossel de 7 slides com abertura, narrativa por slide e CTA final.</p>
-      <div class="card-preview">
-        <strong style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.06em;">Input do cliente</strong><br>
-        "- juros do cartão são altos / - parcelamento machuca / - reserva de emergência importa / - investir cedo"<br><br>
-        <strong style="font-size:11px;color:var(--orange);text-transform:uppercase;letter-spacing:.06em;">Slide 1 →</strong><br>
-        Você não tá endividado por falta de esforço. Tá endividado porque ninguém te ensinou…
-      </div>
-    </div>
-    <div class="card-footer">
-      <button class="card-btn" onclick="openModal(5)" data-i18n="card.slides">Ver todos os slides →</button>
-      <span class="card-platform">Instagram Carrossel</span>
-    </div>
-  </div>
-
-  <!-- 6. Stories -->
-  <div class="project-card accent-blue" data-id="6">
-    <div class="card-header">
-      <span class="card-niche" data-card-niche="6">Moda / E-commerce</span>
-      <span class="card-format">Roteiro de Stories</span>
-    </div>
-    <div class="card-body">
-      <h3 class="card-title" data-card-title="6">Sequência de Stories que Vende sem Parecer Anúncio</h3>
-      <p class="card-desc" data-card-desc="6">Arco narrativo de 8 stories — do gancho até o CTA. Cliente manda o produto, eu monto a sequência.</p>
-      <div class="card-preview">
-        <strong style="font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;">Story 1 — Gancho</strong><br>
-        "Eu quase não lançei essa peça. Achei que ninguém ia entender."<br><br>
-        <strong style="font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;">Story 2 → tensão</strong><br>
-        "Fiz 3 vezes. Descartei 3 vezes. Até que…
-      </div>
-    </div>
-    <div class="card-footer">
-      <button class="card-btn" onclick="openModal(6)" data-i18n="card.sequence">Ver sequência completa →</button>
-      <span class="card-platform">Instagram Stories</span>
-    </div>
-  </div>
-
-  <!-- 7. Psicóloga -->
-  <div class="project-card accent-teal" data-id="7">
-    <div class="card-header">
-      <span class="card-niche" data-card-niche="7">Saúde Mental</span>
-      <span class="card-format">Bio · Acolhimento</span>
-    </div>
-    <div class="card-body">
-      <h3 class="card-title" data-card-title="7">Bio que Acolhe Antes de Vender</h3>
-      <p class="card-desc" data-card-desc="7">Bio para psicóloga com abordagem sensível. Gera conexão emocional antes de apresentar o serviço.</p>
-      <div class="card-preview bio">
-        Psicóloga clínica · CRP 07/12345
-        Acredito que pedir ajuda é um ato de coragem, não de fraqueza
-        Atendo adultos que estão carregando coisas demais sozinhos…
-      </div>
-    </div>
-    <div class="card-footer">
-      <button class="card-btn" onclick="openModal(7)" data-i18n="card.read">Ler completo →</button>
-      <span class="card-platform">Instagram Bio</span>
-    </div>
-  </div>
-
-  <!-- 8. SaaS / Tech -->
-  <div class="project-card accent-violet" data-id="8">
-    <div class="card-header">
-      <span class="card-niche" data-card-niche="8">Tech / SaaS</span>
-      <span class="card-format">Texto · LinkedIn</span>
-    </div>
-    <div class="card-body">
-      <h3 class="card-title" data-card-title="8">Copy Técnico que Não Afasta o Leigo</h3>
-      <p class="card-desc" data-card-desc="8">Texto para produto de software. Traduz feature técnica em benefício real sem simplificar demais.</p>
-      <div class="card-preview">
-        A maioria dos relatórios de vendas responde "o que aconteceu".
-        O nosso responde "o que fazer agora".
-        Lançamos a análise preditiva integrada ao CRM…
-      </div>
-    </div>
-    <div class="card-footer">
-      <button class="card-btn" onclick="openModal(8)" data-i18n="card.read">Ler completo →</button>
-      <span class="card-platform">LinkedIn</span>
-    </div>
-  </div>
-
-  <!-- 9. Restaurante -->
-  <div class="project-card accent-red" data-id="9">
-    <div class="card-header">
-      <span class="card-niche" data-card-niche="9">Gastronomia</span>
-      <span class="card-format">Texto · Sensorial</span>
-    </div>
-    <div class="card-body">
-      <h3 class="card-title" data-card-title="9">Copy que Faz o Seguidor Sentir Fome</h3>
-      <p class="card-desc" data-card-desc="9">Escrita sensorial pra restaurante. O leitor sente o cheiro antes de ver o prato. Sem chamada de "venha provar".</p>
-      <div class="card-preview">
-        O caldo reduz por 4 horas. O chef prova a cada 20 minutos e faz pequenos ajustes — um toque de azeite, uma pitada de…
-      </div>
-    </div>
-    <div class="card-footer">
-      <button class="card-btn" onclick="openModal(9)" data-i18n="card.read">Ler completo →</button>
-      <span class="card-platform">Instagram Feed</span>
-    </div>
-  </div>
-
-  <!-- 10. Freelancer/Creator -->
-  <div class="project-card accent-gold" data-id="10">
-    <div class="card-header">
-      <span class="card-niche" data-card-niche="10">Creator Economy</span>
-      <span class="card-format">Bio + Texto</span>
-    </div>
-    <div class="card-body">
-      <h3 class="card-title" data-card-title="10">O Creator que Parece Marca</h3>
-      <p class="card-desc" data-card-desc="10">Pacote completo — bio + texto — para criador que já passou da fase de número e quer ser tratado como referência. Posicionamento de marca aplicado em quem ainda é vendido como influencer.</p>
-      <div class="card-preview">
-        Não ensino o caminho mais fácil. Ensino o mais honesto.
-        Já errei o suficiente pra saber o que realmente funciona — e o que parece funcionar mas não funciona…
-      </div>
-    </div>
-    <div class="card-footer">
-      <button class="card-btn" onclick="openModal(10)" data-i18n="card.read">Ler completo →</button>
-      <span class="card-platform">Instagram Bio + Feed</span>
-    </div>
-  </div>
-
-</div>
-
-<!-- BENEFITS -->
-<div class="benefits-section" id="beneficios">
-  <div class="section-tag" data-i18n="benefits.tag">O que você recebe</div>
-  <h2 class="section-title" data-i18n="benefits.title">Não é só texto bonito</h2>
-  <p class="section-sub" data-i18n="benefits.sub">Cada entrega carrega os mesmos quatro princípios.</p>
-  <div class="benefits-grid">
-    <div class="benefit-card">
-      <div class="benefit-icon">✎</div>
-      <div>
-        <h3 class="benefit-title" data-i18n="benefits.b1.title">Texto estratégico</h3>
-        <p class="benefit-desc" data-i18n="benefits.b1.desc">Não só bonito — pensado pra conversar com o seu público.</p>
-      </div>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">◆</div>
-      <div>
-        <h3 class="benefit-title" data-i18n="benefits.b2.title">Copy que respeita seu nicho</h3>
-        <p class="benefit-desc" data-i18n="benefits.b2.desc">Sem clichê genérico. Cada peça escrita pro seu contexto.</p>
-      </div>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">⏱</div>
-      <div>
-        <h3 class="benefit-title" data-i18n="benefits.b3.title">Prazo garantido</h3>
-        <p class="benefit-desc" data-i18n="benefits.b3.desc">48h ou dinheiro de volta. Simples assim.</p>
-      </div>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">→</div>
-      <div>
-        <h3 class="benefit-title" data-i18n="benefits.b4.title">Processo simples</h3>
-        <p class="benefit-desc" data-i18n="benefits.b4.desc">Briefing → entrega → ajuste. Sem burocracia no meio.</p>
-      </div>
-    </div>
+  
+  <button class="carousel-arrow carousel-arrow-left" id="carouselPrev" aria-label="Anterior">←</button>
+  <button class="carousel-arrow carousel-arrow-right" id="carouselNext" aria-label="Próximo">→</button>
+  
+  <div class="carousel-dots" id="carouselDots">
+    <!-- Dots serão gerados via JS -->
   </div>
 </div>
 
-<!-- FAQ -->
-<div class="faq-section" id="faq">
-  <div class="section-tag" data-i18n="faq.tag">Perguntas frequentes</div>
-  <h2 class="section-title" data-i18n="faq.title">Antes de você perguntar</h2>
-  <p class="section-sub" data-i18n="faq.sub">As dúvidas mais comuns antes de pedir uma amostra.</p>
-  <div class="faq-list">
-    <details class="faq-item">
-      <summary class="faq-question" data-i18n="faq.q1">Como funciona a amostra grátis?</summary>
-      <p class="faq-answer" data-i18n="faq.a1">Você pede, eu escrevo e entrego em 24h. Sem pegadinha.</p>
-    </details>
-    <details class="faq-item">
-      <summary class="faq-question" data-i18n="faq.q2">E se eu não gostar?</summary>
-      <p class="faq-answer" data-i18n="faq.a2">Fica com a amostra grátis mesmo. Sem obrigação de comprar.</p>
-    </details>
-    <details class="faq-item">
-      <summary class="faq-question" data-i18n="faq.q3">Posso cancelar o pacote?</summary>
-      <p class="faq-answer" data-i18n="faq.a3">Sim, quando quiser. Sem multa.</p>
-    </details>
-    <details class="faq-item">
-      <summary class="faq-question" data-i18n="faq.q4">Quanto tempo demora a entrega?</summary>
-      <p class="faq-answer" data-i18n="faq.a4">48h ou dinheiro de volta.</p>
-    </details>
-    <details class="faq-item">
-      <summary class="faq-question" data-i18n="faq.q5">Vocês atendem fora do Brasil?</summary>
-      <p class="faq-answer" data-i18n="faq.a5">Sim. Copy em PT ou EN. Atendo Brasil e exterior.</p>
-    </details>
-  </div>
+<!-- Cards data (hidden, usado pelo carrossel) -->
+<div style="display: none;" id="projectsData">
+  <!-- Dados dos projetos para o carrossel -->
 </div>
 
 <!-- ABOUT -->
@@ -3461,5 +3268,150 @@ document.addEventListener('DOMContentLoaded', () => {
   applyLang(currentLang);
 });
 </script>
+
+// ── CAROUSEL ──
+(function() {
+  // Usa a variável global projects
+  const projectsObj = typeof projects !== 'undefined' ? projects : {};
+  const track = document.getElementById('carouselTrack');
+  const dots = document.getElementById('carouselDots');
+  const counter = document.getElementById('carouselCounter');
+  const prevBtn = document.getElementById('carouselPrev');
+  const nextBtn = document.getElementById('carouselNext');
+  const viewport = document.getElementById('carouselViewport');
+  
+  if (!track || !dots) return;
+  
+  let currentIndex = 0;
+  let cardWidth = 0;
+  let gap = 24;
+  
+  // Gerar slides
+  function generateSlides() {
+    const lang = currentLang || 'pt';
+    const projectKeys = Object.keys(projectsObj).sort((a, b) => parseInt(a) - parseInt(b));
+    
+    track.innerHTML = projectKeys.map((id, index) => {
+      const proj = projectsObj[id];
+      const data = proj[lang] || proj.pt;
+      const copy = lang === 'en' ? (proj.copy_en || proj.copy) : proj.copy;
+      const copyFormatted = copy.replace(/(#\S+)/g, '<span class="hashtags">$1</span>');
+      
+      return `
+        <div class="carousel-card${index === 0 ? ' active' : ''}" data-index="${index}">
+          <div class="card-header">
+            <span class="card-niche">${data.niche.split(' · ')[0]}</span>
+            <span class="card-format">${data.niche.split(' · ')[1] || ''}</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">${data.title}</h3>
+            <p class="card-desc">${data.desc}</p>
+            <div class="carousel-copy">${copyFormatted}</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" onclick="openModal(${id})">⚡ Por que funciona</button>
+            <span class="card-platform">${data.niche.split(' · ')[1] || ''}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+    
+    // Gerar dots
+    dots.innerHTML = projectKeys.map((_, index) => 
+      `<button class="carousel-dot${index === 0 ? ' active' : ''}" data-index="${index}" aria-label="Ir para ${index + 1}"></button>`
+    ).join('');
+    
+    updateCarousel();
+  }
+  
+  function updateCarousel() {
+    const cards = track.querySelectorAll('.carousel-card');
+    if (!cards.length) return;
+    
+    cardWidth = cards[0].offsetWidth;
+    const offset = currentIndex * (cardWidth + gap);
+    track.style.transform = `translateX(-${offset}px)`;
+    
+    // Atualizar classes
+    cards.forEach((card, i) => {
+      card.classList.remove('active', 'adjacent');
+      if (i === currentIndex) card.classList.add('active');
+      else if (Math.abs(i - currentIndex) === 1) card.classList.add('adjacent');
+    });
+    
+    // Atualizar dots
+    const dotEls = dots.querySelectorAll('.carousel-dot');
+    dotEls.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+    
+    // Atualizar counter
+    if (counter) counter.textContent = `${currentIndex + 1} / ${cards.length}`;
+    
+    // Atualizar botões
+    if (prevBtn) prevBtn.disabled = currentIndex === 0;
+    if (nextBtn) nextBtn.disabled = currentIndex === cards.length - 1;
+  }
+  
+  function moveTo(index) {
+    const cards = track.querySelectorAll('.carousel-card');
+    if (index < 0 || index >= cards.length) return;
+    currentIndex = index;
+    updateCarousel();
+  }
+  
+  function next() { moveTo(currentIndex + 1); }
+  function prev() { moveTo(currentIndex - 1); }
+  
+  // Event listeners
+  if (prevBtn) prevBtn.addEventListener('click', prev);
+  if (nextBtn) nextBtn.addEventListener('click', next);
+  
+  dots.addEventListener('click', (e) => {
+    const dot = e.target.closest('.carousel-dot');
+    if (dot) moveTo(parseInt(dot.dataset.index));
+  });
+  
+  // Teclado
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') prev();
+    if (e.key === 'ArrowRight') next();
+  });
+  
+  // Touch/Swipe
+  let startX = 0;
+  let isDragging = false;
+  
+  viewport.addEventListener('pointerdown', (e) => {
+    startX = e.clientX;
+    isDragging = true;
+    track.classList.add('dragging');
+  });
+  
+  viewport.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+    const diff = e.clientX - startX;
+    const offset = currentIndex * (cardWidth + gap) + diff;
+    track.style.transform = `translateX(-${offset}px)`;
+  });
+  
+  viewport.addEventListener('pointerup', (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    track.classList.remove('dragging');
+    const diff = e.clientX - startX;
+    if (Math.abs(diff) > 80) {
+      if (diff < 0) next();
+      else prev();
+    } else {
+      updateCarousel();
+    }
+  });
+  
+  // Resize
+  window.addEventListener('resize', updateCarousel);
+  
+  // Inicializar
+  generateSlides();
+})();
+
 </body>
 </html>
