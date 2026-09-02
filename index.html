@@ -299,6 +299,169 @@ section {
   line-height: 1.6;
 }
 
+/* ── HOW IT WORKS ── */
+.how-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--sp-24) var(--sp-8) var(--sp-16);
+}
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-6);
+  margin-top: var(--sp-12);
+}
+.how-card {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-8) var(--sp-6);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.how-card:hover { border-color: var(--border-hi); transform: translateY(-2px); }
+.how-number {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--gold);
+  margin-bottom: var(--sp-4);
+}
+.how-card-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-1);
+  margin-bottom: var(--sp-2);
+}
+.how-card-desc {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+/* ── BENEFITS ("O que você recebe") ── */
+.benefits-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--sp-16) var(--sp-8) var(--sp-24);
+}
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-6);
+  margin-top: var(--sp-12);
+}
+.benefit-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+  transition: border-color 0.2s ease;
+}
+.benefit-card:hover { border-color: var(--border-hi); }
+.benefit-icon {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-md);
+  background: var(--gold-dim);
+  color: var(--gold);
+  font-size: 17px;
+}
+.benefit-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-1);
+  margin-bottom: 4px;
+}
+.benefit-desc {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+/* ── FAQ ── */
+.faq-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--sp-16) var(--sp-8) var(--sp-24);
+}
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  margin-top: var(--sp-12);
+  max-width: 720px;
+}
+.faq-item {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0 var(--sp-6);
+  transition: border-color 0.2s ease;
+}
+.faq-item[open] { border-color: var(--border-hi); }
+.faq-question {
+  cursor: pointer;
+  list-style: none;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-4) 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+.faq-question::-webkit-details-marker { display: none; }
+.faq-question::after {
+  content: '+';
+  flex-shrink: 0;
+  color: var(--gold);
+  font-size: 18px;
+  font-weight: 400;
+}
+.faq-item[open] .faq-question::after { content: '−'; }
+.faq-answer {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.6;
+  padding-bottom: var(--sp-4);
+}
+
+/* ── GUARANTEE BADGE (packages) ── */
+.guarantee-badge {
+  margin-top: var(--sp-4);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--green-dim);
+  border: 1px solid rgba(94,201,145,0.25);
+  border-radius: var(--radius-sm);
+}
+.guarantee-badge-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--green);
+  margin-bottom: 2px;
+}
+.guarantee-badge-text {
+  display: block;
+  font-size: 11px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .how-grid { grid-template-columns: 1fr; }
+  .benefits-grid { grid-template-columns: 1fr; }
+}
+
 /* ── PROJECTS GRID ── */
 .projects-header {
   max-width: 1100px;
@@ -1127,6 +1290,30 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
   </div>
 </div>
 
+<!-- HOW IT WORKS -->
+<div class="how-section" id="como-funciona">
+  <div class="section-tag" data-i18n="how.tag">Como funciona</div>
+  <h2 class="section-title" data-i18n="how.title">Do formulário ao texto pronto</h2>
+  <p class="section-sub" data-i18n="how.sub">Sem letra miúda. Três passos, e você decide se quer continuar.</p>
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="how-number">1</div>
+      <h3 class="how-card-title" data-i18n="how.step1.title">Pede sua amostra grátis</h3>
+      <p class="how-card-desc" data-i18n="how.step1.desc">Você preenche um formulário com seu nicho e o que quer comunicar. Sem compromisso.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-number">2</div>
+      <h3 class="how-card-title" data-i18n="how.step2.title">Recebe em 24h</h3>
+      <p class="how-card-desc" data-i18n="how.step2.desc">Você recebe um texto ou bio feito pro seu nicho. Se gostar, a gente conversa sobre pacote.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-number">3</div>
+      <h3 class="how-card-title" data-i18n="how.step3.title">Decide se quer mais</h3>
+      <p class="how-card-desc" data-i18n="how.step3.desc">Sem pressão. Se a amostra fez sentido, você escolhe um pacote. Se não, ficou com um texto grátis mesmo.</p>
+    </div>
+  </div>
+</div>
+
 <!-- PROJECTS -->
 <div class="projects-header" id="projetos">
   <div class="section-tag" data-i18n="projects.tag">Portfólio</div>
@@ -1345,6 +1532,72 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
 
 </div>
 
+<!-- BENEFITS -->
+<div class="benefits-section" id="beneficios">
+  <div class="section-tag" data-i18n="benefits.tag">O que você recebe</div>
+  <h2 class="section-title" data-i18n="benefits.title">Não é só texto bonito</h2>
+  <p class="section-sub" data-i18n="benefits.sub">Cada entrega carrega os mesmos quatro princípios.</p>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <div class="benefit-icon">✎</div>
+      <div>
+        <h3 class="benefit-title" data-i18n="benefits.b1.title">Texto estratégico</h3>
+        <p class="benefit-desc" data-i18n="benefits.b1.desc">Não só bonito — pensado pra conversar com o seu público.</p>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">◆</div>
+      <div>
+        <h3 class="benefit-title" data-i18n="benefits.b2.title">Copy que respeita seu nicho</h3>
+        <p class="benefit-desc" data-i18n="benefits.b2.desc">Sem clichê genérico. Cada peça escrita pro seu contexto.</p>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">⏱</div>
+      <div>
+        <h3 class="benefit-title" data-i18n="benefits.b3.title">Prazo garantido</h3>
+        <p class="benefit-desc" data-i18n="benefits.b3.desc">48h ou dinheiro de volta. Simples assim.</p>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">→</div>
+      <div>
+        <h3 class="benefit-title" data-i18n="benefits.b4.title">Processo simples</h3>
+        <p class="benefit-desc" data-i18n="benefits.b4.desc">Briefing → entrega → ajuste. Sem burocracia no meio.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-section" id="faq">
+  <div class="section-tag" data-i18n="faq.tag">Perguntas frequentes</div>
+  <h2 class="section-title" data-i18n="faq.title">Antes de você perguntar</h2>
+  <p class="section-sub" data-i18n="faq.sub">As dúvidas mais comuns antes de pedir uma amostra.</p>
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary class="faq-question" data-i18n="faq.q1">Como funciona a amostra grátis?</summary>
+      <p class="faq-answer" data-i18n="faq.a1">Você pede, eu escrevo e entrego em 24h. Sem pegadinha.</p>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-question" data-i18n="faq.q2">E se eu não gostar?</summary>
+      <p class="faq-answer" data-i18n="faq.a2">Fica com a amostra grátis mesmo. Sem obrigação de comprar.</p>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-question" data-i18n="faq.q3">Posso cancelar o pacote?</summary>
+      <p class="faq-answer" data-i18n="faq.a3">Sim, quando quiser. Sem multa.</p>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-question" data-i18n="faq.q4">Quanto tempo demora a entrega?</summary>
+      <p class="faq-answer" data-i18n="faq.a4">48h ou dinheiro de volta.</p>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-question" data-i18n="faq.q5">Vocês atendem fora do Brasil?</summary>
+      <p class="faq-answer" data-i18n="faq.a5">Sim. Copy em PT ou EN. Atendo Brasil e exterior.</p>
+    </details>
+  </div>
+</div>
+
 <!-- ABOUT -->
 <div class="about-section" id="sobre">
   <div class="about-text">
@@ -1456,6 +1709,10 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
             <li data-i18n="pkg.single.f3">Uma rodada de ajustes</li>
             <li data-i18n="pkg.single.f4">Entrega em até 48h</li>
           </ul>
+          <div class="guarantee-badge">
+            <span class="guarantee-badge-label" data-i18n="pkg.guarantee.label">🛡 Garantia de 48h</span>
+            <span class="guarantee-badge-text" data-i18n="pkg.guarantee.text">Se eu não entregar em 48h, 100% do dinheiro de volta. Sem perguntas.</span>
+          </div>
           <div style="margin-top: var(--sp-6)">
             <a href="#" onclick="closePackages(); openComissao(); return false;" class="btn-primary" style="display:flex; justify-content:center;" data-i18n="pkg.single.cta">Contratar agora →</a>
           </div>
@@ -1475,6 +1732,10 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
             <li data-i18n="pkg.starter.f3">Entrega quinzenal (3 + 3)</li>
             <li data-i18n="pkg.starter.f4">Uma rodada de ajustes</li>
           </ul>
+          <div class="guarantee-badge">
+            <span class="guarantee-badge-label" data-i18n="pkg.guarantee.label">🛡 Garantia de 48h</span>
+            <span class="guarantee-badge-text" data-i18n="pkg.guarantee.text">Se eu não entregar em 48h, 100% do dinheiro de volta. Sem perguntas.</span>
+          </div>
         </div>
 
         <div class="package-card featured">
@@ -1493,6 +1754,10 @@ select.form-input option { background: var(--bg-3); color: var(--text-1); }
             <li data-i18n="pkg.refiner.f4">Duas rodadas de ajustes</li>
             <li data-i18n="pkg.refiner.f5">Relatório mensal de performance</li>
           </ul>
+          <div class="guarantee-badge">
+            <span class="guarantee-badge-label" data-i18n="pkg.guarantee.label">🛡 Garantia de 48h</span>
+            <span class="guarantee-badge-text" data-i18n="pkg.guarantee.text">Se eu não entregar em 48h, 100% do dinheiro de volta. Sem perguntas.</span>
+          </div>
         </div>
 
         <div class="package-card">
@@ -1838,6 +2103,41 @@ const I18N = {
     'pkg.allout.f5': 'Reunião mensal de estratégia (30min)',
     'pkg.footer.text': 'Não sabe qual escolher? Conta o seu projeto no formulário — eu te ajudo a decidir antes do pagamento.',
     'pkg.footer.cta': 'Quero contratar um pacote →',
+    'how.tag': 'Como funciona',
+    'how.title': 'Do formulário ao texto pronto',
+    'how.sub': 'Sem letra miúda. Três passos, e você decide se quer continuar.',
+    'how.step1.title': 'Pede sua amostra grátis',
+    'how.step1.desc': 'Você preenche um formulário com seu nicho e o que quer comunicar. Sem compromisso.',
+    'how.step2.title': 'Recebe em 24h',
+    'how.step2.desc': 'Você recebe um texto ou bio feito pro seu nicho. Se gostar, a gente conversa sobre pacote.',
+    'how.step3.title': 'Decide se quer mais',
+    'how.step3.desc': 'Sem pressão. Se a amostra fez sentido, você escolhe um pacote. Se não, ficou com um texto grátis mesmo.',
+    'benefits.tag': 'O que você recebe',
+    'benefits.title': 'Não é só texto bonito',
+    'benefits.sub': 'Cada entrega carrega os mesmos quatro princípios.',
+    'benefits.b1.title': 'Texto estratégico',
+    'benefits.b1.desc': 'Não só bonito — pensado pra conversar com o seu público.',
+    'benefits.b2.title': 'Copy que respeita seu nicho',
+    'benefits.b2.desc': 'Sem clichê genérico. Cada peça escrita pro seu contexto.',
+    'benefits.b3.title': 'Prazo garantido',
+    'benefits.b3.desc': '48h ou dinheiro de volta. Simples assim.',
+    'benefits.b4.title': 'Processo simples',
+    'benefits.b4.desc': 'Briefing → entrega → ajuste. Sem burocracia no meio.',
+    'faq.tag': 'Perguntas frequentes',
+    'faq.title': 'Antes de você perguntar',
+    'faq.sub': 'As dúvidas mais comuns antes de pedir uma amostra.',
+    'faq.q1': 'Como funciona a amostra grátis?',
+    'faq.a1': 'Você pede, eu escrevo e entrego em 24h. Sem pegadinha.',
+    'faq.q2': 'E se eu não gostar?',
+    'faq.a2': 'Fica com a amostra grátis mesmo. Sem obrigação de comprar.',
+    'faq.q3': 'Posso cancelar o pacote?',
+    'faq.a3': 'Sim, quando quiser. Sem multa.',
+    'faq.q4': 'Quanto tempo demora a entrega?',
+    'faq.a4': '48h ou dinheiro de volta.',
+    'faq.q5': 'Vocês atendem fora do Brasil?',
+    'faq.a5': 'Sim. Copy em PT ou EN. Atendo Brasil e exterior.',
+    'pkg.guarantee.label': '🛡 Garantia de 48h',
+    'pkg.guarantee.text': 'Se eu não entregar em 48h, 100% do dinheiro de volta. Sem perguntas.',
     'pkg.price.single': '<span class="package-price-prefix">R$</span>97<span class="package-price-period"> único</span>',
     'pkg.price.starter': '<span class="package-price-prefix">R$</span>247<span class="package-price-period">/mês</span>',
     'pkg.price.refiner': '<span class="package-price-prefix">R$</span>397<span class="package-price-period">/mês</span>',
@@ -1987,6 +2287,41 @@ const I18N = {
     'pkg.allout.f5': 'Monthly strategy call (30min)',
     'pkg.footer.text': "Not sure which to pick? Tell me about your project — I'll help you decide before payment.",
     'pkg.footer.cta': 'I want to hire a package →',
+    'how.tag': 'How it works',
+    'how.title': 'From form to finished copy',
+    'how.sub': 'No fine print. Three steps, then you decide if you want to continue.',
+    'how.step1.title': 'Request your free sample',
+    'how.step1.desc': 'You fill out a form with your niche and what you want to communicate. No commitment.',
+    'how.step2.title': 'Receive in 24h',
+    'how.step2.desc': 'You get a caption or bio written for your niche. If you like it, we talk about a package.',
+    'how.step3.title': 'Decide if you want more',
+    'how.step3.desc': 'No pressure. If the sample made sense, you pick a package. If not, you still got a free piece.',
+    'benefits.tag': 'What you get',
+    'benefits.title': 'Not just pretty words',
+    'benefits.sub': 'Every deliverable carries the same four principles.',
+    'benefits.b1.title': 'Strategic copy',
+    'benefits.b1.desc': 'Not just beautiful — written to speak to your audience.',
+    'benefits.b2.title': 'Copy that respects your niche',
+    'benefits.b2.desc': 'No generic clichés. Each piece written for your context.',
+    'benefits.b3.title': 'Guaranteed deadline',
+    'benefits.b3.desc': '48h or money back. Simple as that.',
+    'benefits.b4.title': 'Simple process',
+    'benefits.b4.desc': 'Briefing → delivery → revision. No bureaucracy in between.',
+    'faq.tag': 'FAQ',
+    'faq.title': 'Before you ask',
+    'faq.sub': 'The most common questions before requesting a sample.',
+    'faq.q1': 'How does the free sample work?',
+    'faq.a1': 'You ask, I write, I deliver in 24h. No catch.',
+    'faq.q2': "What if I don't like it?",
+    'faq.a2': 'Keep the free sample anyway. No obligation to buy.',
+    'faq.q3': 'Can I cancel the package?',
+    'faq.a3': 'Yes, anytime. No penalty.',
+    'faq.q4': 'How long does delivery take?',
+    'faq.a4': '48h or money back.',
+    'faq.q5': 'Do you serve clients outside Brazil?',
+    'faq.a5': 'Yes. Copy in PT or EN. I work with clients worldwide.',
+    'pkg.guarantee.label': '🛡 48h guarantee',
+    'pkg.guarantee.text': "If I don't deliver in 48h, 100% money back. No questions asked.",
     'pkg.price.single': '<span class="package-price-prefix">$</span>17<span class="package-price-period"> one-time</span>',
     'pkg.price.starter': '<span class="package-price-prefix">$</span>44<span class="package-price-period">/mo</span>',
     'pkg.price.refiner': '<span class="package-price-prefix">$</span>70<span class="package-price-period">/mo</span>',
